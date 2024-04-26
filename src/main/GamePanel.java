@@ -13,23 +13,29 @@ import java.awt.Color;
 public class GamePanel extends JPanel implements Runnable{
         public final int originalTileSize = 16; // (nhan vat va map kich co goc la 16x16 pixels)
         public final int scale = 3;
-        public final int tileSize = originalTileSize * scale; // 16 * 3 = 48 (man hinh hien thi nhan vat va map kich co 48x48 pixel)
+        public final int tileSize = originalTileSize * scale; // 16 * 4 = 64  (man hinh hien thi nhan vat va map kich co 48x48 pixel)
 
-        public final int maxScreenCol = 15;
+        public final int maxScreenCol = 16;
         public final int maxScreenRow = 12;
-        public final int chieuDai = tileSize * maxScreenCol; //Man hinh hien thi chieu dai 48 x 15 = 720 pixels
-        public final int chieuRong = tileSize * maxScreenRow; // Man hinh hien thi chieu rong  48 x 12= 548 pixels
+        public final int screenWidth = tileSize * maxScreenCol; //Man hinh hien thi chieu dai 64 x 15 = 960 pixels
+        public final int screenHeight = tileSize * maxScreenRow; // Man hinh hien thi chieu rong  64 x 12= 768 pixels
+
+            // world setting
+        public final int maxWorldCol = 50;
+        public final int maxWorldRow = 50;
+        public final int worldWidth = tileSize*maxWorldCol;
+        public final int worldHeight = tileSize*maxWorldRow;
 
         Thread gameThread; // 1 luong giu game chay cho den khi ban ket thuc no
         KeyboardInput keyInput = new KeyboardInput();
-        Player player = new Player (this,keyInput);
+        public Player player = new Player (this,keyInput);
         TileManager tileM = new TileManager(this);
 
         //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben phai.
         int FPS = 60; // game chi chay 60 khung hinh/s
 
         public GamePanel(){
-            this.setPreferredSize(new Dimension(chieuDai, chieuRong));
+            this.setPreferredSize(new Dimension(screenWidth,screenHeight));
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);
             this.addKeyListener(keyInput);

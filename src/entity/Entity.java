@@ -4,7 +4,8 @@ package entity; //luu tru cac thuoc tinh cua nhan vat (player, enemies,......)
 import java.awt.image.BufferedImage;
 
 public class Entity {
-    public int x,y;
+    public int worldx,worldy;
+    public int screenY, sceenY;
     public int speed;
 
     public BufferedImage up1,up2,up3,up4,up5,up6;

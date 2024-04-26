@@ -1,3 +1,4 @@
+
 package entity;
 
 import java.awt.Color;
@@ -14,19 +15,23 @@ public class Player extends Entity {
 
     GamePanel gp;
     KeyboardInput keyInput;
-
+    // cho biet vi tri toi ve nguoi choi tren man hinh
+    public final int screenX;
+    public final int screenY;
     public Player(GamePanel gp, KeyboardInput keyInput){
         this.gp = gp;
         this.keyInput = keyInput;
-
-        setGiaTriMacDinh();;
+        // de nhan vạt nằm giữa màn hình
+        screenX = gp.screenWidth/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        setGiaTriMacDinh();
         getPlayerImage();
     }
 
     public void setGiaTriMacDinh(){
         //Toa do nhan vat va toc do mac dinh
-        x = 100;
-        y = 100;
+        worldx = gp.tileSize * 5;
+        worldy = gp.tileSize * 2 ;
         speed = 4;
         huongDi = "xuong"; // huong di mac dinh cua nhan vat
 
@@ -35,19 +40,19 @@ public class Player extends Entity {
         if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren || keyInput.diXuong){ //Nhan vat se o trang thai "DUNG YEN" khi khong co nut nao duoc bam
             if (keyInput.diTren){
                 huongDi = "len";
-                y -= speed;
+                worldy -= speed;
             }
             if (keyInput.diXuong){
                 huongDi = "xuong";
-                y += speed;
+                worldy += speed;
             }
             if (keyInput.diTrai){
                 huongDi = "trai";
-                x -= speed;
+                worldx -= speed;
             }
             if (keyInput.diPhai){
                 huongDi = "phai";
-                x += speed;
+                worldx += speed;
             }
             spriteDem++; // Moi X frames lai thay doi hinh anh nhan vat
             if (spriteDem > 6){ // hieu don gian la phuong thuc update duoc goi 60 lan/giay. Hinh anh nhan vat se duoc doi theo chu trinh 1-2-3-4-1
@@ -146,7 +151,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image,x,y, (int) (1.5 * gp.tileSize),(int) (1.5 * gp.tileSize),null);
+        g2.drawImage(image,screenX,screenY,gp.tileSize,gp.tileSize,null);
     }
 
     public void getPlayerImage(){
