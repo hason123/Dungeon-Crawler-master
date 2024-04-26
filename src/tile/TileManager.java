@@ -21,30 +21,22 @@ public class TileManager {
         mapTileNumber = new int[gp.maxScreenCol][gp.maxScreenRow];//Luu tru du lieu cua cac file Map.txt chua thu tu sap xep cac Tiles
 
         getTileImage();
-        loadMap("/map/MapDraft001.txt");
+        loadMap("/map/blabla.txt");
     }
 
     public void getTileImage() {//Luu tru hinh anh cua tung Tile
         try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/000.png"));
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/001.png"));
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/002.png"));
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/003.png"));
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/004.png"));
-
-
-
+            for(int j=0; j<75; j++){
+                tile[j] = new Tile();
+                if(j<10) {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+j+".png"));}
+                else {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+j+".png"));}
+            }
 
         }catch(IOException e) {
             e.printStackTrace();
         }
     }
-
+    //Hien chi Load duoc map co kich thuoc 15x12 ??
     public void loadMap(String mapPath){//Doc du lieu file .txt chua thong tin Map
         try{
             //Hai dong lenh thuc hien viec doc file .txt
