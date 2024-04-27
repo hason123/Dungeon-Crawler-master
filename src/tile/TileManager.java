@@ -29,7 +29,7 @@ public class TileManager {
             for(int j=0; j<75; j++){
                 tile[j] = new Tile();
                 if(j<10) {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+j+".png"));}
-                else {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+j+".png"));}
+                else {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+ j +".png"));}
             }
 
         }catch(IOException e) {
