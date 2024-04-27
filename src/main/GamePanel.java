@@ -13,7 +13,7 @@ import java.awt.Color;
 public class GamePanel extends JPanel implements Runnable{
         public final int originalTileSize = 16; // (nhan vat va map kich co goc la 16x16 pixels)
         public final int scale = 3;
-        public final int tileSize = originalTileSize * scale; // 16 * 4 = 64  (man hinh hien thi nhan vat va map kich co 48x48 pixel)
+        public final int tileSize = originalTileSize * scale; // 16 * 3 = 48  (man hinh hien thi nhan vat va map kich co 48x48 pixel)
 
         public final int maxScreenCol = 16;
         public final int maxScreenRow = 12;
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
         public Player player = new Player (this,keyInput);
         TileManager tileM = new TileManager(this);
 
-        //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben phai.
+        //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben duoi.
         int FPS = 60; // game chi chay 60 khung hinh/s
 
         public GamePanel(){

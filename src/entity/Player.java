@@ -30,8 +30,8 @@ public class Player extends Entity {
 
     public void setGiaTriMacDinh(){
         //Toa do nhan vat va toc do mac dinh
-        worldx = gp.tileSize * 5;
-        worldy = gp.tileSize * 2 ;
+        worldX = gp.tileSize * 5;
+        worldY = gp.tileSize * 2 ;
         speed = 4;
         huongDi = "xuong"; // huong di mac dinh cua nhan vat
 
@@ -40,19 +40,19 @@ public class Player extends Entity {
         if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren || keyInput.diXuong){ //Nhan vat se o trang thai "DUNG YEN" khi khong co nut nao duoc bam
             if (keyInput.diTren){
                 huongDi = "len";
-                worldy -= speed;
+                worldY -= speed;
             }
             if (keyInput.diXuong){
                 huongDi = "xuong";
-                worldy += speed;
+                worldY += speed;
             }
             if (keyInput.diTrai){
                 huongDi = "trai";
-                worldx -= speed;
+                worldX -= speed;
             }
             if (keyInput.diPhai){
                 huongDi = "phai";
-                worldx += speed;
+                worldX += speed;
             }
             spriteDem++; // Moi X frames lai thay doi hinh anh nhan vat
             if (spriteDem > 6){ // hieu don gian la phuong thuc update duoc goi 60 lan/giay. Hinh anh nhan vat se duoc doi theo chu trinh 1-2-3-4-1
