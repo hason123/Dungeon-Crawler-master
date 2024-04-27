@@ -151,7 +151,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image,screenX,screenY,gp.tileSize,gp.tileSize,null);
+        g2.drawImage(image,screenX,screenY,(int) (1.5 * gp.tileSize),(int) (1.5 * gp.tileSize),null);
     }
 
     public void getPlayerImage(){
