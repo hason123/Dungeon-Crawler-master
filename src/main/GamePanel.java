@@ -31,10 +31,13 @@ public class GamePanel extends JPanel implements Runnable{
         Thread gameThread; // 1 luong giu game chay cho den khi ban ket thuc no
         KeyboardInput keyInput = new KeyboardInput();
         public Player player = new Player (this,keyInput);
+
         TileManager tileM = new TileManager(this);
 
         //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben duoi.
         int FPS = 60; // game chi chay 60 khung hinh/s
+        public CollisionChecker cChecker = new CollisionChecker(this);
+
     private Key key;
     private LockedDoor lockedDoor;
     private OpenDoor openDoor;

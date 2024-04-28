@@ -1,8 +1,7 @@
 
 package entity;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,6 +23,10 @@ public class Player extends Entity {
         // de nhan vạt nằm giữa màn hình
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        solidArea =new Rectangle(8,16,32,32);//Khi khoi tao hinh chu nhat nay co 4 doi soos truyen vao (x,y,height,width)
+        // Mong muon tao 1 hinh chu nhat nho hon kich thuoc nhan vat
+
+
         setGiaTriMacDinh();
         getPlayerImage();
     }
@@ -53,6 +56,26 @@ public class Player extends Entity {
             if (keyInput.diPhai){
                 huongDi = "phai";
                 worldX += speed;
+            }
+            // Check tile collision
+            collisionOn = false;
+            gp.cChecker.checkTile(this);//vi lop player la lop con cua entity collision co the nhan lop player la entity
+            // if collision false, can move
+            if(collisionOn == false){
+                switch (huongDi){
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
             }
             spriteDem++; // Moi X frames lai thay doi hinh anh nhan vat
             if (spriteDem > 6){ // hieu don gian la phuong thuc update duoc goi 60 lan/giay. Hinh anh nhan vat se duoc doi theo chu trinh 1-2-3-4-1

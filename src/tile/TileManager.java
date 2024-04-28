@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
 public class TileManager {
 
     GamePanel gp;
-    Tile[] tile;
-    int mapTileNumber[][];
+    public Tile[] tile;
+    public int mapTileNumber[][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -21,7 +21,7 @@ public class TileManager {
         mapTileNumber = new int[gp.maxWorldCol][gp.maxWorldRow];//Luu tru du lieu cua cac file Map.txt chua thu tu sap xep cac Tiles
 
         getTileImage();
-        loadMap("/map/worldmap.txt");// cần phải sửa  đường dẫn này
+        loadMap("/map/worldmap.txt");
     }
 
     public void getTileImage() {//Luu tru hinh anh cua tung Tile
@@ -31,7 +31,19 @@ public class TileManager {
                 if(j<10) {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+j+".png"));}
                 else {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+j+".png"));}
             }
-
+            for(int i = 8;i<= 36;i++){
+                tile[i].collision = true;
+            }
+            for(int i = 40;i<= 42;i++){
+                tile[i].collision = true;
+            }
+            for(int i = 49 ;i<= 55;i++){
+                tile[i].collision = true;
+            }
+            tile[57].collision = true;
+            for(int i = 59;i<= 66;i++){
+                tile[i].collision = true;
+            }
         }catch(IOException e) {
             e.printStackTrace();
         }

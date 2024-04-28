@@ -1,6 +1,7 @@
 package entity; //luu tru cac thuoc tinh cua nhan vat (player, enemies,......)
 
-
+import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -19,7 +20,6 @@ public class Entity {
 
     public int spriteNum = 1;
 
-
-
-
+    public Rectangle solidArea;// Taọ ra hình chữ nhật lưu thông tin x,y,width để đặt nhân vật di chuyển đúng
+    public boolean collisionOn = false;
 }
