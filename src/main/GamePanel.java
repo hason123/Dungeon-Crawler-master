@@ -34,13 +34,17 @@ public class GamePanel extends JPanel implements Runnable{
 
         TileManager tileM = new TileManager(this);
 
+
+
         //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben duoi.
         int FPS = 60; // game chi chay 60 khung hinh/s
         public CollisionChecker cChecker = new CollisionChecker(this);
 
+
     private Key key;
     private LockedDoor lockedDoor;
     private OpenDoor openDoor;
+    private sound backgroundMusic;
 
         public GamePanel(){
             this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -48,10 +52,16 @@ public class GamePanel extends JPanel implements Runnable{
             this.setDoubleBuffered(true);
             this.addKeyListener(keyInput);
             this.setFocusable(true);
+
+            String absolutePath = "C:/Users/thuannguyen123/Downloads/New folder (4)/res/sound/732429__thelastoneonearth__8-bit-adventure-theme-intro.wav";
+            backgroundMusic = new sound(absolutePath);
+            backgroundMusic.start();
+
             // Khởi tạo các đối tượng
             key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
             lockedDoor = new LockedDoor(300, 100,player); // Thay đổi tọa độ phù hợp
             openDoor = new OpenDoor(500, 100,player); // Thay đổi tọa độ phù hợp
+
         }
 
         public void startGameThread(){

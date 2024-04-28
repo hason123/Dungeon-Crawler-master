@@ -22,6 +22,7 @@ public class Main {
         manHinh.setLocationRelativeTo(null);
         manHinh.setVisible(true);
 
+
         gp.startGameThread();
     }
 }
