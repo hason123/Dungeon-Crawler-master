@@ -8,6 +8,8 @@ import tile.TileManager;
 import java.awt.*;
 import java.awt.Dimension;
 import java.awt.Color;
+import entity.Player;
+import tile.TileManager;
 
 // kich co man hinh co the chinh linh hoat
 public class GamePanel extends JPanel implements Runnable{
@@ -33,6 +35,9 @@ public class GamePanel extends JPanel implements Runnable{
 
         //Trong Java vi tri goc trai tren cung man hinh la (0,0), (X,Y), X tang khi phia ben trai, Y tang khi ve phia ben duoi.
         int FPS = 60; // game chi chay 60 khung hinh/s
+    private Key key;
+    private LockedDoor lockedDoor;
+    private OpenDoor openDoor;
 
         public GamePanel(){
             this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -40,6 +45,10 @@ public class GamePanel extends JPanel implements Runnable{
             this.setDoubleBuffered(true);
             this.addKeyListener(keyInput);
             this.setFocusable(true);
+            // Khởi tạo các đối tượng
+            key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
+            lockedDoor = new LockedDoor(300, 100,player); // Thay đổi tọa độ phù hợp
+            openDoor = new OpenDoor(500, 100,player); // Thay đổi tọa độ phù hợp
         }
 
         public void startGameThread(){
@@ -74,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }   
-    
+
 
         
         public void update(){
@@ -84,6 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
 
+
         public void paintComponent(Graphics g){ // phương thức paintComponent() là một đối tượng lớp Graphics. Đối tượng này cho phép chúng ta vẽ các vật thể lên JPanel.
              super.paintComponent(g);
 
@@ -91,8 +101,12 @@ public class GamePanel extends JPanel implements Runnable{
 
              tileM.draw(g2);
              player.draw(g2);
-            
-             g2.dispose();
+            key.draw(g2);
+            lockedDoor.draw(g2);
+            openDoor.draw(g2);
+
+
+            g2.dispose();
 
         }
 }
