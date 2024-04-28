@@ -53,8 +53,9 @@ public class GamePanel extends JPanel implements Runnable{
             this.addKeyListener(keyInput);
             this.setFocusable(true);
 
-            String absolutePath = "C:/Users/thuannguyen123/Downloads/New folder (4)/res/sound/732429__thelastoneonearth__8-bit-adventure-theme-intro.wav";
-            backgroundMusic = new sound(absolutePath);
+
+            backgroundMusic = new sound("/sound/732429__thelastoneonearth__8-bit-adventure-theme-intro.wav");
+
             backgroundMusic.start();
 
             // Khởi tạo các đối tượng
