@@ -1,219 +1,262 @@
-
 package entity;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyboardInput;
 
-import javax.imageio.ImageIO;
-
 public class Player extends Entity {
+	GamePanel gp;
+	KeyboardInput keyInput;
+	public final int screenX;
+	public final int screenY;
 
-    GamePanel gp;
-    KeyboardInput keyInput;
-    // cho biet vi tri toi ve nguoi choi tren man hinh
-    public final int screenX;
-    public final int screenY;
-    public Player(GamePanel gp, KeyboardInput keyInput){
-        this.gp = gp;
-        this.keyInput = keyInput;
-        // de nhan vạt nằm giữa màn hình
-        screenX = gp.screenWidth/2 - (gp.tileSize/2);
-        screenY = gp.screenHeight/2 - (gp.tileSize/2);
-        solidArea =new Rectangle(8,16,32,32);//Khi khoi tao hinh chu nhat nay co 4 doi soos truyen vao (x,y,height,width)
-        // Mong muon tao 1 hinh chu nhat nho hon kich thuoc nhan vat
+	public Player(GamePanel gp, KeyboardInput keyInput) {
+		this.gp = gp;
+		this.keyInput = keyInput;
 
+		screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
-        setGiaTriMacDinh();
-        getPlayerImage();
-    }
+		solidArea = new Rectangle();
+		solidArea.x = 20;
+		solidArea.y = 20;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+		solidArea.width = 30;
+		solidArea.height = 40;
 
-    public void setGiaTriMacDinh(){
-        //Toa do nhan vat va toc do mac dinh
-        worldX = gp.tileSize * 5;
-        worldY = gp.tileSize * 2 ;
-        speed = 4;
-        huongDi = "xuong"; // huong di mac dinh cua nhan vat
+		setDefaultValues();
+		getPlayerImage();
+	}
 
-    }
-    public void update(){ // Co the thay doi trang thai nhan vat khi dung yen (hoac la van dang trong animation di chuyen hoac la dung yen han)
-        if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren || keyInput.diXuong){ //Nhan vat se o trang thai "DUNG YEN" khi khong co nut nao duoc bam
-            if (keyInput.diTren){
-                huongDi = "len";
-                worldY -= speed;
-            }
-            if (keyInput.diXuong){
-                huongDi = "xuong";
-                worldY += speed;
-            }
-            if (keyInput.diTrai){
-                huongDi = "trai";
-                worldX -= speed;
-            }
-            if (keyInput.diPhai){
-                huongDi = "phai";
-                worldX += speed;
-            }
-            // Check tile collision
-            collisionOn = false;
-            gp.cChecker.checkTile(this);//vi lop player la lop con cua entity collision co the nhan lop player la entity
-            // if collision false, can move
-            if(collisionOn == false){
-                switch (huongDi){
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
-                }
-            }
-            spriteDem++; // Moi X frames lai thay doi hinh anh nhan vat
-            if (spriteDem > 6){ // hieu don gian la phuong thuc update duoc goi 60 lan/giay. Hinh anh nhan vat se duoc doi theo chu trinh 1-2-3-4-1
-                switch(spriteNum){ // cu moi lan update() duoc goi thi spriteDem tang them 1. Khi spriteDem() > X, bat dau chu trinh di chuyen (animation)
-                    case 1: spriteNum = 2; break;
-                    case 2: spriteNum = 3; break;
-                    case 3: spriteNum = 4; break;
-                    case 4: spriteNum = 1; break;
-                }
-                spriteDem = 0;
-            }
-        }
-    }
-    public void draw(Graphics2D g2){
+	public void setDefaultValues() {
+		worldX = gp.tileSize * 23;
+		worldY = gp.tileSize * 21;
+		speed = 4;
+		direction = "down";
+	}
 
-        BufferedImage image = null;
-        switch(huongDi){
-            case "len":
-                if(spriteNum == 1) {
-                    image = up1;
-                }
-                if(spriteNum == 2) {
-                    image = up2;
-                }
-                if(spriteNum == 3){
-                    image = up3;
-                }
-                if (spriteNum == 4){
-                    image = up4;
-                }
-                if (spriteNum == 5){
-                    image = up5;
-                }
-                if (spriteNum == 6){
-                    image = up6;
-                }
-                break;
-            case "xuong":
-                if(spriteNum == 1) {
-                    image = down1;
-                }
-                if(spriteNum == 2) {
-                    image = down2;
-                }
-                if(spriteNum == 3){
-                    image = down3;
-                }
-                if (spriteNum == 4){
-                    image = down4;
-                }
-                if (spriteNum == 5){
-                    image = down5;
-                }
-                if (spriteNum == 6){
-                    image = down6;
-                }
-                break;
-            case "trai":
-                if(spriteNum == 1) {
-                    image = left1;
-                }
-                if(spriteNum == 2) {
-                    image = left2;
-                }
-                if(spriteNum == 3){
-                    image = left3;
-                }
-                if (spriteNum == 4){
-                    image = left4;
-                }
-                if (spriteNum == 5){
-                    image = left5;
-                }
-                if (spriteNum == 6){
-                    image = left6;
-                }
-                break;
-            case "phai":
-                if(spriteNum == 1) {
-                    image = right1;
-                }
-                if(spriteNum == 2) {
-                    image = right2;
-                }
-                if(spriteNum == 3){
-                    image = right3;
-                }
-                if (spriteNum == 4){
-                    image = right4;
-                }
-                if (spriteNum == 5){
-                    image = right5;
-                }
-                if (spriteNum == 6){
-                    image = right6;
-                }
-                break;
-        }
-        g2.drawImage(image,screenX,screenY,(int) (1.5 * gp.tileSize),(int) (1.5 * gp.tileSize),null);
-    }
+	public void getPlayerImage() {
 
-    public void getPlayerImage(){
-        try{
+		try {
 
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_1.png"));
+			up1 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_2.png"));
             up3 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_3.png"));
             up4 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_4.png"));
-            up5 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_5.png"));
-            up6 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_6.png"));
 
             down1= ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_2.png"));
             down3= ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_3.png"));
             down4 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_4.png"));
-            down5= ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_5.png"));
-            down6= ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_6.png"));
 
             left1 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_2.png"));
             left3 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_3.png"));
             left4 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_4.png"));
-            left5 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_5.png"));
-            left6 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_6.png"));
-
-
 
             right1 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_2.png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_3.png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_4.png"));
-            right5 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_5.png"));
-            right6 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_6.png"));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/*public void update() {
+
+		if (keyInput.diTren || keyInput.diXuong || keyInput.diTrai
+				|| keyInput.diPhai) {
+			if (keyInput.diTren) {
+				direction = "up";
+
+			} else if (keyInput.diXuong) {
+				direction = "down";
+
+			} else if (keyInput.diTrai) {
+				direction = "left";
+
+			} else {
+				direction = "right";
+			}
+
+			// CHECK TILE COLLISION
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+			
+			// CHECK OBJECT COLLISION
+
+			
+			
+
+			// IF COLLISION IS FALSE, PLAYER CAN MOVE
+			if (collisionOn == false) {
+
+				switch (direction) {
+				case "up":
+					worldY -= speed;
+					break;
+				case "down":
+					worldY += speed;
+					break;
+				case "left":
+					worldX -= speed;
+					break;
+				case "right":
+					worldX += speed;
+					break;
+				}
+
+			}
+
+			spriteDem++;
+			if (spriteDem > 8) {
+				if (spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 3;
+				} else if (spriteNum == 3) {
+					spriteNum = 4;
+				} else if (spriteNum == 4){
+					spriteNum = 1;
+				}
+				spriteDem = 0;
+			}
+		}
+
+	} */
+	public void update() {
+
+		if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
+				|| keyInput.diXuong) {
+
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+
+			if (keyInput.diTren) {
+				direction = "up";
+				if (collisionOn == false) {
+					worldY -= speed;
+				}
+			}
+			if (keyInput.diXuong) {
+				direction = "down";
+				if (collisionOn == false) {
+					worldY += speed;
+				}
+			}
+			if (keyInput.diTrai) {
+				direction = "left";
+				if (collisionOn == false) {
+					worldX -= speed;
+				}
+			}
+			if (keyInput.diPhai) {
+				direction = "right";
+				if (collisionOn == false) {
+					worldX += speed;
+				}
+			}
+		}
+
+		// toggle between sprites for animation
+		if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
+				|| keyInput.diXuong) {
+
+			spriteDem++;
+
+			if (spriteDem > 8) {
+				if (spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 3;
+				} else if (spriteNum == 3) {
+					spriteNum = 4;
+				} else if (spriteNum == 4) {
+					spriteNum = 1;
+				}
+				spriteDem = 0;
+			}
+		}
+	}
+	
 
 
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
+	public void draw(Graphics2D g2) {
+//		g2.setColor(Color.white);
+//		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
+		BufferedImage image = null;
+
+		switch (direction) {
+		case "up":
+			if (spriteNum == 1) {
+				image = up1;
+			}
+			if (spriteNum == 2) {
+				image = up2;
+			}
+			if (spriteNum == 3) {
+				image = up3;
+			}
+			if (spriteNum == 4) {
+				image = up4;
+			}
+
+
+			break;
+		case "down":
+			if (spriteNum == 1) {
+				image = down1;
+			}
+			if (spriteNum == 2) {
+				image = down2;
+			}
+			if (spriteNum == 3) {
+				image = down3;
+			}
+			if (spriteNum == 4) {
+				image = down4;
+			}
+			break;
+		case "left":
+			if (spriteNum == 1) {
+				image = left1;
+			}
+			if (spriteNum == 2) {
+				image = left2;
+			}
+			if (spriteNum == 3) {
+				image = left3;
+			}
+			if (spriteNum == 4) {
+				image = left4;
+			}
+			break;
+		case "right":
+			if (spriteNum == 1) {
+				image = right1;
+			}
+			if (spriteNum == 2) {
+				image = right2;
+			}
+			if (spriteNum == 3) {
+				image = right3;
+			}
+			if (spriteNum == 4) {
+				image = right4;
+			}
+			break;
+		}
+		g2.drawImage(image, screenX, screenY, (int) (1.6 * gp.tileSize), (int) (1.6 * gp.tileSize), null);
+
+	}
 }
