@@ -10,6 +10,9 @@ import java.awt.Dimension;
 import java.awt.Color;
 import entity.Player;
 import tile.TileManager;
+import java.util.ArrayList;
+import java.util.List;
+
 
 // kich co man hinh co the chinh linh hoat
 public class GamePanel extends JPanel implements Runnable{
@@ -30,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         Thread gameThread; // 1 luong giu game chay cho den khi ban ket thuc no
         KeyboardInput keyInput = new KeyboardInput();
+
         public Player player = new Player (this,keyInput);
 
         TileManager tileM = new TileManager(this);
@@ -43,10 +47,22 @@ public class GamePanel extends JPanel implements Runnable{
 
     private Key key;
     private LockedDoor lockedDoor;
-    private OpenDoor openDoor;
+
     private sound backgroundMusic;
 
-        public GamePanel(){
+    private List<objectforgem> objects = new ArrayList<>(); // Danh sách các đối tượng trên màn hình
+
+    // Phương thức để thêm đối tượng vào danh sách
+    public void addObject(objectforgem object) {
+        objects.add(object);
+    }
+
+    // Phương thức để xóa đối tượng khỏi danh sách
+    public void removeObject(objectforgem object) {
+        objects.remove(object);
+    }
+
+    public GamePanel(){
             this.setPreferredSize(new Dimension(screenWidth,screenHeight));
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);
@@ -60,10 +76,10 @@ public class GamePanel extends JPanel implements Runnable{
 
             // Khởi tạo các đối tượng
             key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
-            lockedDoor = new LockedDoor(300, 100,player); // Thay đổi tọa độ phù hợp
-            openDoor = new OpenDoor(500, 100,player); // Thay đổi tọa độ phù hợp
-
+            lockedDoor = new LockedDoor(300, 100,player,this); // Thay đổi tọa độ phù hợp
         }
+
+
 
         public void startGameThread(){
             gameThread = new Thread(this);
@@ -96,17 +112,20 @@ public class GamePanel extends JPanel implements Runnable{
     
                 }
             }
-        }   
-
-
-        
-        public void update(){
-           
-            player.update();
-        
         }
 
 
+    private boolean keyRemoved = false;
+        public void update(){
+
+            player.update();
+            key.interact();
+            lockedDoor.interact();
+            if (player.isKeyUsed() && !keyRemoved) {
+                objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
+                keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
+            }
+        }
 
         public void paintComponent(Graphics g){ // phương thức paintComponent() là một đối tượng lớp Graphics. Đối tượng này cho phép chúng ta vẽ các vật thể lên JPanel.
              super.paintComponent(g);
@@ -117,9 +136,6 @@ public class GamePanel extends JPanel implements Runnable{
              player.draw(g2);
             key.draw(g2);
             lockedDoor.draw(g2);
-            openDoor.draw(g2);
-
-
             g2.dispose();
 
         }

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+
 import main.GamePanel;
 import main.KeyboardInput;
 
@@ -14,6 +15,7 @@ public class Player extends Entity {
 
     GamePanel gp;
     KeyboardInput keyInput;
+
     // cho biet vi tri toi ve nguoi choi tren man hinh
     public final int screenX;
     public final int screenY;
@@ -25,7 +27,6 @@ public class Player extends Entity {
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         solidArea =new Rectangle(8,16,32,32);//Khi khoi tao hinh chu nhat nay co 4 doi soos truyen vao (x,y,height,width)
         // Mong muon tao 1 hinh chu nhat nho hon kich thuoc nhan vat
-
 
         setGiaTriMacDinh();
         getPlayerImage();
@@ -39,6 +40,42 @@ public class Player extends Entity {
         huongDi = "xuong"; // huong di mac dinh cua nhan vat
 
     }
+
+
+
+
+    private boolean hasKey = false;
+    private boolean keyUsed =true;
+
+    public void pickUpKey() {
+        hasKey = true;
+    }
+
+    public void useKey() {
+        hasKey = false;
+        keyUsed = true;  // Cài đặt khi chìa khóa được sử dụng
+    }
+
+    public boolean hasKey() {
+        return hasKey;
+    }
+
+    public boolean isKeyUsed() {
+        return keyUsed;
+    }
+
+    public void resetKeyUsed() {
+        keyUsed = false;  // Đặt lại cờ sau khi đã xử lý
+    }
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
+    }
+
+
     public void update(){ // Co the thay doi trang thai nhan vat khi dung yen (hoac la van dang trong animation di chuyen hoac la dung yen han)
         if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren || keyInput.diXuong){ //Nhan vat se o trang thai "DUNG YEN" khi khong co nut nao duoc bam
             if (keyInput.diTren){
