@@ -71,68 +71,7 @@ public class Player extends Entity {
 		}
 	}
 
-	/*public void update() {
 
-		if (keyInput.diTren || keyInput.diXuong || keyInput.diTrai
-				|| keyInput.diPhai) {
-			if (keyInput.diTren) {
-				direction = "up";
-
-			} else if (keyInput.diXuong) {
-				direction = "down";
-
-			} else if (keyInput.diTrai) {
-				direction = "left";
-
-			} else {
-				direction = "right";
-			}
-
-			// CHECK TILE COLLISION
-			collisionOn = false;
-			gp.cChecker.checkTile(this);
-			
-			// CHECK OBJECT COLLISION
-
-			
-			
-
-			// IF COLLISION IS FALSE, PLAYER CAN MOVE
-			if (collisionOn == false) {
-
-				switch (direction) {
-				case "up":
-					worldY -= speed;
-					break;
-				case "down":
-					worldY += speed;
-					break;
-				case "left":
-					worldX -= speed;
-					break;
-				case "right":
-					worldX += speed;
-					break;
-				}
-
-			}
-
-			spriteDem++;
-			if (spriteDem > 8) {
-				if (spriteNum == 1) {
-					spriteNum = 2;
-				} else if (spriteNum == 2) {
-					spriteNum = 3;
-				} else if (spriteNum == 3) {
-					spriteNum = 4;
-				} else if (spriteNum == 4){
-					spriteNum = 1;
-				}
-				spriteDem = 0;
-			}
-		}
-
-	} */
 	public void update() {
 
 		if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
