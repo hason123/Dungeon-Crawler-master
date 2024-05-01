@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int tileSize = originalTileSize * scale; // 48x48 tile
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 12;
-	public final int screenWidth = tileSize * maxScreenCol; // 786
+	public final int screenWidth = tileSize * maxScreenCol; // 768
 	public final int screenHeight = tileSize * maxScreenRow; // 576
 	
 	
@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public KeyboardInput keyInput = new KeyboardInput();
 
 	public CollisionChecker cChecker = new CollisionChecker(this);
+	public UI ui = new UI(this);
 
 
 	Thread gameThread;
@@ -114,9 +115,15 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		// TILE
 		tileM.draw(g2);
+
 		//PLAYER
 		player.draw(g2);
+
+		//UI
+		ui.draw(g2);
+
 		g2.dispose();
+
 	}
 
 	public void playBackgroundMusic() {

@@ -15,6 +15,7 @@ public class Player extends Entity {
 	KeyboardInput keyInput;
 	public final int screenX;
 	public final int screenY;
+	public String keyState = "No"; //Trạng thái có chìa khóa hay không: Yes/No. Nếu thiết lập có thể mang nhiều chìa khóa cùng lúc thì đổi thành int keyCount = 0 (số chìa khóa)
 
 	public Player(GamePanel gp, KeyboardInput keyInput) {
 		this.gp = gp;
