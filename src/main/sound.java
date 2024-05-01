@@ -3,7 +3,6 @@ package main;
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
     public class sound {
         private Clip clip;
@@ -16,7 +15,6 @@ import java.net.URL;
                 AudioInputStream ais = AudioSystem.getAudioInputStream(is);
                 clip = AudioSystem.getClip();
                 clip.open(ais);
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
@@ -26,6 +24,10 @@ import java.net.URL;
             if (clip != null && !clip.isRunning()) {
                 clip.start();
             }
+        }
+
+        public void loop() {//Chỉnh sửa trong trường hợp muốn sử dụng nhiều hơn 1 đoạn nhạc
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
 
         public void stop() {

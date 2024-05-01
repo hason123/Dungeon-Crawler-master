@@ -57,9 +57,8 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(keyInput);
 		this.setFocusable(true);
 
-		//backgroundMusic = new sound("/sound/lastoneonearth.wav");
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
-		backgroundMusic.start();
+		playBackgroundMusic();
 	}
 
 
@@ -118,5 +117,13 @@ public class GamePanel extends JPanel implements Runnable {
 		//PLAYER
 		player.draw(g2);
 		g2.dispose();
+	}
+
+	public void playBackgroundMusic() {
+		backgroundMusic.start();
+		backgroundMusic.loop();
+	}
+	public void stopBackgroundMusic() {
+		backgroundMusic.stop();
 	}
 }
