@@ -1,31 +1,27 @@
 package main;
 
-
-import javax.swing.*;
-
+import javax.swing.JFrame;
 
 public class Main {
 
-    public static JFrame manHinh;
+	public static void main(String[] args) {
+		JFrame window = new JFrame();
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(false);
+		window.setTitle("2D Adventure");
+		
+		GamePanel gamePanel = new GamePanel();
+		window.add(gamePanel);
+		
+		window.pack();
+		
+		window.setLocationRelativeTo(null);
+		window.setVisible(true);
+		
+		// STARTING GAME
 
-    public static void main(String[] args) {
-        manHinh = new JFrame();
-        manHinh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        manHinh.setResizable(false);
-        manHinh.setTitle("Dungeon Crawler");
+		gamePanel.startGameThread();
 
-        GamePanel gp = new GamePanel();
-        manHinh.add(gp);
+	}
 
-        manHinh.pack();
-
-        manHinh.setLocationRelativeTo(null);
-        manHinh.setVisible(true);
-
-
-        gp.startGameThread();
-    }
 }
-
-
-
