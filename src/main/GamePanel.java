@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
+import main.LockedDoor;
+import main.Key;
 import javax.swing.JPanel;
 
 import entity.Player;
@@ -21,7 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 12;
 	public final int screenWidth = tileSize * maxScreenCol; // 768
 	public final int screenHeight = tileSize * maxScreenRow; // 576
-	
+	public Key key;
+	public LockedDoor lockedDoor;
 	
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
@@ -57,6 +62,8 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyInput);
 		this.setFocusable(true);
+		key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
+		lockedDoor = new LockedDoor(300, 100,player,this); // Thay đổi tọa độ phù hợp
 
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
 		playBackgroundMusic();
@@ -103,10 +110,17 @@ public class GamePanel extends JPanel implements Runnable {
 
 		}
 	}
+	private List<objectforgem> objects = new ArrayList<>(); // Danh sách các đối tượng trên màn hình
 
+	private boolean keyRemoved = false;
 	public void update() {
 		player.update();
-		
+		key.interact();
+		lockedDoor.interact();
+		if (player.isKeyUsed() && !keyRemoved) {
+			objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
+			keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
+		}
 	}
 
 	public void paintComponent(Graphics g) {
@@ -121,7 +135,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//UI
 		ui.draw(g2);
-
+		key.draw(g2);
+		lockedDoor.draw(g2);
 		g2.dispose();
 
 	}
