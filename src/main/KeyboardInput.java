@@ -6,7 +6,11 @@ import java.awt.event.KeyListener;
 public class KeyboardInput implements KeyListener {
 
     public boolean diTren, diXuong, diTrai, diPhai;
+    GamePanel gp;
 
+    public KeyboardInput(GamePanel gp) {
+        this.gp = gp;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -17,18 +21,19 @@ public class KeyboardInput implements KeyListener {
 
         if (e.getKeyCode() == KeyEvent.VK_W) {
             diTren = true;
-
         }
         if (e.getKeyCode() == KeyEvent.VK_S) {
             diXuong = true;
-
         }
         if (e.getKeyCode() == KeyEvent.VK_A) {
             diTrai = true;
         }
         if (e.getKeyCode() == KeyEvent.VK_D) {
             diPhai = true;
-
+        }
+        if (e.getKeyCode() == KeyEvent.VK_M) {
+            if(gp.gameState == gp.playState) {gp.gameState = gp.pauseState;}
+            else if(gp.gameState == gp.pauseState) {gp.gameState = gp.playState;}
         }
 
     }
