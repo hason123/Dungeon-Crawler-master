@@ -1,14 +1,12 @@
 package tile;
 
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTools;
 
 public class TileManager {
 
@@ -27,36 +25,21 @@ public class TileManager {
 	}
 
 	public void getTileImage() {
-		
-		//System.out.println("Image loading started");
-
-		try {
-
-			for(int j=0; j<75; j++){
-				tile[j] = new Tile();
-				if(j<10) {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+j+".png"));}
-				else {tile[j].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+j+".png"));}
-			}
-			tile[0].collision = true;
-			for(int i = 8;i<= 36;i++){
-				tile[i].collision = true;
-			}
-			for(int i = 40;i<= 42;i++){
-				tile[i].collision = true;
-			}
-			for(int i = 49 ;i<= 55;i++){
-				tile[i].collision = true;
-			}
-			tile[57].collision = true;
-			for(int i = 59;i<= 66;i++){
-				tile[i].collision = true;
-			}
-
-		} catch (IOException e) {
+		for(int index = 0; index < 75; index++) {
+			tileSetup(index, index == 0 || (8 <= index && index <= 36) || (40 <= index && index <= 42) || (49 <= index && index <= 55) || index == 57 || (59 <= index && index <= 66));
+		}
+	}
+	public void tileSetup(int tileOrder, boolean collision){
+		UtilityTools util = new UtilityTools();
+		try{
+			tile[tileOrder] = new Tile();
+			if(tileOrder <10) {tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+tileOrder+".png"));}
+				else {tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+tileOrder+".png"));}
+			tile[tileOrder].image = util.scaleImage(tile[tileOrder].image, gp.tileSize, gp.tileSize);
+			tile[tileOrder].collision = collision;
+		}catch(IOException e){
 			e.printStackTrace();
 		}
-
-		//System.out.println("Image loading finished");
 	}
 
 	public void loadMap(String filePath) {
@@ -73,7 +56,7 @@ public class TileManager {
 				String line = br.readLine();
 
 				while (col < gp.maxWorldCol) {
-					String numbers[] = line.split(" ");
+					String[] numbers = line.split(" ");
 
 					int num = Integer.parseInt(numbers[col]);
 
@@ -106,16 +89,8 @@ public class TileManager {
 			int worldY = worldRow * gp.tileSize;
 			int screenX = worldX - gp.player.worldX + gp.player.screenX;
 			int screenY = worldY - gp.player.worldY + gp.player.screenY;
-			
-			//if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-					//worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-					//worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-					//worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
-				
-			g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-			//}
 
-			
+			g2.drawImage(tile[tileNum].image, screenX, screenY, null);
 			worldCol++;
 
 			if (worldCol == gp.maxWorldCol) {

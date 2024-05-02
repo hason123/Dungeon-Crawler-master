@@ -63,7 +63,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             g2.setFont(arial20PLAIN);
             g2.setColor(Color.white);
             g2.drawImage(keyImage, 12, 525, gp.tileSize, gp.tileSize, null);
-            g2.drawString("? "+gp.player.keyState, 60, 558); //Trạng thái mang chìa khóa của Player: Yes/No?
+
+            //Trạng thái mang chìa khóa của Player: Yes/No?
+            //Hiện chỉ dùng nếu có 1 chìa/cửa, cần chỉnh nếu sử dụng nhiều chìa/cửa
+            if(gp.player.isKeyUsed()){g2.drawString("? Yes (Used)", 60, 558);}
+                else if(gp.player.hasKey()) {g2.drawString("? Yes (Hold)", 60, 558);}
+                    else {g2.drawString("? No", 60, 558);}
 
             //Message (Cần có các Items trên Map trước)
             if(messageOn) {
