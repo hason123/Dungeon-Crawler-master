@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	// SYSTEM
 	public TileManager tileM = new TileManager(this);
-	public KeyboardInput keyInput = new KeyboardInput();
+	public KeyboardInput keyInput = new KeyboardInput(this);
 
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public UI ui = new UI(this);
@@ -51,7 +51,12 @@ public class GamePanel extends JPanel implements Runnable {
 	// ENTITY AND OBJECT
 	public Player player = new Player(this, keyInput);
 
-	//SOUND
+	// GAME STATE
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2;
+
+	// SOUND
 	public sound backgroundMusic;
 
 
@@ -65,12 +70,13 @@ public class GamePanel extends JPanel implements Runnable {
 		key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
 		lockedDoor = new LockedDoor(300, 100,player,this); // Thay đổi tọa độ phù hợp
 		this.boss = new Boss(this);
+
+		//GAME SETUP
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
 		playBackgroundMusic();
+		gameState = playState;
 	}
 
-
-	
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -114,13 +120,18 @@ public class GamePanel extends JPanel implements Runnable {
 
 	private boolean keyRemoved = false;
 	public void update() {
-		player.update();
-		key.interact();
-		boss.update();
-		lockedDoor.interact();
-		if (player.isKeyUsed() && !keyRemoved) {
-			objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
-			keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
+		if(gameState == playState){//Trạng thái game hoạt động
+			player.update();
+			key.interact();
+            boss.update();
+			lockedDoor.interact();
+			if (player.isKeyUsed() && !keyRemoved) {
+				objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
+				keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
+			}
+		}
+		if(gameState == pauseState){//Trạng thái game tạm dừng (thêm menu hoặc gì đó)
+
 		}
 	}
 

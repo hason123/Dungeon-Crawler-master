@@ -10,13 +10,13 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyboardInput;
 import main.LockedDoor;
+import main.UtilityTools;
 
 public class Player extends Entity {
     GamePanel gp;
     KeyboardInput keyInput;
     public final int screenX;
     public final int screenY;
-    public String keyState = "No"; //Trạng thái có chìa khóa hay không: Yes/No. Nếu thiết lập có thể mang nhiều chìa khóa cùng lúc thì đổi thành int keyCount = 0 (số chìa khóa)
 
     public Player(GamePanel gp, KeyboardInput keyInput) {
         this.gp = gp;
@@ -45,7 +45,7 @@ public class Player extends Entity {
     }
 
     private boolean hasKey = false;
-    private boolean keyUsed = true;
+    private boolean keyUsed = false;
 
     public void pickUpKey() {
         hasKey = true;
@@ -76,35 +76,40 @@ public class Player extends Entity {
         return worldY;
     }
 
-    public void getPlayerImage() {
+    public BufferedImage playerImageSetup(String imageName){
+        UtilityTools util = new UtilityTools();
+        BufferedImage resizedImage = null;
 
-        try {
-
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_3.png"));
-            up4 = ImageIO.read(getClass().getResourceAsStream("/player/run_up_40x40_4.png"));
-
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_3.png"));
-            down4 = ImageIO.read(getClass().getResourceAsStream("/player/run_down_40x40_4.png"));
-
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_3.png"));
-            left4 = ImageIO.read(getClass().getResourceAsStream("/player/run_left_40x40_4.png"));
-
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_3.png"));
-            right4 = ImageIO.read(getClass().getResourceAsStream("/player/run_right_40x40_4.png"));
-
-        } catch (IOException e) {
+        try{
+            resizedImage = ImageIO.read(getClass().getResourceAsStream("/player/"+imageName+".png"));
+            resizedImage = util.scaleImage(resizedImage, (int) (1.6*gp.tileSize), (int) (1.6*gp.tileSize));
+        }catch(IOException e) {
             e.printStackTrace();
         }
+        return resizedImage;
     }
 
+    public void getPlayerImage() {
+            up1 = playerImageSetup("run_up_40x40_1");
+            up2 = playerImageSetup("run_up_40x40_2");
+            up3 = playerImageSetup("run_up_40x40_3");
+            up4 = playerImageSetup("run_up_40x40_4");
+
+            down1 = playerImageSetup("run_down_40x40_1");
+            down2 = playerImageSetup("run_down_40x40_2");
+            down3 = playerImageSetup("run_down_40x40_3");
+            down4 = playerImageSetup("run_down_40x40_4");
+
+            left1 = playerImageSetup("run_left_40x40_1");
+            left2 = playerImageSetup("run_left_40x40_2");
+            left3 = playerImageSetup("run_left_40x40_3");
+            left4 = playerImageSetup("run_left_40x40_4");
+
+            right1 = playerImageSetup("run_right_40x40_1");
+            right2 = playerImageSetup("run_right_40x40_2");
+            right3 = playerImageSetup("run_right_40x40_3");
+            right4 = playerImageSetup("run_right_40x40_4");
+    }
 
     public void update() {
 
@@ -251,7 +256,7 @@ public class Player extends Entity {
                     }
                     break;
             }
-            g2.drawImage(image, screenX, screenY, (int) (1.6 * gp.tileSize), (int) (1.6 * gp.tileSize), null);
+            g2.drawImage(image, screenX, screenY, null);
 
         }
 }
