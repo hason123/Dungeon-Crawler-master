@@ -183,7 +183,7 @@ public class GamePanel extends JPanel implements Runnable {
 			lockedDoor8.interact();
 
 
-			if (player.isKeyUsed() && !keyRemoved) {
+			if (player.getKeyCount() == 0 && !keyRemoved) {
 				objects.remove(key0);
 				objects.remove(key1);
 				objects.remove(key2);

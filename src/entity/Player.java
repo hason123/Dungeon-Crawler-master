@@ -43,31 +43,24 @@ public class Player extends Entity {
         speed = 4;
         direction = "down";
     }
-
-    private boolean hasKey = false;
-    private boolean keyUsed = false;
-
+    private int keyCount = 0;
     public void pickUpKey() {
-        hasKey = true;
+        keyCount++;
     }
 
     public void useKey() {
-        hasKey = false;
-        keyUsed = true;  // Cài đặt khi chìa khóa được sử dụng
+        if (keyCount > 0) {
+            keyCount--;
+        }
     }
 
     public boolean hasKey() {
-        return hasKey;
+        return keyCount > 0;
     }
 
-    public boolean isKeyUsed() {
-        return keyUsed;
+    public int getKeyCount() {
+        return keyCount;
     }
-
-    public void resetKeyUsed() {
-        keyUsed = false;  // Đặt lại cờ sau khi đã xử lý
-    }
-
     public int getWorldX() {
         return worldX;
     }

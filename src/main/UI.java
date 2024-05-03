@@ -61,12 +61,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
             //Trạng thái mang chìa khóa của Player: Yes/No?
             //Hiện chỉ dùng nếu có 1 chìa/cửa, cần chỉnh nếu sử dụng nhiều chìa/cửa
-            if(gp.player.isKeyUsed()){
+            /*if(gp.player.isKeyUsed()){
                 g2D.drawString("? Yes (Used)", 60, 558);}
                 else if(gp.player.hasKey()) {
                 g2D.drawString("? Yes (Hold)", 60, 558);}
                     else {
-                g2D.drawString("? No", 60, 558);}
+                g2D.drawString("? No", 60, 558);}*/
 
             //Message (Cần có các Items trên Map trước)
             if(messageOn) {

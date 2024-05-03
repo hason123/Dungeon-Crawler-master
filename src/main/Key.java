@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Key extends objectforgem {
     private Player player;
-    private boolean followPlayer = false;
+
     private boolean pickedUp = false; // Thêm biến để kiểm tra xem chìa khóa đã được nhặt hay chưa
 
     public Key(int x, int y, Player player) {
@@ -15,7 +15,7 @@ public class Key extends objectforgem {
     }
 
     @Override
-    public void interact() {
+    public void interact() {  if (!pickedUp) { // Chỉ nhặt chìa khóa nếu nó chưa được nhặt
         int distanceThreshold = 50; // Khoảng cách cho phép chìa khóa bắt đầu theo người chơi
         int playerX = player.getWorldX();
         int playerY = player.getWorldY();
@@ -24,37 +24,22 @@ public class Key extends objectforgem {
         int distanceY = Math.abs(this.position.y - playerY);
 
         if (distanceX < distanceThreshold && distanceY < distanceThreshold) {
-            followPlayer = true;
             player.pickUpKey(); // Người chơi nhặt chìa khóa
             pickedUp = true; // Đánh dấu chìa khóa đã được nhặt
         }
-
     }
-
-    public void stopFollowing() {
-        followPlayer = false;  // Dừng theo người chơi
     }
-
+    public boolean isPickedUp() {
+        return pickedUp;
+    }
     @Override
-    public void draw(Graphics2D g2) {
-        int screenX, screenY;
-
-        // Chỉ vẽ chìa khóa nếu nó đang theo người chơi và chưa được sử dụng để mở cửa
-        if (followPlayer && !pickedUp) {
-            // Tính toán vị trí trên màn hình khi chìa khóa đang theo người chơi
-            screenX = player.screenX;
-            screenY = player.screenY;
-        } else if (!pickedUp) {
-            // Tính toán vị trí trên màn hình khi chìa khóa không theo người chơi và chưa được nhặt lên
-            screenX = this.position.x - player.getWorldX() + player.screenX;
-            screenY = this.position.y - player.getWorldY() + player.screenY;
-        } else {
-            // Nếu chìa khóa đã được sử dụng để mở cửa, không vẽ chìa khóa
-            return;
-        }
+    public void draw(Graphics2D g2) { if (!pickedUp) { // Chỉ vẽ chìa khóa nếu nó chưa được nhặt lên
+        int screenX = this.position.x - player.getWorldX() + player.screenX;
+        int screenY = this.position.y - player.getWorldY() + player.screenY;
 
         if (image != null) {
             g2.drawImage(image, screenX, screenY, image.getWidth() * 3, image.getHeight() * 3, null);
         }
+    }
     }
 }

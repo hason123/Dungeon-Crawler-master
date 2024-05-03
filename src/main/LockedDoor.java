@@ -7,11 +7,11 @@ import java.awt.image.BufferedImage;
 
 public class LockedDoor extends objectforgem {
     public boolean isLocked = true;
-    private Player player; // Thêm tham chiếu đến đối tượng Player
+    private Player player;
     private GamePanel gamePanel;
     private BufferedImage openImage;
-    private int width = 32; // chiều rộng của cánh cửa
-    private int height = 32; // chiều cao của cánh cửa
+    private int width = 32;
+    private int height = 32;
     public LockedDoor(int x, int y, Player player, GamePanel gamePanel) {
         super(x, y, "/object/door.png", 32, 32); // LockedDoor image is 32x32 pixels
         this.player = player;
@@ -23,7 +23,7 @@ public class LockedDoor extends objectforgem {
     public boolean doorOpened = false;
 
     public void unlock() {
-        int distanceThreshold = 50;
+        int distanceThreshold = 60;
         int playerX = player.getWorldX();
         int playerY = player.getWorldY();
 
@@ -38,9 +38,8 @@ public class LockedDoor extends objectforgem {
         }
     }
     public boolean checkCollision(int playerX, int playerY) {
-        // Kích thước của người chơi là 32x32, kích thước của cửa là 64x64
         Rectangle playerRect = new Rectangle(playerX, playerY, 32, 32);
-        Rectangle doorRect = new Rectangle(this.position.x, this.position.y, 64, 64);
+        Rectangle doorRect = new Rectangle(this.position.x, this.position.y, 64, 32);
 
         return doorRect.intersects(playerRect);
     }
