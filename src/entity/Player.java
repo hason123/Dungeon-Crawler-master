@@ -151,10 +151,49 @@ public class Player extends Entity {
 
                 // Kiểm tra va chạm với cửa
                 boolean collision = false;
-                LockedDoor door = gp.lockedDoor;
-                if (door.isLocked && door.checkCollision(potentialX, potentialY)) {
+                LockedDoor door0 = gp.lockedDoor0;
+                LockedDoor door1 = gp.lockedDoor1;
+                LockedDoor door2 = gp.lockedDoor2;
+                LockedDoor door3 = gp.lockedDoor3;
+                LockedDoor door4 = gp.lockedDoor4;
+                LockedDoor door5 = gp.lockedDoor5;
+                LockedDoor door6 = gp.lockedDoor6;
+                LockedDoor door7 = gp.lockedDoor7;
+                LockedDoor door8 = gp.lockedDoor8;
+
+
+
+
+                if (door0.isLocked && door0.checkCollision(potentialX, potentialY)) {
                     collision = true;
                 }
+                if (door1.isLocked && door1.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door2.isLocked && door2.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door3.isLocked && door3.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door4.isLocked && door4.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door5.isLocked && door5.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door6.isLocked && door6.checkCollision(potentialX, potentialY)){
+                    collision = true;
+                }
+                if (door7.isLocked && door7.checkCollision(potentialX, potentialY)) {
+                    collision = true;
+                }
+                if (door8.isLocked && door8.checkCollision(potentialX, potentialY)) {
+                   collision = true;
+                }
+
+
+
 
                 // Cập nhật vị trí người chơi nếu không có va chạm
                 if (!collision) {

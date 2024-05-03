@@ -25,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 12;
 	public final int screenWidth = tileSize * maxScreenCol; // 768
 	public final int screenHeight = tileSize * maxScreenRow; // 576
-	public Key key;
-	public LockedDoor lockedDoor;
+	public Key key0,key1,key2,key3,key4,key5,key6,key7,key8;
+	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2,lockedDoor3,lockedDoor4,lockedDoor5,lockedDoor6,lockedDoor7,lockedDoor8;
 	public Boss boss ;
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
@@ -67,8 +67,43 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyInput);
 		this.setFocusable(true);
-		key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
-		lockedDoor = new LockedDoor(300, 100,player,this); // Thay đổi tọa độ phù hợp
+
+		//KEYS
+		key0 = new Key(tileSize * 3, tileSize * 3 ,player);
+		key1 = new Key(tileSize * 7, tileSize * 13 ,player);
+		key2 = new Key(tileSize * 47, tileSize * 1 ,player);
+		key3 = new Key((int) (tileSize * 38.5), tileSize * 20 ,player);
+		key4 = new Key((int) (tileSize * 42.5), tileSize * 13 ,player);
+		key5 = new Key((int) (tileSize * 42.5), tileSize * 20 ,player);
+		key6 = new Key(tileSize * 44, tileSize * 34 ,player);
+		key7 = new Key((int) (tileSize * 23.5), tileSize * 27 ,player);
+		key8 = new Key((int) (tileSize * 27.5), (int) (tileSize * 39.5),player);
+
+
+
+
+
+
+
+		// Thay đổi tọa độ phù hợp
+
+		lockedDoor0 = new LockedDoor(tileSize * 11, tileSize * 11,player,this);
+		lockedDoor1 = new LockedDoor(tileSize * 23, tileSize * 7,player,this);
+		lockedDoor2 = new LockedDoor(tileSize * 34, tileSize * 8,player,this);
+		lockedDoor3 = new LockedDoor(tileSize * 34, tileSize * 24,player,this);// Thay đổi tọa độ phù hợp
+		lockedDoor4 = new LockedDoor(tileSize * 46, tileSize * 14,player,this);// Thay đổi tọa độ phù hợp
+		lockedDoor5 = new LockedDoor(tileSize * 46, tileSize * 18,player,this);// Thay đổi tọa độ phù hợp
+		lockedDoor6 = new LockedDoor(tileSize * 47, tileSize * 40,player,this);// Thay đổi tọa độ phù hợp
+		lockedDoor7 = new LockedDoor(tileSize * 23, tileSize * 34,player,this);// Thay đổi tọa độ phù hợp
+		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39,player,this);// Thay đổi tọa độ phù hợp
+
+
+
+
+
+		// Thay đổi tọa độ phù hợp
+
+
 		this.boss = new Boss(this);
 
 		//GAME SETUP
@@ -122,11 +157,42 @@ public class GamePanel extends JPanel implements Runnable {
 	public void update() {
 		if(gameState == playState){//Trạng thái game hoạt động
 			player.update();
-			key.interact();
-            boss.update();
-			lockedDoor.interact();
+			boss.update();
+
+			// KEYS
+			key0.interact();
+			key1.interact();
+			key2.interact();
+			key3.interact();
+			key4.interact();
+			key5.interact();
+			key5.interact();
+			key6.interact();
+			key7.interact();
+			key8.interact();
+
+			//DOORS
+			lockedDoor0.interact();
+			lockedDoor1.interact();
+			lockedDoor2.interact();
+			lockedDoor3.interact();
+			lockedDoor4.interact();
+			lockedDoor5.interact();
+			lockedDoor6.interact();
+			lockedDoor7.interact();
+			lockedDoor8.interact();
+
+
 			if (player.isKeyUsed() && !keyRemoved) {
-				objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
+				objects.remove(key0);
+				objects.remove(key1);
+				objects.remove(key2);
+				objects.remove(key3);
+				objects.remove(key4);
+				objects.remove(key5);
+				objects.remove(key6);
+				objects.remove(key7);
+				objects.remove(key8);// Loại bỏ chìa khóa khỏi danh sách đối tượng
 				keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
 			}
 		}
@@ -148,8 +214,30 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//UI
 		ui.draw(g2);
-		key.draw(g2);
-		lockedDoor.draw(g2);
+
+		//OBJECT
+			// KEYS
+		key0.draw(g2);
+		key1.draw(g2);
+		key2.draw(g2);
+		key3.draw(g2);
+		key4.draw(g2);
+		key5.draw(g2);
+		key6.draw(g2);
+		key7.draw(g2);
+		key8.draw(g2);
+
+			//DOORS
+		lockedDoor0.draw(g2);
+		lockedDoor1.draw(g2);
+		lockedDoor2.draw(g2);
+		lockedDoor3.draw(g2);
+		lockedDoor4.draw(g2);
+		lockedDoor5.draw(g2);
+		lockedDoor6.draw(g2);
+		lockedDoor7.draw(g2);
+		lockedDoor8.draw(g2);
+
 		g2.dispose();
 
 	}

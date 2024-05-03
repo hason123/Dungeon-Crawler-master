@@ -57,7 +57,7 @@ public class LockedDoor extends objectforgem {
         int screenX = position.x - player.worldX + player.screenX;
         int screenY = position.y - player.worldY + player.screenY;
 
-        g2.drawImage(image, screenX, screenY, image.getWidth() * 2, image.getHeight() * 2, null);
+        g2.drawImage(image, screenX, screenY, (int)(image.getWidth() * 3), (int)(image.getHeight() * 3), null);
 
     }
 }
