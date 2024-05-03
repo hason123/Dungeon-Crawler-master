@@ -44,8 +44,10 @@ public class Player extends Entity {
         direction = "down";
     }
     private int keyCount = 0;
+    private int totalKeyPicked = 0;
     public void pickUpKey() {
         keyCount++;
+        totalKeyPicked++;
     }
 
     public void useKey() {
@@ -61,10 +63,11 @@ public class Player extends Entity {
     public int getKeyCount() {
         return keyCount;
     }
+    public int getTotalKeyPicked() {return totalKeyPicked;}
+
     public int getWorldX() {
         return worldX;
     }
-
     public int getWorldY() {
         return worldY;
     }

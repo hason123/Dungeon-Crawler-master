@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import entity.Boss;
-import main.LockedDoor;
-import main.Key;
 import javax.swing.JPanel;
 
 import entity.Player;
@@ -55,6 +53,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public int gameState;
 	public final int playState = 1;
 	public final int pauseState = 2;
+	public final int gameCompletedState = 3;
+	public final int defeatedState = 4;
+	public final int gameOpenState = 5;
 
 	// SOUND
 	public sound backgroundMusic;
@@ -71,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//KEYS
 		key0 = new Key(tileSize * 3, tileSize * 3 ,player);
 		key1 = new Key(tileSize * 7, tileSize * 13 ,player);
-		key2 = new Key(tileSize * 47, tileSize * 1 ,player);
+		key2 = new Key(tileSize * 47, tileSize ,player);
 		key3 = new Key((int) (tileSize * 38.5), tileSize * 20 ,player);
 		key4 = new Key((int) (tileSize * 42.5), tileSize * 13 ,player);
 		key5 = new Key((int) (tileSize * 42.5), tileSize * 20 ,player);
