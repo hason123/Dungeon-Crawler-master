@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-
+import entity.Boss;
 import main.LockedDoor;
 import main.Key;
 import javax.swing.JPanel;
@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenHeight = tileSize * maxScreenRow; // 576
 	public Key key;
 	public LockedDoor lockedDoor;
-	
+	public Boss boss ;
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 		key = new Key(100, 100,player); // Thay đổi tọa độ phù hợp
 		lockedDoor = new LockedDoor(300, 100,player,this); // Thay đổi tọa độ phù hợp
-
+		this.boss = new Boss(this);
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
 		playBackgroundMusic();
 	}
@@ -116,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void update() {
 		player.update();
 		key.interact();
+		boss.update();
 		lockedDoor.interact();
 		if (player.isKeyUsed() && !keyRemoved) {
 			objects.remove(key);  // Loại bỏ chìa khóa khỏi danh sách đối tượng
@@ -132,6 +133,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//PLAYER
 		player.draw(g2);
+		boss.draw(g2);
 
 		//UI
 		ui.draw(g2);
