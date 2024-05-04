@@ -18,7 +18,33 @@ public class KeyboardInput implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //TITLE SCREEN
+        if (gp.gameState == gp.titleScreen){
+            if (e.getKeyCode() == KeyEvent.VK_W) {
+                gp.ui.commandNumber--;
+                if (gp.ui.commandNumber == 0) {gp.ui.commandNumber = 4;}
+            }
+            if (e.getKeyCode() == KeyEvent.VK_S) {
+                gp.ui.commandNumber++;
+                if (gp.ui.commandNumber == 5) {gp.ui.commandNumber = 1;}
+            }
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNumber != 4) {
+                    switch (gp.ui.commandNumber) {
+                        case 1:
+                            gp.gameState = gp.playState;
+                            gp.playBackgroundMusic();
+                        case 2:
+                            //Pending
+                        case 3:
+                            //Pending
+                    }
+                }
+                    else {System.exit(0);}
+            }
+        }
 
+        //PLAY STATE
         if (e.getKeyCode() == KeyEvent.VK_W) {
             diTren = true;
         }

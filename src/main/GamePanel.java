@@ -51,11 +51,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// GAME STATE
 	public int gameState;
+	public final int titleScreen = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int gameCompletedState = 3;
-	public final int defeatedState = 4;
-	public final int gameOpenState = 5;
+	public final int gameOverState = 4;
+
 
 	// SOUND
 	public sound backgroundMusic;
@@ -109,8 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
-		playBackgroundMusic();
-		gameState = playState;
+		gameState = titleScreen;
 	}
 
 	public void startGameThread() {
@@ -205,42 +205,47 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
-		// TILE
-		tileM.draw(g2);
 
-		//PLAYER
-		player.draw(g2);
-		boss.draw(g2);
+		//TITLE SCREEN
+		if (gameState == titleScreen) {
+			ui.draw(g2);
+		}
+		else{
+			// TILE
+			tileM.draw(g2);
 
-		//UI
-		ui.draw(g2);
+			//PLAYER
+			player.draw(g2);
+			boss.draw(g2);
 
-		//OBJECT
+			//UI
+			ui.draw(g2);
+
+			//OBJECT
 			// KEYS
-		key0.draw(g2);
-		key1.draw(g2);
-		key2.draw(g2);
-		key3.draw(g2);
-		key4.draw(g2);
-		key5.draw(g2);
-		key6.draw(g2);
-		key7.draw(g2);
-		key8.draw(g2);
+			key0.draw(g2);
+			key1.draw(g2);
+			key2.draw(g2);
+			key3.draw(g2);
+			key4.draw(g2);
+			key5.draw(g2);
+			key6.draw(g2);
+			key7.draw(g2);
+			key8.draw(g2);
 
 			//DOORS
-		lockedDoor0.draw(g2);
-		lockedDoor1.draw(g2);
-		lockedDoor2.draw(g2);
-		lockedDoor3.draw(g2);
-		lockedDoor4.draw(g2);
-		lockedDoor5.draw(g2);
-		lockedDoor6.draw(g2);
-		lockedDoor7.draw(g2);
-		lockedDoor8.draw(g2);
+			lockedDoor0.draw(g2);
+			lockedDoor1.draw(g2);
+			lockedDoor2.draw(g2);
+			lockedDoor3.draw(g2);
+			lockedDoor4.draw(g2);
+			lockedDoor5.draw(g2);
+			lockedDoor6.draw(g2);
+			lockedDoor7.draw(g2);
+			lockedDoor8.draw(g2);
+		}
 
 		g2.dispose();
-
 	}
 
 	public void playBackgroundMusic() {

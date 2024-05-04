@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     GamePanel gp;
@@ -11,9 +12,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
     Font arial20PLAIN;
     Font arial40BOLD;
+    Font gameFont;
     BufferedImage keyImage;
+    BufferedImage gameName, gameClose, gameCredits, gameSettings, gameStart, titleBackground, HALAL;
     public boolean messageOn = false;
     public String message = "";
+    public int commandNumber = 1;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -21,8 +25,25 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         //Khai báo các font muốn dùng tại đây
         arial20PLAIN = new Font("Arial", Font.PLAIN, 20); //Cài đặt phông chữ (phông chữ thông thường tránh lỗi hiển thị)
         arial40BOLD = new Font("Arial", Font.BOLD, 40);
+
+        try {
+            InputStream is = getClass().getResourceAsStream("/font/game_font.otf");
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             keyImage = ImageIO.read(getClass().getResourceAsStream("/object/key.png"));
+            gameName = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameName.png"));
+            gameClose = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameClose.png"));
+            gameCredits = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameCredits.png"));
+            gameSettings = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameSettings.png"));
+            gameStart = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameStart.png"));
+            titleBackground = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/titleBackground.png"));
+            HALAL = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HALAL.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -35,9 +56,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        g2.setFont(arial20PLAIN);
+        g2.setFont(gameFont);
         g2.setColor(Color.white);
 
+        if(gp.gameState == gp.titleScreen){
+            drawTitleScreen();
+        }
         if(gp.gameState == gp.playState) {
             //Pending
             drawInterface();
@@ -50,11 +74,37 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             drawCompletedScreen();
             gp.gameThread = null;
         }
-        if(gp.gameState == gp.defeatedState){
+        if(gp.gameState == gp.gameOverState){
             //Pending
         }
-        if(gp.gameState == gp.gameOpenState){
-            //Pending
+    }
+
+    public void drawTitleScreen() {
+        //Chọn nền
+        g2.drawImage(titleBackground,0,0,null);
+
+        //Tiêu đề
+        g2.drawImage(gameName,gp.screenWidth/2 - gp.tileSize*4,gp.tileSize,null);
+
+        //Menu
+        g2.drawImage(gameStart,gp.screenWidth/2 - gp.tileSize*3,(int)(gp.tileSize*7.2),gp.tileSize*5,gp.tileSize,null);
+        if (commandNumber == 1){
+            g2.drawImage(HALAL,gp.screenWidth/2 - (int)(gp.tileSize*4.1),(int)(gp.tileSize*7.2),gp.tileSize,gp.tileSize,null);
+        }
+
+        g2.drawImage(gameSettings,gp.screenWidth/2 - gp.tileSize*3,(int)(gp.tileSize*8.3),gp.tileSize*4,gp.tileSize,null);
+        if (commandNumber == 2){
+            g2.drawImage(HALAL,gp.screenWidth/2 - (int)(gp.tileSize*4.1),(int)(gp.tileSize*8.3),gp.tileSize,gp.tileSize,null);
+        }
+
+        g2.drawImage(gameCredits,gp.screenWidth/2 - gp.tileSize*3,(int)(gp.tileSize*9.4),(int)(gp.tileSize*3.5),gp.tileSize,null);
+        if (commandNumber == 3){
+            g2.drawImage(HALAL,gp.screenWidth/2 - (int)(gp.tileSize*4.1),(int)(gp.tileSize*9.4),gp.tileSize,gp.tileSize,null);
+        }
+
+        g2.drawImage(gameClose,gp.screenWidth/2 - gp.tileSize*3,(int)(gp.tileSize*10.5),gp.tileSize*5,gp.tileSize,null);
+        if (commandNumber == 4){
+            g2.drawImage(HALAL,gp.screenWidth/2 - (int)(gp.tileSize*4.1),(int)(gp.tileSize*10.5),gp.tileSize,gp.tileSize,null);
         }
     }
 
