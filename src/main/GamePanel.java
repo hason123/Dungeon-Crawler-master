@@ -54,8 +54,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// GAME STATE
 	public int gameState;
+	public final int titleScreen = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
+	public final int gameCompletedState = 3;
+	public final int gameOverState = 4;
+
 
 	// SOUND
 	public sound backgroundMusic;
@@ -72,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//KEYS
 		key0 = new Key(tileSize * 3, tileSize * 3 ,player);
 		key1 = new Key(tileSize * 7, tileSize * 13 ,player);
-		key2 = new Key(tileSize * 47, tileSize * 1 ,player);
+		key2 = new Key(tileSize * 47, tileSize ,player);
 		key3 = new Key((int) (tileSize * 38.5), tileSize * 20 ,player);
 		key4 = new Key((int) (tileSize * 42.5), tileSize * 13 ,player);
 		key5 = new Key((int) (tileSize * 42.5), tileSize * 20 ,player);
@@ -109,8 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
-		playBackgroundMusic();
-		gameState = playState;
+		gameState = titleScreen;
 	}
 
 	public void startGameThread() {
@@ -205,9 +208,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
-		// TILE
-		tileM.draw(g2);
+
+		//TITLE SCREEN
+		if (gameState == titleScreen) {
+			ui.draw(g2);
+		}
+		else{
+			// TILE
+			tileM.draw(g2);
 
 		//PLAYER
 		player.draw(g2);
@@ -216,7 +224,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//UI
 		ui.draw(g2);
 
-		//OBJECT
+			//OBJECT
 			// KEYS
 		key0.draw(g2);
 		key1.draw(g2);
@@ -240,7 +248,6 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor8.draw(g2);
 
 		g2.dispose();
-
 	}
 
 	public void playBackgroundMusic() {
