@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Random;
+
 import main.GamePanel;
 
 public class Boss extends Entity {
@@ -16,11 +18,15 @@ public class Boss extends Entity {
     private boolean attacking = false;
     private int width = 64;
     private int height = 64;
-
-    public Boss(GamePanel gp) {
+    Bossattack bossAttack;
+    private Random rand = new Random();
+    private static final int tamdanh = 400;
+    public Boss(GamePanel gp,Bossattack bossAttack) {
         this.gp = gp;
+        this.bossAttack = bossAttack;
         loadSprites();
         setDefaultValues();
+
     }
 
     private void setDefaultValues() {
@@ -50,11 +56,14 @@ public class Boss extends Entity {
         if (frameDelay >= frameDelayLimit) {
             currentFrame = (currentFrame + 1) % (attacking ? 5 : 4);
             frameDelay = 0; // Đặt lại bộ đếm thời gian để chờ đến frame tiếp theo
-            if (attacking && currentFrame == 0) {
-                attacking = false; // Kết thúc chuỗi tấn công
+            attacking = attacking();  // Cập nhật trạng thái tấn công
+            if (currentFrame == 0 && attacking) {
+                Bossattack.AttackType attackType = rand.nextBoolean() ? Bossattack.AttackType.LUADEN : Bossattack.AttackType.GIATSET;
+                bossAttack.startAttack(attackType);
             }
         }
     }
+
 
     public void draw(Graphics2D g2) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
@@ -62,10 +71,11 @@ public class Boss extends Entity {
         BufferedImage image = attacking ? attackSprites[currentFrame] : idleSprites[currentFrame];
         g2.drawImage(image, screenX, screenY, width*4, height*4, null);
     }
-
-    public void startAttack() {
-        attacking = true;
-        currentFrame = 0;
-        frameDelay = 0; // Đặt lại bộ đếm thời gian khi bắt đầu tấn công
+    public boolean attacking() {
+        int playerX = gp.player.getWorldX();
+        int playerY = gp.player.getWorldY();
+        double distance = Math.sqrt(Math.pow(worldX - playerX, 2) + Math.pow(worldY - playerY, 2));
+        return distance <= tamdanh;
     }
+
 }

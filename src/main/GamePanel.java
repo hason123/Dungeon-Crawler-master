@@ -10,7 +10,7 @@ import entity.Boss;
 import main.LockedDoor;
 import main.Key;
 import javax.swing.JPanel;
-
+import entity.Bossattack;
 import entity.Player;
 
 import tile.TileManager;
@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Key key0,key1,key2,key3,key4,key5,key6,key7,key8;
 	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2,lockedDoor3,lockedDoor4,lockedDoor5,lockedDoor6,lockedDoor7,lockedDoor8;
 	public Boss boss ;
+	public Bossattack bossAttack;
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
@@ -103,8 +104,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 		// Thay đổi tọa độ phù hợp
 
-
-		this.boss = new Boss(this);
+		this.bossAttack = new Bossattack(this);
+		this.boss = new Boss(this, bossAttack);
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
@@ -158,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable {
 		if(gameState == playState){//Trạng thái game hoạt động
 			player.update();
 			boss.update();
-
+			bossAttack.update();
 			// KEYS
 			key0.interact();
 			key1.interact();
@@ -211,7 +212,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//PLAYER
 		player.draw(g2);
 		boss.draw(g2);
-
+		bossAttack.draw(g2);
 		//UI
 		ui.draw(g2);
 
