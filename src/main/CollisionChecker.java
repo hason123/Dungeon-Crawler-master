@@ -1,7 +1,6 @@
 package main;
 
 import entity.Entity;
-
 public class CollisionChecker {
 
 	GamePanel gp;
@@ -18,7 +17,6 @@ public class CollisionChecker {
 		int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
 		int entityTopWorldY = entity.worldY + entity.solidArea.y;
 		int entityBottomWorldY = entity.worldY + entity.solidArea.y + entity.solidArea.height;
-
 		// define col & row numbers
 		int entityLeftCol = entityLeftWorldX / gp.tileSize;
 		int entityRightCol = entityRightWorldX / gp.tileSize;
