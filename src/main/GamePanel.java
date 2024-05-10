@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import entity.Boss;
-import main.LockedDoor;
-import main.Key;
 import javax.swing.JPanel;
 import entity.Bossattack;
 import entity.Player;
@@ -33,11 +31,11 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
 
-	
+
 	// FPS
 	int FPS = 60;
-	
-	
+
+
 	// SYSTEM
 	public TileManager tileM = new TileManager(this);
 	public KeyboardInput keyInput = new KeyboardInput(this);
@@ -47,8 +45,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	Thread gameThread;
-	
-	
+
+
 	// ENTITY AND OBJECT
 	public Player player = new Player(this, keyInput);
 
@@ -108,8 +106,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 		// Thay đổi tọa độ phù hợp
 
+
 		this.bossAttack = new Bossattack(this);
 		this.boss = new Boss(this, bossAttack);
+
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Pixel 1.wav");
@@ -162,7 +162,7 @@ public class GamePanel extends JPanel implements Runnable {
 		if(gameState == playState){//Trạng thái game hoạt động
 			player.update();
 			boss.update();
-			bossAttack.update();
+
 			// KEYS
 			key0.interact();
 			key1.interact();
@@ -217,39 +217,40 @@ public class GamePanel extends JPanel implements Runnable {
 			// TILE
 			tileM.draw(g2);
 
-		//PLAYER
-		player.draw(g2);
-		boss.draw(g2);
-		bossAttack.draw(g2);
-		//UI
-		ui.draw(g2);
+			//PLAYER
+			player.draw(g2);
+			boss.draw(g2);
+
+			//UI
+			ui.draw(g2);
 
 			//OBJECT
 			// KEYS
-		key0.draw(g2);
-		key1.draw(g2);
-		key2.draw(g2);
-		key3.draw(g2);
-		key4.draw(g2);
-		key5.draw(g2);
-		key6.draw(g2);
-		key7.draw(g2);
-		key8.draw(g2);
+			key0.draw(g2);
+			key1.draw(g2);
+			key2.draw(g2);
+			key3.draw(g2);
+			key4.draw(g2);
+			key5.draw(g2);
+			key6.draw(g2);
+			key7.draw(g2);
+			key8.draw(g2);
 
 			//DOORS
-		lockedDoor0.draw(g2);
-		lockedDoor1.draw(g2);
-		lockedDoor2.draw(g2);
-		lockedDoor3.draw(g2);
-		lockedDoor4.draw(g2);
-		lockedDoor5.draw(g2);
-		lockedDoor6.draw(g2);
-		lockedDoor7.draw(g2);
-		lockedDoor8.draw(g2);
+			lockedDoor0.draw(g2);
+			lockedDoor1.draw(g2);
+			lockedDoor2.draw(g2);
+			lockedDoor3.draw(g2);
+			lockedDoor4.draw(g2);
+			lockedDoor5.draw(g2);
+			lockedDoor6.draw(g2);
+			lockedDoor7.draw(g2);
+			lockedDoor8.draw(g2);
+		}
 
 		g2.dispose();
 	}
-
+//thuantaocomment de congligs
 	public void playBackgroundMusic() {
 		backgroundMusic.start();
 		backgroundMusic.loop();
