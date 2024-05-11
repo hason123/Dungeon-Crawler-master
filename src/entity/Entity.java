@@ -7,6 +7,8 @@ public class Entity {
 	public int worldX, worldY;
 	public int speed;
 
+	public int maxHP,HP;
+
 	public BufferedImage up1, up2, up3, up4;
 	public BufferedImage down1, down2, down3, down4;
 	public BufferedImage left1, left2, left3, left4;

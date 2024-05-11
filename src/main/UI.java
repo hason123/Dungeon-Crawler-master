@@ -15,6 +15,8 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     Font gameFont;
     BufferedImage keyImage;
     BufferedImage gameName, gameClose, gameCredits, gameSettings, gameStart, titleBackground, HALAL;
+
+    BufferedImage heart_full,heart_blank,heart_half;
     public boolean messageOn = false;
     public String message = "";
     public int commandNumber = 1;
@@ -47,6 +49,15 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         }catch(IOException e){
             e.printStackTrace();
         }
+
+
+        //Create HUD Objects
+        objectforgem heart = new Heart(gp);
+        heart_full = heart.image;
+        heart_blank = heart.image1;
+        heart_half = heart.image2;
+
+
     }
 
     public void showMessage(String text) {//Phần thông báo ingame, cần hoàn thiện phần vật phẩm tương tác trước
@@ -64,11 +75,13 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         }
         if(gp.gameState == gp.playState) {
             //Pending
-            drawInterface();
+            drawInterface(); //Hien thi thong so nguoi choi! (luot duoi cung)
+            //drawPlayerHP();
         }
         if(gp.gameState == gp.pauseState) {
             drawInterface();
             drawPauseScreen();
+            //drawPlayerHP();
         }
         if(gp.gameState == gp.gameCompletedState) {//Cần có điều kiện hoàn thành (chiến thắng) Game
             drawCompletedScreen();
@@ -107,6 +120,22 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             g2.drawImage(HALAL,gp.screenWidth/2 - (int)(gp.tileSize*4.1),(int)(gp.tileSize*10.5),gp.tileSize,gp.tileSize,null);
         }
     }
+
+    public void drawPlayerHP(){
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+
+        // Adjust the spacing between hearts
+        int heartSpacing = gp.tileSize / 6; // Change this value to adjust spacing
+        int heartWidth = heart_full.getWidth(); // Assuming all hearts have the same width
+
+        // Draw hearts based on player's health
+        for (int i = 0; i < gp.player.maxHP / 2; i++) {
+            g2.drawImage(heart_full, x + i * (heartWidth + heartSpacing), y, null);
+        }
+    }
+
+
 
     public void drawPauseScreen() {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,80f));
@@ -149,10 +178,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         g2.setFont(arial20PLAIN);
         g2.setColor(Color.white);
         g2.drawImage(keyImage, 12, 525, gp.tileSize, gp.tileSize, null);
-        g2.drawString(gp.player.getKeyCount()+"/"+gp.player.getTotalKeyPicked(),60,558);
+        g2.drawString(gp.player.getKeyCount()+"/"+"20",60,558);
+        //g2.drawString(gp.player.getKeyCount()+"/"+gp.player.getTotalKeyPicked(),60,558);
     }
 
     public void drawInterface(){//Cần hiển thị thông số nào trong khi chơi thì thêm vào đây
         drawKeyCount();
+        drawPlayerHP();
     }
 }

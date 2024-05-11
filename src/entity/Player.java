@@ -37,11 +37,14 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
-    public void setDefaultValues() {
-        worldX = gp.tileSize * 6;
-        worldY = gp.tileSize * 38;
-        speed = 4;
-        direction = "down";
+    public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
+        worldX = gp.tileSize * 5; //Vi tri cua nhan vat
+        worldY = gp.tileSize * 5;
+        speed = 4; // toc do di chuyen cua nhan vat
+        direction = "down"; // huong nhan vat ban dau
+        // Luong mau cua nhan vat
+        maxHP = 10;
+        HP = maxHP;
     }
     private int keyCount = 0;
     private int totalKeyPicked = 0;

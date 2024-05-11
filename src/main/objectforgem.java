@@ -7,12 +7,17 @@ import javax.imageio.ImageIO;
 
 public abstract class objectforgem {
     protected Point position; // Vị trí của đối tượng trên bản đồ
-    protected BufferedImage image; // Hình ảnh của đối tượng
+    protected BufferedImage image,image1,image2; // Hình ảnh của đối tượng
 
     public objectforgem(int x, int y, String imagePath, int width, int height) {
         this.position = new Point(x, y);
         this.image = loadImage(imagePath, width, height);
     }
+
+    public objectforgem() {
+
+    }
+
     protected BufferedImage loadImage(String path, int width, int height) {
         try {
             BufferedImage originalImage = ImageIO.read(getClass().getResourceAsStream(path));
