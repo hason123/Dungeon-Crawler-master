@@ -43,7 +43,7 @@ public class Player extends Entity {
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
-        maxHP = 10;
+        maxHP = 16;
         HP = maxHP;
     }
     private int keyCount = 0;
