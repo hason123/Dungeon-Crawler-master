@@ -16,7 +16,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     BufferedImage keyImage;
     BufferedImage gameName, gameClose, gameCredits, gameSettings, gameStart, titleBackground, HALAL;
 
-    BufferedImage heart_full,heart_blank,heart_half;
+    BufferedImage zeroHP, twoHP, fourHP, sixHP, eightHP, tenHP, twelveHP, fourteenHP, sixteenHP;
     public boolean messageOn = false;
     public String message = "";
     public int commandNumber = 1;
@@ -52,10 +52,13 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
 
         //Create HUD Objects
-        objectforgem heart = new Heart(gp);
-        heart_full = heart.image;
-        heart_blank = heart.image1;
-        heart_half = heart.image2;
+        objectforgem health = new Health(gp);
+        zeroHP = health.image0; twoHP = health.image1; fourHP = health.image2;
+        sixHP = health.image3; eightHP = health.image4; tenHP = health.image5;
+        twelveHP = health.image6; fourteenHP = health.image7; sixteenHP = health.image8;
+
+
+
 
 
     }
@@ -122,16 +125,21 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     }
 
     public void drawPlayerHP(){
-        int x = gp.tileSize / 2;
+        int x = gp.tileSize / 2; //toa do hien HP tuong ung
         int y = gp.tileSize / 2;
 
-        // Adjust the spacing between hearts
-        int heartSpacing = gp.tileSize / 6; // Change this value to adjust spacing
-        int heartWidth = heart_full.getWidth(); // Assuming all hearts have the same width
+        int width = 64 * 3; //kich co anh goc la 64x16;
+        int height = 16 * 3;
 
-        // Draw hearts based on player's health
-        for (int i = 0; i < gp.player.maxHP / 2; i++) {
-            g2.drawImage(heart_full, x + i * (heartWidth + heartSpacing), y, null);
+        BufferedImage[] healthImages = {
+                zeroHP, zeroHP, twoHP, twoHP,
+                fourHP, fourHP, sixHP, sixHP,
+                eightHP, eightHP, tenHP, tenHP,
+                twelveHP, twelveHP, fourteenHP, fourteenHP, sixteenHP, sixteenHP
+        };
+        int playerHP = gp.player.HP;
+        if (playerHP >= 0 && playerHP < healthImages.length) {
+            g2.drawImage(healthImages[playerHP], x, y, width, height, null);
         }
     }
 
