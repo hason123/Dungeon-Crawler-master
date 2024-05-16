@@ -19,6 +19,8 @@ public class Player extends Entity {
     public final int screenY;
 
     public Player(GamePanel gp, KeyboardInput keyInput) {
+        super(gp);
+
         this.gp = gp;
         this.keyInput = keyInput;
 

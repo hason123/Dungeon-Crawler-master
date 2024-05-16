@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import entity.Boss;
+import letters.Letter;
 import main.LockedDoor;
 import main.Key;
 import javax.swing.JPanel;
@@ -29,6 +30,10 @@ public class GamePanel extends JPanel implements Runnable {
 	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2, lockedDoor3, lockedDoor4, lockedDoor5, lockedDoor6, lockedDoor7, lockedDoor8;
 	public Boss boss;
 	public Bossattack bossAttack;
+
+
+
+	public Letter letter0,letter1,letter2,letter3,letter4,letter5,letter6,letter7,letter8,letter9,letter10;
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
@@ -57,8 +62,10 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int titleScreen = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
-	public final int gameCompletedState = 3;
-	public final int gameOverState = 4;
+
+	public final int dialougeState = 3;
+	public final int gameCompletedState = 4;
+	public final int gameOverState = 5;
 
 
 	// SOUND
@@ -96,6 +103,9 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor6 = new LockedDoor(tileSize * 47, tileSize * 40, player, this);// Thay đổi tọa độ phù hợp
 		lockedDoor7 = new LockedDoor(tileSize * 23, tileSize * 34, player, this);// Thay đổi tọa độ phù hợp
 		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
+
+        //LETTER
+		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
 
 
 		// Thay đổi tọa độ phù hợp
@@ -157,6 +167,7 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
+
 			// KEYS
 			key0.interact();
 			key1.interact();
@@ -240,8 +251,20 @@ public class GamePanel extends JPanel implements Runnable {
 			lockedDoor7.draw(g2);
 			lockedDoor8.draw(g2);
 
-			g2.dispose();
+            //LETTER
+			letter0.draw(g2);
+
+			//UI
+			ui.draw(g2);
+
+			//g2.dispose();
 		}
+		if (gameState == pauseState) {
+			ui.drawPauseScreen();
+		}
+
+		g2.dispose();
+
 	}
 		public void playBackgroundMusic(){
 			backgroundMusic.start();

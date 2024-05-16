@@ -1,14 +1,18 @@
 package entity;
 
+import main.GamePanel;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Entity {
+
+	public GamePanel gp;
 	public int worldX, worldY;
 	public int speed;
 
 	public int maxHP,HP;
-
+	public BufferedImage letter0,letter1;
 	public BufferedImage up1, up2, up3, up4;
 	public BufferedImage down1, down2, down3, down4;
 	public BufferedImage left1, left2, left3, left4;
@@ -20,4 +24,10 @@ public class Entity {
 	public int solidAreaDefaultX, solidAreaDefaultY; 
 	public boolean collisionOn = false;
 
+	public String[] dialogues = new String[20];
+
+
+	public Entity(GamePanel gp) {
+		this.gp = gp;
+	}
 }

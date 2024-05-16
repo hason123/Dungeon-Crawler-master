@@ -22,6 +22,7 @@ public class Boss extends Entity {
     private Random rand = new Random();
     private static final int tamdanh = 400;
     public Boss(GamePanel gp,Bossattack bossAttack) {
+        super(gp);
         this.gp = gp;
         this.bossAttack = bossAttack;
         loadSprites();

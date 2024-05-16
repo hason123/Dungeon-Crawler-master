@@ -14,11 +14,15 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     Font arial40BOLD;
     Font gameFont;
     BufferedImage keyImage;
+
+    BufferedImage textBox1, textBox2, textBox3,textBox4;
     BufferedImage gameName, gameClose, gameCredits, gameSettings, gameStart, titleBackground, HALAL;
 
     BufferedImage zeroHP, twoHP, fourHP, sixHP, eightHP, tenHP, twelveHP, fourteenHP, sixteenHP;
     public boolean messageOn = false;
     public String message = "";
+
+    public String curentDialouge = "";
     public int commandNumber = 1;
 
     public UI(GamePanel gp) {
@@ -46,6 +50,9 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             gameStart = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameStart.png"));
             titleBackground = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/titleBackground.png"));
             HALAL = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HALAL.png"));
+            textBox1 = ImageIO.read(getClass().getResourceAsStream("/object/letter/textbox1.png"));
+            textBox4 = ImageIO.read(getClass().getResourceAsStream("/object/letter/3.png"));
+
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -84,6 +91,11 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         if(gp.gameState == gp.pauseState) {
             drawInterface();
             drawPauseScreen();
+            //drawPlayerHP();
+        }
+        if(gp.gameState == gp.dialougeState) {
+            drawDialougeScreen();
+
             //drawPlayerHP();
         }
         if(gp.gameState == gp.gameCompletedState) {//Cần có điều kiện hoàn thành (chiến thắng) Game
@@ -143,11 +155,16 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         }
     }
 
+    public void drawDialougeScreen(){
+        g2.drawImage(textBox1,80,80,48 * 5,65 * 5,null);
+    }
+
 
 
     public void drawPauseScreen() {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,80f));
-        g2.setColor(Color.white);
+        g2.setColor(Color.black);
+        g2.drawImage(textBox4,80,80,(768 / 16) * 13,(560/ 16) * 13,null);
         String text = "PAUSED";
         int x = getXCenteredText(text);
         int y = gp.screenHeight/2 - gp.tileSize*3;
