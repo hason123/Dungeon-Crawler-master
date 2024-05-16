@@ -13,6 +13,7 @@ import main.Key;
 import javax.swing.JPanel;
 import entity.Bossattack;
 import entity.Player;
+import enemy.NightBorne;
 
 import tile.TileManager;
 
@@ -41,7 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// FPS
 	int FPS = 60;
-
+    //enemy
+	public NightBorne nightBorne;
 
 	// SYSTEM
 	public TileManager tileM = new TileManager(this);
@@ -106,7 +108,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         //LETTER
 		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
-
+        //enemy
+		nightBorne = new NightBorne(this);
 
 		// Thay đổi tọa độ phù hợp
 
@@ -167,6 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
+			nightBorne.update();
 
 			// KEYS
 			key0.interact();
@@ -225,6 +229,9 @@ public class GamePanel extends JPanel implements Runnable {
 			player.draw(g2);
 			boss.draw(g2);
 			bossAttack.draw(g2);
+
+			//enemy
+			nightBorne.draw(g2);
 			//UI
 			ui.draw(g2);
 
