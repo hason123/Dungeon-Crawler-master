@@ -87,7 +87,7 @@ public abstract class Enemy {
     }
 
     protected void attackPlayer() {
-
+        gp.player.receiveDamage(2);
     }
 
     public void draw(Graphics2D g2) {

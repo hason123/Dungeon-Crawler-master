@@ -142,6 +142,8 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
         int width = 64 * 3; //kich co anh goc la 64x16;
         int height = 16 * 3;
+        int index = gp.player.HP / 2; // Giả sử mỗi hình ảnh đại diện cho 2 HP
+        if (index > 8) index = 8;
 
         BufferedImage[] healthImages = {
                 zeroHP, zeroHP, twoHP, twoHP,

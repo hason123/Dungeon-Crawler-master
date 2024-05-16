@@ -40,8 +40,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
-        worldX = gp.tileSize * 6; //Vi tri cua nhan vat
-        worldY = gp.tileSize * 38;
+        worldX = gp.tileSize * 20; //Vi tri cua nhan vat
+        worldY = gp.tileSize * 5;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
@@ -88,6 +88,19 @@ public class Player extends Entity {
             e.printStackTrace();
         }
         return resizedImage;
+    }
+    //attackbyenemy
+    public int HP = 100;
+    private long lastHitTime;  // Thời điểm nhận sát thương gần nhất
+    private long hitCooldown = 1000;  // Khoảng thời gian tối thiểu giữa các lần nhận sát thương (1000 ms = 1 giây)
+
+    public void receiveDamage(int damage) {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastHitTime > hitCooldown) {
+            HP -= damage;
+            if (HP < 0) HP = 0;
+            lastHitTime = currentTime;
+        }
     }
 
     public void getPlayerImage() {
