@@ -40,8 +40,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
-        worldX = gp.tileSize * 5; //Vi tri cua nhan vat
-        worldY = gp.tileSize * 5;
+        worldX = gp.tileSize * 6; //Vi tri cua nhan vat
+        worldY = gp.tileSize * 38;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
