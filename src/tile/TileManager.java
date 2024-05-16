@@ -17,7 +17,7 @@ public class TileManager {
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 
-		tile = new Tile[100];
+		tile = new Tile[150];
 		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
 		getTileImage();
@@ -25,7 +25,7 @@ public class TileManager {
 	}
 
 	public void getTileImage() {
-		for(int index = 0; index < 75; index++) {
+		for(int index = 0; index < 122; index++) {
 			tileSetup(index, index == 0 || (8 <= index && index <= 36) || (40 <= index && index <= 42) || (49 <= index && index <= 55) || index == 57 || (59 <= index && index <= 66));
 		}
 	}
@@ -34,7 +34,9 @@ public class TileManager {
 		try{
 			tile[tileOrder] = new Tile();
 			if(tileOrder <10) {tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/00"+tileOrder+".png"));}
-				else {tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+tileOrder+".png"));}
+				else if (tileOrder <= 99){tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/0"+tileOrder+".png"));}
+					else if (tileOrder <= 109){tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/10"+(tileOrder-100)+".png"));}
+						else {tile[tileOrder].image = ImageIO.read(getClass().getResourceAsStream("/tiles/1"+(tileOrder-100)+".png"));}
 			tile[tileOrder].image = util.scaleImage(tile[tileOrder].image, gp.tileSize, gp.tileSize);
 			tile[tileOrder].collision = collision;
 		}catch(IOException e){
