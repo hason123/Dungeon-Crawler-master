@@ -40,13 +40,16 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
-        worldX = gp.tileSize * 20; //Vi tri cua nhan vat
+        worldX = gp.tileSize * 5; //Vi tri cua nhan vat
         worldY = gp.tileSize * 5;
+        //worldX = gp.tileSize * 24; //Vi tri cua nhan vat
+        //worldY = gp.tileSize * 40;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
         maxHP = 16;
         HP = maxHP;
+        //if (HP > 16) {HP = 16;}
     }
     private int keyCount = 0;
     private int totalKeyPicked = 0;
@@ -108,21 +111,29 @@ public class Player extends Entity {
             up2 = playerImageSetup("run_up_40x40_2");
             up3 = playerImageSetup("run_up_40x40_3");
             up4 = playerImageSetup("run_up_40x40_4");
+            up5 = playerImageSetup("run_up_40x40_5");
+            up6 = playerImageSetup("run_up_40x40_6");
 
             down1 = playerImageSetup("run_down_40x40_1");
             down2 = playerImageSetup("run_down_40x40_2");
             down3 = playerImageSetup("run_down_40x40_3");
             down4 = playerImageSetup("run_down_40x40_4");
+            down5 = playerImageSetup("run_down_40x40_5");
+            down6 = playerImageSetup("run_down_40x40_6");
 
             left1 = playerImageSetup("run_left_40x40_1");
             left2 = playerImageSetup("run_left_40x40_2");
             left3 = playerImageSetup("run_left_40x40_3");
             left4 = playerImageSetup("run_left_40x40_4");
+            left5 = playerImageSetup("run_left_40x40_5");
+            left6 = playerImageSetup("run_left_40x40_6");
 
             right1 = playerImageSetup("run_right_40x40_1");
             right2 = playerImageSetup("run_right_40x40_2");
             right3 = playerImageSetup("run_right_40x40_3");
             right4 = playerImageSetup("run_right_40x40_4");
+            right5 = playerImageSetup("run_right_40x40_5");
+            right6 = playerImageSetup("run_right_40x40_6");
     }
 
     public void update() {
@@ -161,7 +172,7 @@ public class Player extends Entity {
                     potentialX = worldX + 4;
                 }
             }
-
+            gp.eHandler.checkEvent();
 
                 // Kiểm tra va chạm với cửa
                 boolean collision = false;
@@ -209,6 +220,7 @@ public class Player extends Entity {
 
 
 
+
                 // Cập nhật vị trí người chơi nếu không có va chạm
                 if (!collision) {
                     worldX = potentialX;
@@ -235,10 +247,16 @@ public class Player extends Entity {
                         spriteNum = 4;
                     } else if (spriteNum == 4) {
                         spriteNum = 1;
+                    } else if (spriteNum == 5) {
+                        spriteNum = 6;
+                    }else if (spriteNum == 6) {
+                        spriteNum = 1;
                     }
                     spriteDem = 0;
                 }
             }
+
+
         }
 
 
@@ -263,6 +281,12 @@ public class Player extends Entity {
                     if (spriteNum == 4) {
                         image = up4;
                     }
+                    if (spriteNum == 5) {
+                        image = up5;
+                    }
+                    if (spriteNum == 6) {
+                        image = up6;
+                    }
 
 
                     break;
@@ -279,7 +303,14 @@ public class Player extends Entity {
                     if (spriteNum == 4) {
                         image = down4;
                     }
+                    if (spriteNum == 5) {
+                        image = down5;
+                    }
+                    if (spriteNum == 6) {
+                        image = down6;
+                    }
                     break;
+
                 case "left":
                     if (spriteNum == 1) {
                         image = left1;
@@ -293,8 +324,16 @@ public class Player extends Entity {
                     if (spriteNum == 4) {
                         image = left4;
                     }
+                    if (spriteNum == 5) {
+                        image = left5;
+                    }
+                    if (spriteNum == 6) {
+                        image = left6;
+                    }
                     break;
+
                 case "right":
+
                     if (spriteNum == 1) {
                         image = right1;
                     }
@@ -306,6 +345,12 @@ public class Player extends Entity {
                     }
                     if (spriteNum == 4) {
                         image = right4;
+                    }
+                    if (spriteNum == 5) {
+                        image = right5;
+                    }
+                    if (spriteNum == 6) {
+                        image = right6;
                     }
                     break;
             }

@@ -23,8 +23,8 @@ public class NightBorne extends Enemy {
 
     private void setDefaultValues() {
 
-        worldX = gp.tileSize * 5;
-        worldY = gp.tileSize * 5;
+        worldX = gp.tileSize * 30;
+        worldY = gp.tileSize * 30;
     }
 
     @Override

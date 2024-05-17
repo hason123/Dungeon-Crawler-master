@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// FPS
 	int FPS = 60;
-    //enemy
+	//enemy
 	public NightBorne nightBorne;
 
 	// SYSTEM
@@ -51,6 +51,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public UI ui = new UI(this);
+
+	public EventHandler eHandler = new EventHandler(this);
 
 
 	Thread gameThread;
@@ -106,9 +108,9 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor7 = new LockedDoor(tileSize * 23, tileSize * 34, player, this);// Thay đổi tọa độ phù hợp
 		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
 
-        //LETTER
+		//LETTER
 		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
-        //enemy
+		//enemy
 		nightBorne = new NightBorne(this);
 
 		// Thay đổi tọa độ phù hợp
@@ -258,7 +260,7 @@ public class GamePanel extends JPanel implements Runnable {
 			lockedDoor7.draw(g2);
 			lockedDoor8.draw(g2);
 
-            //LETTER
+			//LETTER
 			letter0.draw(g2);
 
 			//UI
@@ -273,12 +275,12 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 
 	}
-		public void playBackgroundMusic(){
-			backgroundMusic.start();
-			backgroundMusic.loop();
-		}
-		public void stopBackgroundMusic(){
-			backgroundMusic.stop();
-		}
+	public void playBackgroundMusic(){
+		backgroundMusic.start();
+		backgroundMusic.loop();
+	}
+	public void stopBackgroundMusic(){
+		backgroundMusic.stop();
+	}
 
 }
