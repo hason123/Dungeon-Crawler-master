@@ -8,12 +8,10 @@ import java.awt.Graphics2D;
 
 public class NightBorne extends Enemy {
 
-    private BufferedImage idleSpriteSheet, runSpriteSheet, attackSpriteSheet, hurtSpriteSheet, deathSpriteSheet;
+    private BufferedImage[] idleSprites, runSprites, attackSprites, hurtSprites, deathSprites;
     private int currentFrame = 0;
-    private int frameWidth = 80;
-    private int frameHeight = 80;
     private int frameDelay = 0; // Biến để đếm độ trễ
-    private final int frameDelayLimit = 5;
+    private final int frameDelayLimit = 15;
 
     public NightBorne(GamePanel gp) {
         super(gp, 0, 0, 2);
@@ -23,18 +21,37 @@ public class NightBorne extends Enemy {
 
     private void setDefaultValues() {
 
-        worldX = gp.tileSize * 30;
-        worldY = gp.tileSize * 30;
+        worldX = gp.tileSize * 5;
+        worldY = gp.tileSize * 5;
     }
 
     @Override
     protected void loadSprites() {
         try {
-            idleSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/enemy/ide.png"));
-            runSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/enemy/run.png"));
-            attackSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/enemy/attack.png"));
-            hurtSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/enemy/hurt.png"));
-            deathSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/enemy/death.png"));
+            idleSprites = new BufferedImage[8];
+            for (int i = 0; i < idleSprites.length; i++) {
+                idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/idle/necro_" + i + ".png"));
+            }
+
+            runSprites = new BufferedImage[8];
+            for (int i = 0; i < runSprites.length; i++) {
+                runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/run/necro_" + (8 + i) + ".png"));
+            }
+
+            attackSprites = new BufferedImage[2];
+            for (int i = 0; i < attackSprites.length; i++) {
+                attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/attack/necro_" + (16 + i) + ".png"));
+            }
+
+            hurtSprites = new BufferedImage[5];
+            for (int i = 0; i < hurtSprites.length; i++) {
+                hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/hurt/necro_" + (59 + i) + ".png"));
+            }
+
+            deathSprites = new BufferedImage[9];
+            for (int i = 0; i < deathSprites.length; i++) {
+                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/death/necro_" + (64 + i) + ".png"));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,21 +59,15 @@ public class NightBorne extends Enemy {
 
     @Override
     public void draw(Graphics2D g2) {
-        BufferedImage currentSpriteSheet = getCurrentSpriteSheet();
-        int frameCount = getCurrentFrameCount();
-        // phần dưới giúp di chuển của enemy khong bi bug
-        // Kiểm tra xem liệu currentFrame có hợp lệ không trước khi tạo subimage
-        if (currentFrame < 0 || currentFrame >= frameCount) {
-            currentFrame = 0; // Đặt lại về frame đầu tiên nếu không hợp lệ
+        BufferedImage[] currentSpriteArray = getCurrentSpriteArray();
+        if (currentFrame < 0 || currentFrame >= currentSpriteArray.length) {
+            currentFrame = 0;
         }
-        int frameX = currentFrame * frameWidth;
-        // Đảm bảo frameX + frameWidth không vượt quá chiều rộng của spritesheet
-        if (frameX + frameWidth > currentSpriteSheet.getWidth()) {
-            frameX = currentSpriteSheet.getWidth() - frameWidth;
-        }
-        BufferedImage frame = currentSpriteSheet.getSubimage(frameX, 0, frameWidth, frameHeight);
-        int screenX = worldX - gp.player.getWorldX() + gp.screenWidth / 2;
-        int screenY = worldY - gp.player.getWorldY() + gp.screenHeight / 2;
+        BufferedImage frame = currentSpriteArray[currentFrame];
+        int frameWidth = frame.getWidth();
+        int frameHeight = frame.getHeight();
+        int screenX = worldX - gp.player.getWorldX() + gp.screenWidth / 2 - frameWidth; // Trừ đi toàn bộ chiều rộng ban đầu
+        int screenY = worldY - gp.player.getWorldY() + gp.screenHeight / 2 - frameHeight; // Trừ đi toàn bộ chiều cao ban đầu
 
         g2.drawImage(frame, screenX, screenY, frameWidth * 2, frameHeight * 2, null);
         updateFrame();
@@ -64,42 +75,25 @@ public class NightBorne extends Enemy {
     private void updateFrame() {
         frameDelay++;
         if (frameDelay >= frameDelayLimit) {
-            currentFrame = (currentFrame + 1) % getCurrentFrameCount();
+            currentFrame = (currentFrame + 1) % getCurrentSpriteArray().length;
             frameDelay = 0;
         }
     }
 
-    private BufferedImage getCurrentSpriteSheet() {
+    private BufferedImage[] getCurrentSpriteArray() {
         switch (state) {
             case IDLE:
-                return idleSpriteSheet;
+                return idleSprites;
             case RUN:
-                return runSpriteSheet;
+                return runSprites;
             case ATTACK:
-                return attackSpriteSheet;
+                return attackSprites;
             case HURT:
-                return hurtSpriteSheet;
+                return hurtSprites;
             case DEATH:
-                return deathSpriteSheet;
+                return deathSprites;
             default:
-                return idleSpriteSheet;
-        }
-    }
-
-    private int getCurrentFrameCount() {
-        switch (state) {
-            case IDLE:
-                return 9;
-            case RUN:
-                return 6;
-            case ATTACK:
-                return 12;
-            case HURT:
-                return 5;
-            case DEATH:
-                return 23;
-            default:
-                return 1;
+                return idleSprites;
         }
     }
 

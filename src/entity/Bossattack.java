@@ -80,7 +80,6 @@ public class Bossattack {
         currentAttackType = type;
         currentFrame = 0;
         frameDelay = 0;
-
         // Lấy vị trí của người chơi trước đó 2 giây
         int[] position = getPlayerPositionFromHistory();
         if (position != null) {
@@ -88,11 +87,9 @@ public class Bossattack {
             worldY = position[1];
         }
     }
-
     public void update() {
         // Lưu vị trí hiện tại của người chơi
         savePlayerPosition();
-
         attackStartTimer++;
         if (isPlayerInRange()) {
             switch (state) {
@@ -122,30 +119,24 @@ public class Bossattack {
             }
         }
     }
-
     private boolean isPlayerInRange() {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
         double distance = Math.sqrt(Math.pow(worldX - playerX, 2) + Math.pow(worldY - playerY, 2));
         return distance <= tamdanh;
     }
-
     private void startRandomWarning() {
         // Không thay đổi tọa độ của tấn công
     }
-
     public void draw(Graphics2D g2) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX + offsetX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY + offsetY;
-
         if (state == State.WARNING) {
             g2.drawImage(warningSprite, screenX, screenY, width * 5, height * 5, null);
         } else if (state == State.ATTACKING) {
             BufferedImage image = getCurrentSprite();
             g2.drawImage(image, screenX, screenY, width * 5, height * 5, null);
-        }
-    }
-
+        }}
     private BufferedImage getCurrentSprite() {
         return sprites[currentAttackType.ordinal()][currentFrame];
     }
@@ -157,11 +148,10 @@ public class Bossattack {
             playerPositions.poll(); // Loại bỏ vị trí cũ nhất nếu vượt quá giới hạn
         }
     }
-
     private int[] getPlayerPositionFromHistory() {
         if (playerPositions.size() < dotre) {
             return null; // Không đủ dữ liệu để lấy vị trí
         }
-        return playerPositions.peek(); // Lấy vị trí cũ nhất
+        return playerPositions.peek();
     }
 }

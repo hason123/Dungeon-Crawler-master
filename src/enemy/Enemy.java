@@ -61,13 +61,13 @@ public abstract class Enemy {
     protected boolean isPlayerInRange() {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
-        return Math.hypot(worldX - playerX, worldY - playerY) <= 300; //tầm nhìn
+        return Math.hypot(worldX - playerX, worldY - playerY) <= 200; //tầm nhìn
     }
 
     protected boolean isPlayerInAttackRange() {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
-        return Math.hypot(worldX - playerX, worldY - playerY) <= 50; //tầm đánh
+        return Math.hypot(worldX - playerX, worldY - playerY) <= 25; //tầm đánh
     }
 
     protected void moveToPlayer() {
