@@ -67,12 +67,12 @@ public class EventHandler {
                 hit(39, 25, "any") || hit(28, 38, "any") ||
                 hit(20, 25, "any") || hit(27, 25, "any") ||
                 hit(38, 12, "any") || hit(43, 12, "any") ||
-                hit(45, 42, "any")){
+                hit(45, 42, "any") || hit(6,11,"any")){
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - lastHitTime;
 
-            // Add a cooldown of  20000 milliseconds (20 second)
-            if (elapsedTime >= 5000) {
+            // Add a cooldown of  2000 milliseconds (2 second)
+            if (elapsedTime >= 2000) {
                 healingTile();
                 lastHitTime = currentTime; // Update lastHitTime
             }
