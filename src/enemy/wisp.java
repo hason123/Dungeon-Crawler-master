@@ -35,29 +35,29 @@ public class wisp extends Enemy {
     @Override
     protected void loadSprites() {
         try {
-            idleSprites = new BufferedImage[1];
+            idleSprites = new BufferedImage[10];
             for (int i = 0; i < idleSprites.length; i++) {
-                idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/idle.png"));
+                idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/wisp_"+ i +".png"));
             }
 
-            runSprites = new BufferedImage[1];
+            runSprites = new BufferedImage[10];
             for (int i = 0; i < runSprites.length; i++) {
-                runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/run.png"));
+                runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/wisp_"+ i +".png"));
             }
 
-            attackSprites = new BufferedImage[1];
+            attackSprites = new BufferedImage[10];
             for (int i = 0; i < attackSprites.length; i++) {
-                attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/attack.png"));
+                attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/wisp_"+ i +".png"));
             }
 
-            hurtSprites = new BufferedImage[1];
+            hurtSprites = new BufferedImage[10];
             for (int i = 0; i < hurtSprites.length; i++) {
-                hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/hurt.png"));
+                hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/wisp_"+ i +".png"));
             }
 
-            deathSprites = new BufferedImage[1];
+            deathSprites = new BufferedImage[10];
             for (int i = 0; i < deathSprites.length; i++) {
-                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/death.png"));
+                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/wisp_"+ i +".png"));
             }
         } catch (IOException e) {
             e.printStackTrace();
