@@ -37,7 +37,7 @@ public abstract class Enemy {
                 break;
             case RUN:
                 moveToPlayer();
-                if (isPlayerInAttackRange()) {
+                    if (isPlayerInAttackRange()) {
                     state = State.ATTACK;
                 } else if (!isPlayerInRange()) {
                     state = State.IDLE;
