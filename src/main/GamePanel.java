@@ -87,11 +87,11 @@ public class GamePanel extends JPanel implements Runnable {
 		//KEYS
 		key0 = new Key(tileSize * 3, tileSize * 3, player);
 		key1 = new Key(tileSize * 7, tileSize * 13, player);
-		key2 = new Key(tileSize * 47, tileSize, player);
+		key2 = new Key(tileSize * 47, tileSize*  2, player);
 		key3 = new Key((int) (tileSize * 38.5), tileSize * 20, player);
 		key4 = new Key((int) (tileSize * 42.5), tileSize * 13, player);
 		key5 = new Key((int) (tileSize * 42.5), tileSize * 20, player);
-		key6 = new Key(tileSize * 44, tileSize * 34, player);
+		key6 = new Key(tileSize * 47, tileSize * 33, player);
 		key7 = new Key((int) (tileSize * 23.5), tileSize * 27, player);
 		key8 = new Key((int) (tileSize * 27.5), (int) (tileSize * 39.5), player);
 

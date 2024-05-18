@@ -137,9 +137,10 @@ public class Player extends Entity {
     }
 
     public void update() {
+        gp.eHandler.checkEvent();
 
         if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
-                || keyInput.diXuong) {
+                || keyInput.diXuong || keyInput.attack) {
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
@@ -172,7 +173,7 @@ public class Player extends Entity {
                     potentialX = worldX + 4;
                 }
             }
-            gp.eHandler.checkEvent();
+
 
                 // Kiểm tra va chạm với cửa
                 boolean collision = false;
@@ -234,7 +235,7 @@ public class Player extends Entity {
 
             // toggle between sprites for animation
             if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
-                    || keyInput.diXuong) {
+                    || keyInput.diXuong || keyInput.attack) {
 
                 spriteDem++;
 

@@ -155,6 +155,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         if (playerHP >= 0 && playerHP < healthImages.length) {
             g2.drawImage(healthImages[playerHP], x, y, width, height, null);
         }
+        if (playerHP < 0){
+            g2.drawImage(zeroHP,x,y,width,height,null);
+        }
+        if (playerHP > 16){
+            g2.drawImage(sixteenHP,x,y,width,height,null);
+        }
     }
 
     public void drawDialougeScreen(){

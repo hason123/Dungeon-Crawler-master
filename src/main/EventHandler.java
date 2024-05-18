@@ -117,10 +117,10 @@ public class EventHandler {
     }
 
     public void teleportTile1(){
-        System.out.println("Teleporting to Tile 1");
+
         gp.player.worldX = gp.tileSize * 4;
         gp.player.worldY = gp.tileSize * 44;
-        System.out.println("Player Position after teleport: X=" + gp.player.worldX + ", Y=" + gp.player.worldY);
+
     }
     public void teleportTile2(){
         gp.player.worldX = gp.tileSize * 24;
