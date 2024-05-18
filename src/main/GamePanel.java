@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
 	// FPS
 	int FPS = 60;
 	//enemy
-	public NightBorne nightBorne;
+	public NightBorne nightBorne, nightBorne1,nightBorne2,nightBorn3,nightBorn4;
 
 
 	// SYSTEM
@@ -112,8 +112,11 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//LETTER
 		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
-		//enemy
-		nightBorne = new NightBorne(this);
+
+		//enemy NIGHTBORNE
+		nightBorne = new NightBorne(this, tileSize * 20, tileSize * 5);
+		//nightBorne1 = new NightBorne(this, tileSize * 40, tileSize * 5);
+
 
 
 		// Thay đổi tọa độ phù hợp
@@ -175,7 +178,10 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
+
+			//nightBorne
 			nightBorne.update();
+			//nightBorne1.update();
 
 
 			// KEYS
@@ -238,6 +244,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 			//enemy
 			nightBorne.draw(g2);
+			//nightBorne1.draw(g2);
+
+
+
 			//flyingdemon.draw(g2);
 			//UI
 			ui.draw(g2);

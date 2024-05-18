@@ -27,7 +27,7 @@ public abstract class Enemy {
     }
 
     protected abstract void loadSprites();
-
+    // Cac trang thai cua Enemy
     public void update() {
         switch (state) {
             case IDLE:

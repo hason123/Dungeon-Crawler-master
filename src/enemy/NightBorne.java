@@ -13,16 +13,23 @@ public class NightBorne extends Enemy {
     private int frameDelay = 0; // Biến để đếm độ trễ
     private final int frameDelayLimit = 15;
 
-    public NightBorne(GamePanel gp) {
+    /*public NightBorne(GamePanel gp) {
         super(gp, 0, 0, 2);
         setDefaultValues();
         loadSprites();
     }
 
-    private void setDefaultValues() {
+     */
+    public NightBorne(GamePanel gp, int initialWorldX, int initialWorldY) {
+        super(gp, initialWorldX, initialWorldY, 2);
+        setDefaultValues();
+        loadSprites();
+    }
 
-        worldX = gp.tileSize * 5;
-        worldY = gp.tileSize * 5;
+    public void setDefaultValues() {
+
+        //worldX = gp.tileSize * 5;
+       // worldY = gp.tileSize * 5;
     }
 
     @Override
