@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.plaf.PanelUI;
 
 import main.GamePanel;
 import main.KeyboardInput;
@@ -18,6 +19,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 
+    public boolean attacking = false;
     public Player(GamePanel gp, KeyboardInput keyInput) {
         super(gp);
 
@@ -37,6 +39,7 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
+        getPlayerAttackImage();
     }
 
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
@@ -135,9 +138,51 @@ public class Player extends Entity {
             right5 = playerImageSetup("run_right_40x40_5");
             right6 = playerImageSetup("run_right_40x40_6");
     }
+    private boolean attack;
 
-    public void update() {
+    public void getPlayerAttackImage(){
+        attackUp0=playerImageSetup("attack/attackup_0");
+        attackUp1=playerImageSetup("attack/attackup_1");
+        attackUp2=playerImageSetup("attack/attackup_2");
+        attackUp3=playerImageSetup("attack/attackup_3");
+        attackUp4=playerImageSetup("attack/attackup_4");
+        attackUp5=playerImageSetup("attack/attackup_5");
+        attackUp6=playerImageSetup("attack/attackup_6");
+
+        attackDown0=playerImageSetup("attack/attackdown_0");
+        attackDown1=playerImageSetup("attack/attackdown_1");
+        attackDown2=playerImageSetup("attack/attackdown_2");
+        attackDown3=playerImageSetup("attack/attackdown_3");
+        attackDown4=playerImageSetup("attack/attackdown_4");
+        attackDown5=playerImageSetup("attack/attackdown_5");
+        attackDown6=playerImageSetup("attack/attackdown_6");
+
+        attackLeft0=playerImageSetup("attack/attackleft_0");
+        attackLeft1=playerImageSetup("attack/attackleft_1");
+        attackLeft2=playerImageSetup("attack/attackleft_2");
+        attackLeft3=playerImageSetup("attack/attackleft_3");
+        attackLeft4=playerImageSetup("attack/attackleft_4");
+        attackLeft5=playerImageSetup("attack/attackleft_5");
+        attackLeft6=playerImageSetup("attack/attackleft_6");
+
+        attackRight0=playerImageSetup("attack/attackright_0");
+        attackRight1=playerImageSetup("attack/attackright_1");
+        attackRight2=playerImageSetup("attack/attackright_2");
+        attackRight3=playerImageSetup("attack/attackright_3");
+        attackRight4=playerImageSetup("attack/attackright_4");
+        attackRight5=playerImageSetup("attack/attackright_5");
+        attackRight6=playerImageSetup("attack/attackright_6");
+
+
+    }
+
+
+
+        public void update() {
         gp.eHandler.checkEvent();
+        if (attacking==true){
+            attacking();
+        }
 
         if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
                 || keyInput.diXuong || keyInput.attack) {
@@ -173,7 +218,10 @@ public class Player extends Entity {
                     potentialX = worldX + 4;
                 }
             }
-
+            if (keyInput.attack) {
+                attacking = true;
+                keyInput.attack = false; // Đặt lại giá trị của phím Enter sau khi sử dụng
+            }
 
                 // Kiểm tra va chạm với cửa
                 boolean collision = false;
@@ -231,8 +279,6 @@ public class Player extends Entity {
 
             }
 
-
-
             // toggle between sprites for animation
             if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
                     || keyInput.diXuong || keyInput.attack) {
@@ -260,7 +306,34 @@ public class Player extends Entity {
 
         }
 
+    public  void attacking(){
+        spriteDem++;
+        if (spriteDem<=5){
+            spriteNum=1;
+        }
+        if(spriteDem>5&&spriteDem<=10){
+            spriteNum=2;
+        }
+        if(spriteDem>5&&spriteDem<=8){
+            spriteNum=3;
+        }
+        if(spriteDem>8&&spriteDem<=10){
+            spriteNum=4;
+        }
+        if(spriteDem>10&&spriteDem<=12){
+            spriteNum=5;
+        }if(spriteDem>12&&spriteDem<=15){
+            spriteNum=6;
+        }
 
+
+
+        if (spriteDem>15){
+            spriteNum=1;
+            spriteDem=0;
+            attacking=false;
+        }
+    }
 
     public void draw(Graphics2D g2){
 //		g2.setColor(Color.white);
@@ -270,28 +343,54 @@ public class Player extends Entity {
 
         switch (direction) {
             case "up":
-                    if (spriteNum == 1) {
-                       image = up1;
-                    }
-                    if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    if (spriteNum == 3) {
-                        image = up3;
-                    }
-                    if (spriteNum == 4) {
-                        image = up4;
-                    }
-                    if (spriteNum == 5) {
-                        image = up5;
-                    }
-                    if (spriteNum == 6) {
-                        image = up6;
-                    }
+                    if(attacking==false){
+                        if (spriteNum == 1) {
+                            image = up1;
+                        }
+                        if (spriteNum == 2) {
+                            image = up2;
+                        }
+                        if (spriteNum == 3) {
+                            image = up3;
+                        }
+                        if (spriteNum == 4) {
+                            image = up4;
+                        }
+                        if (spriteNum == 5) {
+                            image = up5;
+                        }
+                        if (spriteNum == 6) {
+                            image = up6;
+                        }
 
+                    }
+                    if(attacking==true){
+                        if(spriteNum == 1){
+                            image = attackUp0;
+                        }
+                        if(spriteNum == 2){
+                            image = attackUp1;
+                        }
+                        if(spriteNum == 3){
+                            image = attackUp2;
+                        }
+                        if(spriteNum == 4){
+                            image = attackUp3;
+                        }
+                        if(spriteNum == 5){
+                            image = attackUp4;
+                        }
+                        if(spriteNum == 6){
+                            image = attackUp5;
+                        }
+                        if(spriteNum == 7){
+                            image=attackUp6;
+                        }
 
+                    }
                     break;
-                case "down":
+            case "down":
+                if(attacking==false){
                     if (spriteNum == 1) {
                         image = down1;
                     }
@@ -310,9 +409,36 @@ public class Player extends Entity {
                     if (spriteNum == 6) {
                         image = down6;
                     }
-                    break;
 
-                case "left":
+                }
+                if(attacking==true){
+                    if(spriteNum == 1){
+                        image = attackDown0;
+                    }
+                    if(spriteNum == 2){
+                        image = attackDown1;
+                    }
+                    if(spriteNum == 3){
+                        image = attackDown2;
+                    }
+                    if(spriteNum == 4){
+                        image = attackDown3;
+                    }
+                    if(spriteNum == 5){
+                        image = attackDown4;
+                    }
+                    if(spriteNum == 6){
+                        image = attackDown5;
+                    }
+                    if(spriteNum == 7){
+                        image=attackDown6;
+                    }
+
+                }
+                break;
+
+            case "left":
+                if(attacking==false){
                     if (spriteNum == 1) {
                         image = left1;
                     }
@@ -331,10 +457,36 @@ public class Player extends Entity {
                     if (spriteNum == 6) {
                         image = left6;
                     }
-                    break;
 
-                case "right":
+                }
+                if(attacking==true){
+                    if(spriteNum == 1){
+                        image=attackLeft0;
+                    }
+                    if(spriteNum == 2){
+                        image = attackLeft1;
+                    }
+                    if(spriteNum == 3){
+                        image = attackLeft2;
+                    }
+                    if(spriteNum == 4){
+                        image = attackLeft3;
+                    }
+                    if(spriteNum == 5){
+                        image = attackLeft4;
+                    }
+                    if(spriteNum == 6){
+                        image = attackLeft5;
+                    }
+                    if(spriteNum == 7){
+                        image=attackLeft6;
+                    }
 
+                }
+                break;
+
+            case "right":
+                if(attacking==false){
                     if (spriteNum == 1) {
                         image = right1;
                     }
@@ -353,7 +505,33 @@ public class Player extends Entity {
                     if (spriteNum == 6) {
                         image = right6;
                     }
-                    break;
+
+                }
+                if(attacking==true){
+                    if(spriteNum == 1){
+                        image=attackRight0;
+                    }
+                    if(spriteNum == 2){
+                        image = attackRight1;
+                    }
+                    if(spriteNum == 3){
+                        image = attackRight2;
+                    }
+                    if(spriteNum == 4){
+                        image = attackRight3;
+                    }
+                    if(spriteNum == 5){
+                        image = attackRight4;
+                    }
+                    if(spriteNum == 6){
+                        image = attackRight5;
+                    }
+                    if(spriteNum == 7){
+                        image=attackRight6;
+                    }
+
+                }
+                break;
             }
             g2.drawImage(image, screenX, screenY, null);
 

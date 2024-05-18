@@ -18,7 +18,6 @@ public class ghost extends Enemy {
         setDefaultValues();
         loadSprites();
     }
-
      */
     public ghost(GamePanel gp, int initialWorldX, int initialWorldY) {
         super(gp, initialWorldX, initialWorldY, 2);
@@ -107,4 +106,3 @@ public class ghost extends Enemy {
     }
 
 }
-

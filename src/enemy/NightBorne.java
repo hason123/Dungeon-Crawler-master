@@ -20,8 +20,8 @@ public class NightBorne extends Enemy {
     }
 
      */
-    public NightBorne(GamePanel gp, int initialWorldX, int initialWorldY) {
-        super(gp, initialWorldX, initialWorldY, 2);
+    public NightBorne(GamePanel gp, int x, int y) {
+        super(gp, x, y, 2);
         setDefaultValues();
         loadSprites();
     }
