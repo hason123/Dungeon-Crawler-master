@@ -35,29 +35,29 @@ public class wisp extends Enemy {
     @Override
     protected void loadSprites() {
         try {
-            idleSprites = new BufferedImage[8];
+            idleSprites = new BufferedImage[1];
             for (int i = 0; i < idleSprites.length; i++) {
-                idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/idle/necro_" + i + ".png"));
+                idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/idle.png"));
             }
 
-            runSprites = new BufferedImage[8];
+            runSprites = new BufferedImage[1];
             for (int i = 0; i < runSprites.length; i++) {
-                runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/run/necro_" + (8 + i) + ".png"));
+                runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/run.png"));
             }
 
-            attackSprites = new BufferedImage[2];
+            attackSprites = new BufferedImage[1];
             for (int i = 0; i < attackSprites.length; i++) {
-                attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/attack/necro_" + (16 + i) + ".png"));
+                attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/attack.png"));
             }
 
-            hurtSprites = new BufferedImage[5];
+            hurtSprites = new BufferedImage[1];
             for (int i = 0; i < hurtSprites.length; i++) {
-                hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/hurt/necro_" + (59 + i) + ".png"));
+                hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/hurt.png"));
             }
 
-            deathSprites = new BufferedImage[9];
+            deathSprites = new BufferedImage[1];
             for (int i = 0; i < deathSprites.length; i++) {
-                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/death/necro_" + (64 + i) + ".png"));
+                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/wisp/death.png"));
             }
         } catch (IOException e) {
             e.printStackTrace();
