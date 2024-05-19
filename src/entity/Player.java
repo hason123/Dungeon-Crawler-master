@@ -178,14 +178,19 @@ public class Player extends Entity {
 
 
 
-        public void update() {
+    public void update() {
         gp.eHandler.checkEvent();
         if (attacking==true){
             attacking();
         }
 
-        if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
-                || keyInput.diXuong || keyInput.attack) {
+        if (!attacking && keyInput.attack) {
+            attacking = true;
+            keyInput.attack = false; // Đặt lại giá trị của phím tấn công sau khi sử dụng
+        }
+
+        if ((keyInput.diPhai || keyInput.diTrai || keyInput.diTren
+                || keyInput.diXuong) && !attacking) {
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
@@ -280,8 +285,8 @@ public class Player extends Entity {
             }
 
             // toggle between sprites for animation
-            if (keyInput.diPhai || keyInput.diTrai || keyInput.diTren
-                    || keyInput.diXuong || keyInput.attack) {
+            if ((keyInput.diPhai || keyInput.diTrai || keyInput.diTren
+                    || keyInput.diXuong) && !attacking) {
 
                 spriteDem++;
 
