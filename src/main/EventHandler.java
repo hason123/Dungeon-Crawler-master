@@ -126,4 +126,9 @@ public class EventHandler {
         gp.player.worldX = gp.tileSize * 24;
         gp.player.worldY = gp.tileSize * 40;
     }
+
+    public void teleportTile3(){
+        
+    }
+
 }
