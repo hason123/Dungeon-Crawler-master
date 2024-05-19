@@ -85,7 +85,8 @@ public class EventHandler {
                 hit(39, 25, "any") || hit(28, 38, "any") ||
                 hit(20, 25, "any") || hit(27, 25, "any") ||
                 hit(38, 12, "any") || hit(43, 12, "any") ||
-                hit(45, 42, "any") || hit(6,11,"any")){
+                hit(45, 42, "any") || hit(6,11,"any")||
+        hit(6,11,"any")){
            // long currentTime = System.currentTimeMillis();
             //long elapsedTime = currentTime - lastHitTime;
 

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import enemy.skeleton;
 import entity.Boss;
 import letters.Letter;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import entity.Bossattack;
 import entity.Player;
@@ -34,6 +37,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2, lockedDoor3, lockedDoor4, lockedDoor5, lockedDoor6, lockedDoor7, lockedDoor8;
 	public Boss boss;
 	public Bossattack bossAttack;
+
+	public BufferedImage escapeImage;
 
 
 
@@ -194,7 +199,14 @@ public class GamePanel extends JPanel implements Runnable {
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Dungeon of Mystery (8-Bit Music).wav");
 		gameState = titleScreen;
+
+		try {
+			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/escape-ver2.png"));
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
 	}
+
 
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -336,6 +348,7 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == titleScreen) {
 			ui.draw(g2);
 		} else {
+
 			// TILE
 			tileM.draw(g2);
 
@@ -423,6 +436,11 @@ public class GamePanel extends JPanel implements Runnable {
 			ui.draw(g2);
 
 			//g2.dispose();
+		}
+		if (gameState != titleScreen && eHandler.hit(4, 2, "any")) {
+				g2.drawImage(escapeImage, 240, 100, 316, 368, null);
+
+			//keyInput.interact = false;
 		}
 		if (gameState == pauseState) {
 			ui.drawPauseScreen();
