@@ -50,7 +50,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             gameStart = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameStart.png"));
             titleBackground = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/titleBackground.png"));
             HALAL = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HALAL.png"));
-            textBox1 = ImageIO.read(getClass().getResourceAsStream("/object/letter/textbox1.png"));
+            //textBox1 = ImageIO.read(getClass().getResourceAsStream("/object/letter/textbox1.png"));
             textBox4 = ImageIO.read(getClass().getResourceAsStream("/object/letter/3.png"));
 
         }catch(IOException e){
@@ -164,7 +164,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     }
 
     public void drawDialougeScreen(){
-        g2.drawImage(textBox1,80,80,48 * 5,65 * 5,null);
+
     }
 
 

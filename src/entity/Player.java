@@ -178,8 +178,9 @@ public class Player extends Entity {
 
 
 
-    public void update() {
+    public void update(){
         gp.eHandler.checkEvent();
+        gp.keyInput.interact = false;
         if (attacking==true){
             attacking();
         }

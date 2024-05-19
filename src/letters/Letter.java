@@ -18,9 +18,7 @@ public class Letter extends objectforgem {
         this.player = player;
     }
 
-    public void setDialogue() {
-        dialogues[0] = "Welcome to the Dungeon of Doom";
-    }
+
 
 
     @Override

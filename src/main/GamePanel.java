@@ -126,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
 
 		//LETTER
-		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
+		letter0 = new Letter(tileSize * 4, tileSize * 2, player);
 
 		//enemy
 		nightBorne = new NightBorne(this, tileSize * 42, tileSize * 16);
@@ -330,6 +330,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		//eHandler.checkEvent(g2);
 
 		//TITLE SCREEN
 		if (gameState == titleScreen) {
@@ -379,6 +380,8 @@ public class GamePanel extends JPanel implements Runnable {
 			skeleton10.draw(g2);
 			skeleton11.draw(g2);
 			skeleton12.draw(g2);
+
+
 
 
 

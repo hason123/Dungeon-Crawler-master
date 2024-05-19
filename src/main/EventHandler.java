@@ -2,19 +2,24 @@ package main;
 
 import entity.Entity;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class EventHandler {
     GamePanel gp;
     //EventRect[][] eventRect;
     //Entity eventMaster;
-
+    BufferedImage escape,keys,monsters,spikes,teleports,boss;
     int eventRectDefaultX, eventRectDefaultY;
     //boolean canTouchEvent = true;
     //int  tempCol, tempRow;
     Rectangle eventRect;
 
     private long lastHitTime;
+
+    private int healCount = 0;
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
@@ -29,9 +34,19 @@ public class EventHandler {
 
         lastHitTime = System.currentTimeMillis();
 
+        try {
+            escape = ImageIO.read(getClass().getResourceAsStream("/letter/escape.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
+
     public void checkEvent(){
+        if (hit(4, 2, "any")) {
+
+        }
         if (hit(13, 5, "any") || hit(28,44,"any") ||
                 hit(11, 7, "any") || hit(16, 5, "any") ||
                 hit(13, 8, "any") ||hit(18, 6, "any") ||
@@ -60,6 +75,9 @@ public class EventHandler {
         if (hit(11,34,"any")){
             teleportTile2();
         }
+        if (hit(18,9,"any")){
+            teleportTile3();
+        }
         if (hit(23, 3, "any") || hit(42,25,"any") ||
                 hit(35, 2, "any") || hit(43, 25, "any") ||
                 hit(41, 2, "any") ||hit(46, 25, "any") ||
@@ -68,14 +86,15 @@ public class EventHandler {
                 hit(20, 25, "any") || hit(27, 25, "any") ||
                 hit(38, 12, "any") || hit(43, 12, "any") ||
                 hit(45, 42, "any") || hit(6,11,"any")){
-            long currentTime = System.currentTimeMillis();
-            long elapsedTime = currentTime - lastHitTime;
+           // long currentTime = System.currentTimeMillis();
+            //long elapsedTime = currentTime - lastHitTime;
 
             // Add a cooldown of  2000 milliseconds (2 second)
-            if (elapsedTime >= 2000) {
-                healingTile();
-                lastHitTime = currentTime; // Update lastHitTime
-            }
+            //if (elapsedTime >= 2000) {
+            healingTile();
+
+               // lastHitTime = currentTime; // Update lastHitTime
+            //}
         }
     }
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
@@ -106,14 +125,15 @@ public class EventHandler {
         gp.player.HP -= 1;
     }
 
-    public void healingTile(){
-        if(gp.player.HP < 16){
-            gp.player.HP += 2;
+    public void healingTile() {
+        if (gp.keyInput.interact) {
+            if (gp.player.HP < 16) {
+                gp.player.HP += 1;
+            } else {
+                gp.player.HP = 16;
+            }
         }
-        else {
-            gp.player.HP = 16;
-        }
-
+        gp.keyInput.interact = false;
     }
 
     public void teleportTile1(){
@@ -128,7 +148,8 @@ public class EventHandler {
     }
 
     public void teleportTile3(){
-
+        gp.player.worldX = gp.tileSize * 5;
+        gp.player.worldY = gp.tileSize * 15;
     }
 
 
