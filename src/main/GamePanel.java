@@ -232,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable {
 		gameState = titleScreen;
 
 		try {
-			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/escape-ver2.png"));
+			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/key.png"));
 		} catch (IOException e) {
 		e.printStackTrace();
 		}
@@ -469,7 +469,7 @@ public class GamePanel extends JPanel implements Runnable {
 			//g2.dispose();
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 2, "any")) {
-				g2.drawImage(escapeImage, 240, 100, 316, 368, null);
+				g2.drawImage(escapeImage, 240, 100, 416, 448, null);
 
 			//keyInput.interact = false;
 		}
