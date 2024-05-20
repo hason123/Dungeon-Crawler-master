@@ -73,17 +73,23 @@ public class NightBorne extends Enemy {
         BufferedImage frame = currentSpriteArray[currentFrame];
         int frameWidth = frame.getWidth();
         int frameHeight = frame.getHeight();
-        int screenX = worldX - gp.player.getWorldX() + gp.screenWidth / 2 - frameWidth; // Trừ đi toàn bộ chiều rộng ban đầu
-        int screenY = worldY - gp.player.getWorldY() + gp.screenHeight / 2 - frameHeight; // Trừ đi toàn bộ chiều cao ban đầu
+        int screenX = worldX - gp.player.getWorldX() + gp.screenWidth / 3 - frameWidth / 3;
+        int screenY = worldY - gp.player.getWorldY() + gp.screenHeight / 3 - frameHeight / 3;
 
-        g2.drawImage(frame, screenX, screenY, frameWidth * 2, frameHeight * 2, null);
-        updateFrame();
+        g2.drawImage(frame, screenX, screenY, frameWidth*2, frameHeight*2, null);
+
+        if (state != State.DEATH || !deathAnimationPlayed) {
+            updateFrame();
+        }
     }
     private void updateFrame() {
         frameDelay++;
         if (frameDelay >= frameDelayLimit) {
             currentFrame = (currentFrame + 1) % getCurrentSpriteArray().length;
             frameDelay = 0;
+            if (state == State.DEATH && currentFrame == getCurrentSpriteArray().length - 1) {
+                deathAnimationPlayed = true;
+            }
         }
     }
 

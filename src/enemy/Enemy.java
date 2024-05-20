@@ -13,9 +13,12 @@ public abstract class Enemy {
 
     protected BufferedImage[] sprites;
     protected State state;
-    protected int worldX, worldY;
+    public int worldX, worldY;
     protected int speed;
     protected GamePanel gp;
+    protected int health = 0;
+    protected boolean deathAnimationPlayed = false;
+    protected int DEATH_SPRITE_INDEX;
 
     public Enemy(GamePanel gp, int worldX, int worldY, int speed) {
         this.gp = gp;
@@ -57,7 +60,21 @@ public abstract class Enemy {
                 break;
         }
     }
+    public void receiveDamage() {
+        health++;
 
+        if (health < 4) {
+            state = State.HURT;
+        } else {
+            state = State.DEATH;
+            deathAnimationPlayed = false; // Reset để chắc chắn hoạt ảnh chết được chạy
+        }
+
+    }
+    public boolean isDead() {
+        boolean dead = state == State.DEATH && deathAnimationPlayed;
+        return dead;
+    }
     protected boolean isPlayerInRange() {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
@@ -91,6 +108,14 @@ public abstract class Enemy {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(sprites[state.ordinal()], worldX, worldY, null);
-    }
+        if (state == State.DEATH) {
+            if (!deathAnimationPlayed) {
+                g2.drawImage(sprites[DEATH_SPRITE_INDEX], worldX, worldY, null);
+                deathAnimationPlayed = true;
+            }
+        } else {
+            g2.drawImage(sprites[state.ordinal()], worldX, worldY, null);
+            if (state == State.HURT) {
+            }
+        }}
 }

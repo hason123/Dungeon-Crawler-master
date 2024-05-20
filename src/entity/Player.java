@@ -4,10 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import javax.imageio.ImageIO;
 import javax.swing.plaf.PanelUI;
 
+import enemy.Enemy;
 import main.GamePanel;
 import main.KeyboardInput;
 import main.LockedDoor;
@@ -338,6 +340,19 @@ public class Player extends Entity {
             spriteDem=0;
             attacking=false;
         }
+        for (int i = 0; i < gp.enemies.size(); i++) {
+            Enemy enemy = gp.enemies.get(i);
+            if (isEnemyInRange(enemy)) {
+                enemy.receiveDamage();
+                if (enemy.isDead()) {
+                    gp.enemies.remove(i);
+                    i--;
+                }
+            }
+        }
+    }
+    private boolean isEnemyInRange(Enemy enemy) {
+        return Math.hypot(worldX - enemy.worldX, worldY - enemy.worldY) <= 40;
     }
 
     public void draw(Graphics2D g2){

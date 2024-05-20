@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import enemy.Enemy;
 import enemy.ghost;
 import enemy.skeleton;
 import entity.Boss;
@@ -34,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2, lockedDoor3, lockedDoor4, lockedDoor5, lockedDoor6, lockedDoor7, lockedDoor8;
 	public Boss boss;
 	public Bossattack bossAttack;
-
+	public ArrayList<Enemy> enemies;
 
 
 	public Letter letter0,letter1,letter2,letter3,letter4,letter5,letter6,letter7,letter8,letter9,letter10;
@@ -129,6 +130,7 @@ public class GamePanel extends JPanel implements Runnable {
 		letter0 = new Letter(tileSize * 7, tileSize * 7, player);
 
 		//enemy
+		enemies = new ArrayList<>();
 		nightBorne = new NightBorne(this, tileSize * 42, tileSize * 16);
 		nightBorne1 = new NightBorne(this, tileSize * 23, tileSize * 27);
 		nightBorne2 = new NightBorne(this, tileSize * 44, tileSize * 46);
@@ -183,7 +185,35 @@ public class GamePanel extends JPanel implements Runnable {
 		//skeleton18 = new skeleton(this, tileSize * 16, tileSize * 17);
 		//skeleton19 = new skeleton(this, tileSize * 16, tileSize * 17);
 		//skeleton20 = new skeleton(this, tileSize * 16, tileSize * 17);
-
+		enemies.add(nightBorne);
+		enemies.add(nightBorne1);
+		enemies.add(nightBorne2);
+		enemies.add(nightBorne3);
+		enemies.add(nightBorne4);
+		enemies.add(ghost1);
+		enemies.add(ghost2);
+		enemies.add(ghost3);
+		enemies.add(ghost4);
+		enemies.add(ghost5);
+		enemies.add(ghost6);
+		enemies.add(ghost7);
+		enemies.add(ghost8);
+		enemies.add(ghost9);
+		enemies.add(ghost10);
+		enemies.add(ghost11);
+		enemies.add(ghost12);
+		enemies.add(skeleton0);
+		enemies.add(skeleton1);
+		enemies.add(skeleton3);
+		enemies.add(skeleton4);
+		enemies.add(skeleton5);
+		enemies.add(skeleton6);
+		enemies.add(skeleton7);
+		enemies.add(skeleton8);
+		enemies.add(skeleton9);
+		enemies.add(skeleton10);
+		enemies.add(skeleton11);
+		enemies.add(skeleton12);
 
 
 		// Thay đổi tọa độ phù hợp
