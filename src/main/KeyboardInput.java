@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyboardInput implements KeyListener {
 
-    public boolean diTren, diXuong, diTrai, diPhai, attack,interact;
+    public boolean diTren, diXuong, diTrai, diPhai, attack, interact;
 
     GamePanel gp;
 
@@ -61,6 +61,9 @@ public class KeyboardInput implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             attack = true;
         }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            interact = true;
+        }
         if (e.getKeyCode() == KeyEvent.VK_M) {
             if(gp.gameState == gp.playState) {gp.gameState = gp.pauseState;}
             else if(gp.gameState == gp.pauseState) {gp.gameState = gp.playState;}
@@ -84,6 +87,9 @@ public class KeyboardInput implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             attack = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            interact = false;
         }
     }
 }
