@@ -88,7 +88,6 @@ public class Bossattack {
         }
     }
     public void update() {
-        // Lưu vị trí hiện tại của người chơi
         savePlayerPosition();
         attackStartTimer++;
         if (isPlayerInRange()) {
@@ -106,6 +105,8 @@ public class Bossattack {
                         frameDelay = 0;
                         if (currentFrame == 0) {
                             state = State.IDLE;
+                        } else {
+                            reducePlayerHealth(); // Check and reduce player health
                         }
                     }
                     break;
@@ -152,6 +153,15 @@ public class Bossattack {
         if (playerPositions.size() < dotre) {
             return null; // Không đủ dữ liệu để lấy vị trí
         }
-        return playerPositions.peek();
+        int[] peek = playerPositions.peek();
+        return peek;
     }
+    private void reducePlayerHealth() {
+        int playerX = gp.player.getWorldX();
+        int playerY = gp.player.getWorldY();
+        if (playerX >= worldX && playerX <= worldX + width && playerY >= worldY && playerY <= worldY + height) {
+            gp.player.HP -= 2; // Reduce player's health by 2 (or any other amount)
+        }
+    }
+
 }
