@@ -140,7 +140,7 @@ public class Player extends Entity {
             right5 = playerImageSetup("run_right_40x40_5");
             right6 = playerImageSetup("run_right_40x40_6");
     }
-    private boolean attack;
+
 
     public void getPlayerAttackImage(){
         attackUp0=playerImageSetup("attack/attackup_0");
@@ -313,7 +313,7 @@ public class Player extends Entity {
 
 
         }
-
+    private boolean kiemtratancong = false;
     public  void attacking(){
         spriteDem++;
         if (spriteDem<=5){
@@ -340,10 +340,11 @@ public class Player extends Entity {
             spriteNum=1;
             spriteDem=0;
             attacking=false;
+            kiemtratancong = false;
         }
         for (int i = 0; i < gp.enemies.size(); i++) {
             Enemy enemy = gp.enemies.get(i);
-            if (isEnemyInRange(enemy)) {
+            if (isEnemyInRange(enemy) && !kiemtratancong) {
                 enemy.receiveDamage();
                 if (enemy.isDead()) {
                     gp.enemies.remove(i);
@@ -351,6 +352,17 @@ public class Player extends Entity {
                 }
             }
         }
+
+        if (isBossInRange() && !kiemtratancong) {
+            gp.boss.takeDamage(1);
+            kiemtratancong = true;
+        }
+    }
+    private boolean isBossInRange() {
+        double bossX = gp.tileSize * 8;
+        double bossY = gp.tileSize * 42;
+        double distance = Math.hypot(worldX - bossX, worldY - bossY);
+        return distance <= 100;
     }
     private boolean isEnemyInRange(Enemy enemy) {
         return Math.hypot(worldX - enemy.worldX, worldY - enemy.worldY) <= 40;

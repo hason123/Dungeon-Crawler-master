@@ -32,12 +32,24 @@ public class Boss extends Entity {
         setDefaultValues();
 
     }
+    public void takeDamage(int damage) {
+        currentHealth -= damage;
+        if (currentHealth < 0) {
+            currentHealth = 0;
+        }
 
+    }
     private void setDefaultValues() {
         worldX = gp.tileSize * 6;
         worldY = gp.tileSize * 38;
     }
+    public int getWorldX() {
+        return worldX;
+    }
 
+    public int getWorldY() {
+        return worldY;
+    }
     private void loadSprites() {
         try {
             BufferedImage idleSheet = ImageIO.read(getClass().getResourceAsStream("/boss/idleboss.png"));
@@ -79,7 +91,7 @@ public class Boss extends Entity {
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
         BufferedImage image = attacking ? attackSprites[currentFrame] : idleSprites[currentFrame];
         g2.drawImage(image, screenX, screenY, width*4, height*4, null);
-        int hpIndex = (currentHealth - 1) * 9 / maxHealth; // Tính index dựa trên sức khỏe hiện tại
+        int hpIndex = maxHealth - currentHealth; // Tính index dựa trên sức khỏe hiện tại
         g2.drawImage(healthBarSprites[hpIndex], screenX +30, screenY -35 , width*3 , height/2, null);
     }
     public boolean attacking() {
