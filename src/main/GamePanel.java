@@ -39,8 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Boss boss;
 	public Bossattack bossAttack;
 
-	public BufferedImage escapeImage;
-
+	public BufferedImage escapeImage,tutorialImage,keyImage,monstersImage,spikesImage,teleImage,bossImage;
 	public ArrayList<Enemy> enemies;
 
 
@@ -133,7 +132,19 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
 
 		//LETTER
-		letter0 = new Letter(tileSize * 9, tileSize * 4, player);
+		letter0 = new Letter(tileSize * 4, tileSize * 3, player);
+		letter1 = new Letter(tileSize * 18, tileSize * 8, player);
+		//letter2 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter3 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter4 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter5 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter6 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter7 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter8 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter9 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter10 = new Letter(tileSize * 9, tileSize * 4, player);
+
+
 
 
 		//enemy
@@ -231,9 +242,15 @@ public class GamePanel extends JPanel implements Runnable {
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Dungeon of Mystery (8-Bit Music).wav");
 		gameState = titleScreen;
-
+		//LETTERS
 		try {
-			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/key.png"));
+			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/escape.png"));
+			tutorialImage = ImageIO.read(getClass().getResourceAsStream("/letter/tutorial.png"));
+			bossImage = ImageIO.read(getClass().getResourceAsStream("/letter/boss.png"));
+			keyImage = ImageIO.read(getClass().getResourceAsStream("/letter/key.png"));
+			teleImage = ImageIO.read(getClass().getResourceAsStream("/letter/teleport.png"));
+			spikesImage = ImageIO.read(getClass().getResourceAsStream("/letter/spikes.png"));
+			monstersImage = ImageIO.read(getClass().getResourceAsStream("/letter/monsters.png"));
 		} catch (IOException e) {
 		e.printStackTrace();
 		}
@@ -463,16 +480,25 @@ public class GamePanel extends JPanel implements Runnable {
 
 			//LETTER
 			letter0.draw(g2);
+			letter1.draw(g2);
+			//letter2.draw(g2);
+			//letter3.draw(g2);
+			//letter4.draw(g2);
+			//letter5.draw(g2);
+			//letter6.draw(g2);
+			//letter7.draw(g2);
+
 
 			//UI
 			ui.draw(g2);
 
 			//g2.dispose();
 		}
-		if (gameState != titleScreen && eHandler.hit(4, 2, "any")) {
-				g2.drawImage(escapeImage, 176, 64, 416, 448, null);
-
-			//keyInput.interact = false;
+		if (gameState != titleScreen && eHandler.hit(4, 3, "any")) {
+				g2.drawImage(tutorialImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(9, 4, "any")) {
+			g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 		}
 		if (gameState == pauseState) {
 			ui.drawPauseScreen();
