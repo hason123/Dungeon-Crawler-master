@@ -344,7 +344,7 @@ public class Player extends Entity {
         }
         for (int i = 0; i < gp.enemies.size(); i++) {
             Enemy enemy = gp.enemies.get(i);
-            if (isEnemyInRange(enemy) && !kiemtratancong) {
+            if (isEnemyInRange(enemy) ) {
                 enemy.receiveDamage();
                 if (enemy.isDead()) {
                     gp.enemies.remove(i);
