@@ -48,9 +48,9 @@ public class skeleton extends Enemy {
                 hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/skeleton/frame"+ i +".png"));
             }
 
-            deathSprites = new BufferedImage[15];
+            deathSprites = new BufferedImage[1];
             for (int i = 0; i < deathSprites.length; i++) {
-                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/skeleton/frame"+ i +".png"));
+                deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/skeleton/frame16.png"));
             }
         } catch (IOException e) {
             e.printStackTrace();

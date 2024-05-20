@@ -133,7 +133,8 @@ public class GamePanel extends JPanel implements Runnable {
 		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
 
 		//LETTER
-		letter0 = new Letter(tileSize * 4, tileSize * 2, player);
+		letter0 = new Letter(tileSize * 9, tileSize * 4, player);
+
 
 		//enemy
 		enemies = new ArrayList<>();
@@ -469,7 +470,7 @@ public class GamePanel extends JPanel implements Runnable {
 			//g2.dispose();
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 2, "any")) {
-				g2.drawImage(escapeImage, 240, 100, 416, 448, null);
+				g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 
 			//keyInput.interact = false;
 		}

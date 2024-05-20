@@ -12,9 +12,9 @@ import java.io.IOException;
 
 public class Letter extends objectforgem {
     Player player;
-    public String[] dialogues = new String[20];
+
     public Letter(int x, int y, Player player) {
-        super(x, y, "/object/letter/004.png", 16, 16);
+        super(x, y, "/object/letter/000.png", 16, 16);
         this.player = player;
     }
 

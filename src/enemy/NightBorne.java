@@ -55,7 +55,7 @@ public class NightBorne extends Enemy {
                 hurtSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/hurt/necro_" + (59 + i) + ".png"));
             }
 
-            deathSprites = new BufferedImage[9];
+            deathSprites = new BufferedImage[10];
             for (int i = 0; i < deathSprites.length; i++) {
                 deathSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/necro/death/necro_" + (64 + i) + ".png"));
             }
