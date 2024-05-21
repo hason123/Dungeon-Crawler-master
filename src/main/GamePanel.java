@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Boss boss;
 	public Bossattack bossAttack;
 
-	public BufferedImage escapeImage,tutorialImage,keyImage,monstersImage,spikesImage,teleImage,bossImage;
+	public BufferedImage escapeImage,tutorialImage,keyImage,monstersImage,spikesImage,teleImage,bossImage,endImage,suyImage,tipsImage;
 	public ArrayList<Enemy> enemies;
 
 
@@ -137,10 +137,10 @@ public class GamePanel extends JPanel implements Runnable {
 		letter4 = new Letter(tileSize * 22, tileSize * 24, player);
 		letter5 = new Letter(tileSize * 46, tileSize * 13, player);
 		letter6 = new Letter(tileSize * 4, tileSize * 18, player);
-//		letter7 = new Letter(tileSize * 39, tileSize * 33, player);
-//		letter8 = new Letter(tileSize * 21, tileSize * 37, player);
-//		letter9 = new Letter(tileSize * 9, tileSize * 4, player);
-//		letter10 = new Letter(tileSize * 9, tileSize * 4, player);
+		//letter7 = new Letter(tileSize * 39, tileSize * 33, player);
+		letter8 = new Letter(tileSize * 21, tileSize * 37, player);
+		letter9 = new Letter(tileSize * 34, tileSize * 45, player);
+		letter10 = new Letter(tileSize * 41, tileSize * 26, player);
 
 
 
@@ -249,6 +249,10 @@ public class GamePanel extends JPanel implements Runnable {
 			teleImage = ImageIO.read(getClass().getResourceAsStream("/letter/teleport.png"));
 			spikesImage = ImageIO.read(getClass().getResourceAsStream("/letter/spikes.png"));
 			monstersImage = ImageIO.read(getClass().getResourceAsStream("/letter/monsters.png"));
+			endImage = ImageIO.read(getClass().getResourceAsStream("/letter/endgame.png"));
+			suyImage = ImageIO.read(getClass().getResourceAsStream("/letter/suy.png"));
+			tipsImage = ImageIO.read(getClass().getResourceAsStream("/letter/tips.png"));
+
 		} catch (IOException e) {
 		e.printStackTrace();
 		}
@@ -486,7 +490,9 @@ public class GamePanel extends JPanel implements Runnable {
 			letter5.draw(g2);
 			letter6.draw(g2);
 			//letter7.draw(g2);
-			//letter8.draw(g2);
+			letter8.draw(g2);
+			letter9.draw(g2);
+			letter10.draw(g2);
 
 
 			//UI
@@ -537,6 +543,24 @@ public class GamePanel extends JPanel implements Runnable {
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(spikesImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(21, 37, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2.drawImage(endImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(34, 45, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2.drawImage(suyImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(41, 26, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2.drawImage(tipsImage, 176, 64, 416, 448, null);
 		}
 
 		if (gameState == pauseState) {
