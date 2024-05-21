@@ -134,15 +134,15 @@ public class GamePanel extends JPanel implements Runnable {
 		//LETTER
 		letter0 = new Letter(tileSize * 4, tileSize * 3, player);
 		letter1 = new Letter(tileSize * 18, tileSize * 8, player);
-		//letter2 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter3 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter4 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter5 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter6 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter7 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter8 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter9 = new Letter(tileSize * 9, tileSize * 4, player);
-		//letter10 = new Letter(tileSize * 9, tileSize * 4, player);
+		letter2 = new Letter(tileSize * 4, tileSize * 14, player);
+		letter3 = new Letter(tileSize * 22, tileSize * 29, player);
+		letter4 = new Letter(tileSize * 22, tileSize * 24, player);
+		letter5 = new Letter(tileSize * 46, tileSize * 13, player);
+		letter6 = new Letter(tileSize * 4, tileSize * 18, player);
+//		letter7 = new Letter(tileSize * 39, tileSize * 33, player);
+//		letter8 = new Letter(tileSize * 21, tileSize * 37, player);
+//		letter9 = new Letter(tileSize * 9, tileSize * 4, player);
+//		letter10 = new Letter(tileSize * 9, tileSize * 4, player);
 
 
 
@@ -481,12 +481,13 @@ public class GamePanel extends JPanel implements Runnable {
 			//LETTER
 			letter0.draw(g2);
 			letter1.draw(g2);
-			//letter2.draw(g2);
-			//letter3.draw(g2);
-			//letter4.draw(g2);
-			//letter5.draw(g2);
-			//letter6.draw(g2);
-			//letter7.draw(g2);
+			letter2.draw(g2);
+			letter3.draw(g2);
+			letter4.draw(g2);
+			letter5.draw(g2);
+			letter6.draw(g2);
+			letter7.draw(g2);
+			letter8.draw(g2);
 
 
 			//UI
@@ -500,6 +501,22 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState != titleScreen && eHandler.hit(9, 4, "any")) {
 			g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 		}
+		if (gameState != titleScreen && eHandler.hit(4, 14, "any")) {
+			g2.drawImage(keyImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(22, 29, "any")) {
+			g2.drawImage(bossImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(22, 24, "any")) {
+			g2.drawImage(monstersImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(46, 13, "any")) {
+			g2.drawImage(teleImage, 176, 64, 416, 448, null);
+		}
+		if (gameState != titleScreen && eHandler.hit(4, 18, "any")) {
+			g2.drawImage(spikesImage, 176, 64, 416, 448, null);
+		}
+
 		if (gameState == pauseState) {
 			ui.drawPauseScreen();
 		}
