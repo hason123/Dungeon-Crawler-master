@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -391,6 +388,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+
 		//eHandler.checkEvent(g2);
 
 		//TITLE SCREEN
@@ -495,9 +493,13 @@ public class GamePanel extends JPanel implements Runnable {
 			//g2.dispose();
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 3, "any")) {
-				g2.drawImage(tutorialImage, 176, 64, 416, 448, null);
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.drawImage(tutorialImage, 176, 64, 416, 448, null);
 		}
-		if (gameState != titleScreen && eHandler.hit(9, 4, "any")) {
+		if (gameState != titleScreen && eHandler.hit(18, 8, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 		}
 		if (gameState == pauseState) {
