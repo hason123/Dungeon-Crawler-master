@@ -23,7 +23,7 @@ public class Boss extends Entity {
     private Random rand = new Random();
     private static final int tamdanh = 400;
     private int maxHealth = 8;
-    private int currentHealth = 8;
+    public int currentHealth = 8;
     public Boss(GamePanel gp,Bossattack bossAttack) {
         super(gp);
         this.gp = gp;

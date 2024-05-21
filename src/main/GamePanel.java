@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public GamePanel() {
 
+
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -484,8 +485,8 @@ public class GamePanel extends JPanel implements Runnable {
 			letter4.draw(g2);
 			letter5.draw(g2);
 			letter6.draw(g2);
-			letter7.draw(g2);
-			letter8.draw(g2);
+			//letter7.draw(g2);
+			//letter8.draw(g2);
 
 
 			//UI
@@ -493,35 +494,55 @@ public class GamePanel extends JPanel implements Runnable {
 
 			//g2.dispose();
 		}
+
+
 		if (gameState != titleScreen && eHandler.hit(4, 3, "any")) {
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(tutorialImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(18, 8, "any")) {
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 14, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(keyImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(22, 29, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(bossImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(22, 24, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(monstersImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(46, 13, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(teleImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 18, "any")) {
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(spikesImage, 176, 64, 416, 448, null);
 		}
 
 		if (gameState == pauseState) {
 			ui.drawPauseScreen();
 		}
+
 
 		g2.dispose();
 
