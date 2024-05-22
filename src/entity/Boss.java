@@ -39,9 +39,10 @@ public class Boss extends Entity {
         }
 
     }
-    private void setDefaultValues() {
+    public void setDefaultValues() {
         worldX = gp.tileSize * 6;
         worldY = gp.tileSize * 38;
+        currentHealth = 8;
     }
     public int getWorldX() {
         return worldX;

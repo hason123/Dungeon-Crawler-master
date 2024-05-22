@@ -33,7 +33,7 @@ import java.io.InputStream;
         public void stop() {
             if (clip != null && clip.isRunning()) {
                 clip.stop();
-                clip.close();
+                clip.setFramePosition(0);
             }
         }
     }

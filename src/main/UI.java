@@ -10,25 +10,17 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     GamePanel gp;
     Graphics2D g2;
 
-    Font arial20PLAIN;
-    Font arial40BOLD;
     Font sansFont;
     BufferedImage keyImage;
 
-    BufferedImage textBox1, textBox2, textBox3,textBox4;
-    BufferedImage titleBackground, titleBoss, titleSword, HALAL, pausedImage, creditsImage,gameOver,gameCompleted;
+    BufferedImage titleBackground, titleBoss, titleSword;
     BufferedImage zeroHP, twoHP, fourHP, sixHP, eightHP, tenHP, twelveHP, fourteenHP, sixteenHP;
-
-    public String curentDialouge = "";
-    public int commandNumber = 1;
+    BufferedImage credits, gameOver, gameCompleted, gamePause, HUST, MU;
 
     public UI(GamePanel gp) {
         this.gp = gp;
 
         //Khai báo các font muốn dùng tại đây
-        arial20PLAIN = new Font("Arial", Font.PLAIN, 20); //Cài đặt phông chữ (phông chữ thông thường tránh lỗi hiển thị)
-        arial40BOLD = new Font("Arial", Font.BOLD, 40);
-
         try {
             InputStream is = getClass().getResourceAsStream("/font/SVN-Determination Sans.otf");
             sansFont = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -41,10 +33,12 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             titleBackground = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/background.png"));
             titleBoss = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/boss.png"));
             titleSword = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/sword.png"));
-            HALAL = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HALAL.png"));
-            //textBox1 = ImageIO.read(getClass().getResourceAsStream("/object/letter/textbox1.png"));
-            textBox4 = ImageIO.read(getClass().getResourceAsStream("/object/letter/3.png"));
-            pausedImage = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/paused.png"));
+            credits = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/credits.png"));
+            gameOver = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameover.png"));
+            gameCompleted = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/gameEnd.png"));
+            gamePause = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/paused.png"));
+            HUST = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HUST.png"));
+            MU = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/MUv1.png"));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -65,28 +59,21 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        g2.setFont(sansFont);
-        g2.setColor(Color.white);
 
         if(gp.gameState == gp.titleScreen){
             drawTitleScreen();
         }
         if(gp.gameState == gp.playState) {
-            drawInterface();
+            drawInterface(g2);
         }
         if(gp.gameState == gp.pauseState) {
-            drawInterface();
             drawPauseScreen();
-        }
-        if(gp.gameState == gp.dialougeState) {
-            drawDialougeScreen();
         }
         if(gp.gameState == gp.gameCompletedState) {
             drawCompletedScreen();
-            gp.gameThread = null;
         }
         if(gp.gameState == gp.gameOverState){
-            //Pending
+            drawGameOverScreen();
         }
     }
 
@@ -123,34 +110,34 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
         }
     }
 
-    public void drawDialougeScreen(){
-
-    }
-
-
-
     public void drawPauseScreen() {
-        g2.drawImage(pausedImage,0,0,null);
+        g2.drawImage(gamePause,0,0,null);
     }
 
     public void drawCompletedScreen(){
-
+        g2.drawImage(gameCompleted,0,0,null);
+        g2.drawImage(HUST,100,200,150,225,null);
+        g2.drawImage(MU,500,210,200,200,null);
     }
 
-    public int getXCenteredText(String text) {
-        int textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        return gp.screenWidth/2 - textLength/2;
+    public void drawGameOverScreen(){
+        g2.drawImage(gameOver,0,0,null);
     }
 
-    public void drawKeyCount(){
-        g2.setFont(arial20PLAIN);
+    public void drawCreditsScreen() {
+        g2.drawImage(credits,0,0,null);
+    }
+
+    public void drawKeyCount(Graphics2D g2){
+        g2.setFont(sansFont);
+        g2.setFont(g2.getFont().deriveFont(20F));
         g2.setColor(Color.white);
         g2.drawImage(keyImage, 12, 525, gp.tileSize, gp.tileSize, null);
         g2.drawString(gp.player.getKeyCount()+"/"+"20",60,558);
     }
 
-    public void drawInterface(){//Cần hiển thị thông số nào trong khi chơi thì thêm vào đây
-        drawKeyCount();
+    public void drawInterface(Graphics2D g2){//Cần hiển thị thông số nào trong khi chơi thì thêm vào đây
+        drawKeyCount(g2);
         drawPlayerHP();
     }
 }

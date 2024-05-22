@@ -47,20 +47,16 @@ public class Player extends Entity {
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
         worldX = gp.tileSize * 5; //Vi tri cua nhan vat
         worldY = gp.tileSize * 5;
-        //worldX = gp.tileSize * 24; //Vi tri cua nhan vat
-        //worldY = gp.tileSize * 40;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
         maxHP = 16;
         HP = maxHP;
-        //if (HP > 16) {HP = 16;}
+        keyCount = 0;
     }
     private int keyCount = 0;
-    private int totalKeyPicked = 0;
     public void pickUpKey() {
-        keyCount++;
-        totalKeyPicked++;
+        keyCount++;;
     }
 
     public void useKey() {
@@ -73,10 +69,7 @@ public class Player extends Entity {
         return keyCount > 0;
     }
 
-    public int getKeyCount() {
-        return keyCount;
-    }
-    public int getTotalKeyPicked() {return totalKeyPicked;}
+    public int getKeyCount() { return keyCount; }
 
     public int getWorldX() {
         return worldX;

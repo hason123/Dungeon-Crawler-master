@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public ArrayList<Enemy> enemies;
 
 
-	public Letter letter0,letter1,letter2,letter3,letter4,letter5,letter6,letter7,letter8,letter9,letter10;
+	public Letter letter0,letter1,letter2,letter3,letter4,letter5,letter6,letter8,letter9,letter10;
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
@@ -51,14 +51,13 @@ public class GamePanel extends JPanel implements Runnable {
 	//enemy
 	public NightBorne nightBorne,nightBorne1,nightBorne2,nightBorne3,nightBorne4;
 
-	public ghost ghost0,ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,
-			ghost11,ghost12,ghost13,ghost14,ghost15,ghost16,ghost17,ghost18,ghost19,ghost20;
+	public ghost ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,
+			ghost11,ghost12;
 
 
 
-	public skeleton skeleton0, skeleton1, skeleton2, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7, skeleton8,
-			skeleton9, skeleton10, skeleton11, skeleton12, skeleton13, skeleton14, skeleton15, skeleton16,
-			skeleton17, skeleton18, skeleton19, skeleton20;
+	public skeleton skeleton0, skeleton1, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7, skeleton8,
+			skeleton9, skeleton10, skeleton11, skeleton12;
 
 
 
@@ -86,8 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int titleScreen = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
-
-	public final int dialougeState = 3;
+	public final int creditsState = 3;
 	public final int gameCompletedState = 4;
 	public final int gameOverState = 5;
 
@@ -105,29 +103,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(keyInput);
 		this.setFocusable(true);
 
-		//KEYS
-		key0 = new Key(tileSize * 3, tileSize * 3, player);
-		key1 = new Key(tileSize * 7, tileSize * 13, player);
-		key2 = new Key(tileSize * 47, tileSize*  2, player);
-		key3 = new Key((int) (tileSize * 38.5), tileSize * 20, player);
-		key4 = new Key((int) (tileSize * 42.5), tileSize * 13, player);
-		key5 = new Key((int) (tileSize * 42.5), tileSize * 20, player);
-		key6 = new Key(tileSize * 47, tileSize * 33, player);
-		key7 = new Key((int) (tileSize * 23.5), tileSize * 27, player);
-		key8 = new Key((int) (tileSize * 27.5), (int) (tileSize * 39.5), player);
 
-
-		// Thay đổi tọa độ phù hợp
-
-		lockedDoor0 = new LockedDoor(tileSize * 11, tileSize * 11, player, this);
-		lockedDoor1 = new LockedDoor(tileSize * 23, tileSize * 7, player, this);
-		lockedDoor2 = new LockedDoor(tileSize * 34, tileSize * 8, player, this);
-		lockedDoor3 = new LockedDoor(tileSize * 34, tileSize * 24, player, this);// Thay đổi tọa độ phù hợp
-		lockedDoor4 = new LockedDoor(tileSize * 46, tileSize * 14, player, this);// Thay đổi tọa độ phù hợp
-		lockedDoor5 = new LockedDoor(tileSize * 46, tileSize * 18, player, this);// Thay đổi tọa độ phù hợp
-		lockedDoor6 = new LockedDoor(tileSize * 47, tileSize * 40, player, this);// Thay đổi tọa độ phù hợp
-		lockedDoor7 = new LockedDoor(tileSize * 23, tileSize * 34, player, this);// Thay đổi tọa độ phù hợp
-		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);// Thay đổi tọa độ phù hợp
 
 		//LETTER
 		letter0 = new Letter(tileSize * 4, tileSize * 3, player);
@@ -137,102 +113,9 @@ public class GamePanel extends JPanel implements Runnable {
 		letter4 = new Letter(tileSize * 22, tileSize * 24, player);
 		letter5 = new Letter(tileSize * 46, tileSize * 13, player);
 		letter6 = new Letter(tileSize * 4, tileSize * 18, player);
-		//letter7 = new Letter(tileSize * 39, tileSize * 33, player);
 		letter8 = new Letter(tileSize * 21, tileSize * 37, player);
 		letter9 = new Letter(tileSize * 34, tileSize * 45, player);
 		letter10 = new Letter(tileSize * 41, tileSize * 26, player);
-
-
-
-
-		//enemy
-		enemies = new ArrayList<>();
-		nightBorne = new NightBorne(this, tileSize * 42, tileSize * 16);
-		nightBorne1 = new NightBorne(this, tileSize * 23, tileSize * 27);
-		nightBorne2 = new NightBorne(this, tileSize * 44, tileSize * 46);
-		nightBorne3 = new NightBorne(this, tileSize * 24, tileSize * 38);
-		nightBorne4 = new NightBorne(this, tileSize * 34, tileSize * 34);
-
-		//ghost0 = new ghost(this, tileSize * 30, tileSize * 33);
-		ghost1 = new ghost(this, tileSize * 17, tileSize * 7);
-		ghost2 = new ghost(this, tileSize * 35, tileSize * 5);
-		ghost3 = new ghost(this, tileSize * 38, tileSize * 19);
-		ghost4 = new ghost(this, tileSize * 43, tileSize * 13);
-		ghost5 = new ghost(this, tileSize * 47, tileSize * 19);
-		ghost6 = new ghost(this, tileSize * 31, tileSize * 17);
-		ghost7 = new ghost(this, tileSize * 43, tileSize * 38);
-		ghost8 = new ghost(this, tileSize * 35, tileSize * 44);
-		ghost9 = new ghost(this, tileSize * 19, tileSize * 14);
-		ghost10 = new ghost(this, tileSize * 20, tileSize * 33);
-		ghost11 = new ghost(this, tileSize * 27, tileSize * 33);
-		ghost12 = new ghost(this, tileSize * 43, tileSize * 29);
-
-		//ghost13 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost14 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost15 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost16 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost17 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost18 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost19 = new ghost(this, tileSize * 16, tileSize * 17);
-		//ghost20 = new ghost(this, tileSize * 16, tileSize * 17);
-
-
-
-
-		skeleton0 = new skeleton(this, tileSize * 9, tileSize * 20);
-		skeleton1 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton2 = new skeleton(this, tileSize * 9, tileSize * 12);
-		skeleton3 = new skeleton(this, tileSize * 20, tileSize * 28);
-		skeleton4 = new skeleton(this, tileSize * 27, tileSize * 28);
-		skeleton5 = new skeleton(this, tileSize * 24, tileSize * 5);
-		skeleton6 = new skeleton(this, tileSize * 43, tileSize * 3);
-		skeleton7 = new skeleton(this, tileSize * 47, tileSize * 3);
-		skeleton8 = new skeleton(this, tileSize * 38, tileSize * 13);
-		skeleton9 = new skeleton(this, tileSize * 42, tileSize * 19);
-		skeleton10 = new skeleton(this, tileSize * 46, tileSize * 13);
-		skeleton11 = new skeleton(this, tileSize * 27, tileSize * 11);
-		skeleton12 = new skeleton(this, tileSize * 30, tileSize * 42);
-
-		//skeleton13 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton14 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton15 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton16 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton17 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton18 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton19 = new skeleton(this, tileSize * 16, tileSize * 17);
-		//skeleton20 = new skeleton(this, tileSize * 16, tileSize * 17);
-		enemies.add(nightBorne);
-		enemies.add(nightBorne1);
-		enemies.add(nightBorne2);
-		enemies.add(nightBorne3);
-		enemies.add(nightBorne4);
-		enemies.add(ghost1);
-		enemies.add(ghost2);
-		enemies.add(ghost3);
-		enemies.add(ghost4);
-		enemies.add(ghost5);
-		enemies.add(ghost6);
-		enemies.add(ghost7);
-		enemies.add(ghost8);
-		enemies.add(ghost9);
-		enemies.add(ghost10);
-		enemies.add(ghost11);
-		enemies.add(ghost12);
-		enemies.add(skeleton0);
-		enemies.add(skeleton1);
-		enemies.add(skeleton3);
-		enemies.add(skeleton4);
-		enemies.add(skeleton5);
-		enemies.add(skeleton6);
-		enemies.add(skeleton7);
-		enemies.add(skeleton8);
-		enemies.add(skeleton9);
-		enemies.add(skeleton10);
-		enemies.add(skeleton11);
-		enemies.add(skeleton12);
-
-
-		// Thay đổi tọa độ phù hợp
 
 		this.bossAttack = new Bossattack(this);
 		this.boss = new Boss(this, bossAttack);
@@ -304,10 +187,14 @@ public class GamePanel extends JPanel implements Runnable {
 	private boolean keyRemoved = false;
 
 	public void update() {
+		if (gameState == titleScreen){
+			gameReset(true);
+		}
 		if (gameState == playState) {//Trạng thái game hoạt động
 			player.update();
 			boss.update();
 			bossAttack.update();
+			playBackgroundMusic();
 
 			//nightBorne
 			nightBorne.update();
@@ -316,7 +203,6 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne3.update();
 			nightBorne4.update();
 
-			//ghost0.update();
 			ghost1.update();
 			ghost2.update();
 			ghost3.update();
@@ -332,7 +218,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 			skeleton0.update();
 			skeleton1.update();
-			//skeleton2.update();
 			skeleton3.update();
 			skeleton4.update();
 			skeleton5.update();
@@ -388,13 +273,20 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == pauseState) {//Trạng thái game tạm dừng (thêm menu hoặc gì đó)
 
 		}
+		if (player.HP == 0) {
+			gameState = gameOverState;
+			stopBackgroundMusic();
+		}
+		if (boss.currentHealth == 0) {
+			gameState = gameCompletedState;
+			stopBackgroundMusic();
+		}
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		//eHandler.checkEvent(g2);
 
 		//TITLE SCREEN
 		if (gameState == titleScreen) {
@@ -417,7 +309,6 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne4.draw(g2);
 
 
-			//ghost0.draw(g2);
 			ghost1.draw(g2);
 			ghost2.draw(g2);
 			ghost3.draw(g2);
@@ -434,7 +325,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 			skeleton0.draw(g2);
 			skeleton1.draw(g2);
-			//skeleton2.draw(g2);
 			skeleton3.draw(g2);
 			skeleton4.draw(g2);
 			skeleton5.draw(g2);
@@ -454,7 +344,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
-			//flyingdemon.draw(g2);
+
 			//UI
 			ui.draw(g2);
 
@@ -489,7 +379,6 @@ public class GamePanel extends JPanel implements Runnable {
 			letter4.draw(g2);
 			letter5.draw(g2);
 			letter6.draw(g2);
-			//letter7.draw(g2);
 			letter8.draw(g2);
 			letter9.draw(g2);
 			letter10.draw(g2);
@@ -498,7 +387,6 @@ public class GamePanel extends JPanel implements Runnable {
 			//UI
 			ui.draw(g2);
 
-			//g2.dispose();
 		}
 
 
@@ -563,10 +451,22 @@ public class GamePanel extends JPanel implements Runnable {
 			g2.drawImage(tipsImage, 176, 64, 416, 448, null);
 		}
 
+
 		if (gameState == pauseState) {
 			ui.drawPauseScreen();
 		}
 
+		if (gameState == gameCompletedState) {
+			ui.drawCompletedScreen();
+		}
+
+		if (gameState == creditsState) {
+			ui.drawCreditsScreen();
+		}
+
+		if (gameState == gameOverState) {
+			ui.drawGameOverScreen();
+		}
 
 		g2.dispose();
 
@@ -579,4 +479,102 @@ public class GamePanel extends JPanel implements Runnable {
 		backgroundMusic.stop();
 	}
 
+	public void gameReset(boolean reset) {
+		if (reset) {
+			player.setDefaultValues();
+			setupEnemy();
+			boss.setDefaultValues();
+			setupKeyAndDoor();
+		}
+	}
+
+	public void setupEnemy(){
+		enemies = new ArrayList<>();
+
+		nightBorne = new NightBorne(this, tileSize * 42, tileSize * 16);
+		nightBorne1 = new NightBorne(this, tileSize * 23, tileSize * 27);
+		nightBorne2 = new NightBorne(this, tileSize * 44, tileSize * 46);
+		nightBorne3 = new NightBorne(this, tileSize * 24, tileSize * 38);
+		nightBorne4 = new NightBorne(this, tileSize * 34, tileSize * 34);
+
+		ghost1 = new ghost(this, tileSize * 17, tileSize * 7);
+		ghost2 = new ghost(this, tileSize * 35, tileSize * 5);
+		ghost3 = new ghost(this, tileSize * 38, tileSize * 19);
+		ghost4 = new ghost(this, tileSize * 43, tileSize * 13);
+		ghost5 = new ghost(this, tileSize * 47, tileSize * 19);
+		ghost6 = new ghost(this, tileSize * 31, tileSize * 17);
+		ghost7 = new ghost(this, tileSize * 43, tileSize * 38);
+		ghost8 = new ghost(this, tileSize * 35, tileSize * 44);
+		ghost9 = new ghost(this, tileSize * 19, tileSize * 14);
+		ghost10 = new ghost(this, tileSize * 20, tileSize * 33);
+		ghost11 = new ghost(this, tileSize * 27, tileSize * 33);
+		ghost12 = new ghost(this, tileSize * 43, tileSize * 29);
+
+		skeleton0 = new skeleton(this, tileSize * 9, tileSize * 20);
+		skeleton1 = new skeleton(this, tileSize * 16, tileSize * 17);
+		skeleton3 = new skeleton(this, tileSize * 20, tileSize * 28);
+		skeleton4 = new skeleton(this, tileSize * 27, tileSize * 28);
+		skeleton5 = new skeleton(this, tileSize * 24, tileSize * 5);
+		skeleton6 = new skeleton(this, tileSize * 43, tileSize * 3);
+		skeleton7 = new skeleton(this, tileSize * 47, tileSize * 3);
+		skeleton8 = new skeleton(this, tileSize * 38, tileSize * 13);
+		skeleton9 = new skeleton(this, tileSize * 42, tileSize * 19);
+		skeleton10 = new skeleton(this, tileSize * 46, tileSize * 13);
+		skeleton11 = new skeleton(this, tileSize * 27, tileSize * 11);
+		skeleton12 = new skeleton(this, tileSize * 30, tileSize * 42);
+
+		enemies.add(nightBorne);
+		enemies.add(nightBorne1);
+		enemies.add(nightBorne2);
+		enemies.add(nightBorne3);
+		enemies.add(nightBorne4);
+		enemies.add(ghost1);
+		enemies.add(ghost2);
+		enemies.add(ghost3);
+		enemies.add(ghost4);
+		enemies.add(ghost5);
+		enemies.add(ghost6);
+		enemies.add(ghost7);
+		enemies.add(ghost8);
+		enemies.add(ghost9);
+		enemies.add(ghost10);
+		enemies.add(ghost11);
+		enemies.add(ghost12);
+		enemies.add(skeleton0);
+		enemies.add(skeleton1);
+		enemies.add(skeleton3);
+		enemies.add(skeleton4);
+		enemies.add(skeleton5);
+		enemies.add(skeleton6);
+		enemies.add(skeleton7);
+		enemies.add(skeleton8);
+		enemies.add(skeleton9);
+		enemies.add(skeleton10);
+		enemies.add(skeleton11);
+		enemies.add(skeleton12);
+	}
+
+	public void setupKeyAndDoor(){
+		//KEYS
+		key0 = new Key(tileSize * 3, tileSize * 3, player);
+		key1 = new Key(tileSize * 7, tileSize * 13, player);
+		key2 = new Key(tileSize * 47, tileSize*  2, player);
+		key3 = new Key((int) (tileSize * 38.5), tileSize * 20, player);
+		key4 = new Key((int) (tileSize * 42.5), tileSize * 13, player);
+		key5 = new Key((int) (tileSize * 42.5), tileSize * 20, player);
+		key6 = new Key(tileSize * 47, tileSize * 33, player);
+		key7 = new Key((int) (tileSize * 23.5), tileSize * 27, player);
+		key8 = new Key((int) (tileSize * 27.5), (int) (tileSize * 39.5), player);
+
+		//DOORS
+		lockedDoor0 = new LockedDoor(tileSize * 11, tileSize * 11, player, this);
+		lockedDoor1 = new LockedDoor(tileSize * 23, tileSize * 7, player, this);
+		lockedDoor2 = new LockedDoor(tileSize * 34, tileSize * 8, player, this);
+		lockedDoor3 = new LockedDoor(tileSize * 34, tileSize * 24, player, this);
+		lockedDoor4 = new LockedDoor(tileSize * 46, tileSize * 14, player, this);
+		lockedDoor5 = new LockedDoor(tileSize * 46, tileSize * 18, player, this);
+		lockedDoor6 = new LockedDoor(tileSize * 47, tileSize * 40, player, this);
+		lockedDoor7 = new LockedDoor(tileSize * 23, tileSize * 34, player, this);
+		lockedDoor8 = new LockedDoor(tileSize * 17, tileSize * 39, player, this);
+	}
 }
