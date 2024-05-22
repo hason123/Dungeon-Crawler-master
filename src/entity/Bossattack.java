@@ -160,7 +160,7 @@ public class Bossattack {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
         if (playerX >= worldX && playerX <= worldX + width && playerY >= worldY && playerY <= worldY + height) {
-            gp.player.HP -= 4;
+            gp.player.HP -= 6;
         }
     }
 }
