@@ -16,7 +16,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
     BufferedImage keyImage;
 
     BufferedImage textBox1, textBox2, textBox3,textBox4;
-    BufferedImage titleBackground, titleBoss, titleSword, HALAL;
+    BufferedImage titleBackground, titleBoss, titleSword, HALAL, pausedImage, creditsImage,gameOver,gameCompleted;
     BufferedImage zeroHP, twoHP, fourHP, sixHP, eightHP, tenHP, twelveHP, fourteenHP, sixteenHP;
 
     public String curentDialouge = "";
@@ -44,6 +44,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
             HALAL = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/HALAL.png"));
             //textBox1 = ImageIO.read(getClass().getResourceAsStream("/object/letter/textbox1.png"));
             textBox4 = ImageIO.read(getClass().getResourceAsStream("/object/letter/3.png"));
+            pausedImage = ImageIO.read(getClass().getResourceAsStream("/titleMaterial/paused.png"));
 
         }catch(IOException e){
             e.printStackTrace();
@@ -129,7 +130,7 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
 
     public void drawPauseScreen() {
-
+        g2.drawImage(pausedImage,0,0,null);
     }
 
     public void drawCompletedScreen(){
