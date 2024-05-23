@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.sound.sampled.*;
+import java.io.InputStream;
+import main.sound;
+
 public class EventHandler {
     GamePanel gp;
     //EventRect[][] eventRect;
@@ -25,10 +29,10 @@ public class EventHandler {
 
         eventRect = new Rectangle();
 
-        eventRect.x = 35;
-        eventRect.y = 35;
-        eventRect.height = 2;
-        eventRect.width = 2;
+        eventRect.x = 20;
+        eventRect.y = 20;
+        eventRect.height = 8;
+        eventRect.width = 8;
         eventRectDefaultX = eventRect.x;
         eventRectDefaultY = eventRect.y;
 

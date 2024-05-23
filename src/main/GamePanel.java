@@ -94,7 +94,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	// SOUND
-	public sound backgroundMusic;
+	public sound backgroundMusic, doorOpen,key, gameOver, gameCompleted, attack, hit;
+
+
 
 
 	public GamePanel() {
@@ -122,6 +124,14 @@ public class GamePanel extends JPanel implements Runnable {
 
 		this.bossAttack = new Bossattack(this);
 		this.boss = new Boss(this, bossAttack);
+
+		// GAME SOUND
+		doorOpen = new sound("/sound/door.wav");
+		attack = new sound("/sound/attack.wav");
+		gameOver = new sound("/sound/gameover.wav");
+		gameCompleted = new sound ("/sound/MU.wav");
+		hit = new sound ("/sound/hit.wav");
+
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Dungeon of Mystery (8-Bit Music).wav");
