@@ -19,14 +19,14 @@ public class EventHandler {
 
     private long lastHitTime;
 
-    private int healCount = 0;
+
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
         eventRect = new Rectangle();
 
-        eventRect.x = 23;
-        eventRect.y = 23;
+        eventRect.x = 35;
+        eventRect.y = 35;
         eventRect.height = 2;
         eventRect.width = 2;
         eventRectDefaultX = eventRect.x;
@@ -44,9 +44,7 @@ public class EventHandler {
 
 
     public void checkEvent(){
-        if (hit(4, 2, "any")) {
 
-        }
         if (hit(13, 5, "any") || hit(28,44,"any") ||
                 hit(11, 7, "any") || hit(16, 5, "any") ||
                 hit(13, 8, "any") ||hit(18, 6, "any") ||
@@ -69,7 +67,7 @@ public class EventHandler {
                 lastHitTime = currentTime; // Update lastHitTime
             }
         }
-        if (hit(22,36,"any") || hit(22,37,"any")){
+        if (hit(22,36,"any")){
             teleportTile1();
         }
         if (hit(11,34,"any")){
@@ -78,6 +76,14 @@ public class EventHandler {
         if (hit(18,9,"any")){
             teleportTile3();
         }
+        if (hit(19,25,"any") || hit(28,25,"any") ){
+            teleportTile4();
+        }
+        if (hit(46,20,"any")){
+            teleportTile5();
+        }
+
+
         if (hit(23, 3, "any") || hit(42,25,"any") ||
                 hit(35, 2, "any") || hit(43, 25, "any") ||
                 hit(41, 2, "any") ||hit(46, 25, "any") ||
@@ -87,15 +93,10 @@ public class EventHandler {
                 hit(38, 12, "any") || hit(43, 12, "any") ||
                 hit(45, 42, "any") || hit(6,11,"any")||
         hit(6,11,"any")){
-           // long currentTime = System.currentTimeMillis();
-            //long elapsedTime = currentTime - lastHitTime;
 
-            // Add a cooldown of  2000 milliseconds (2 second)
-            //if (elapsedTime >= 2000) {
             healingTile();
 
-               // lastHitTime = currentTime; // Update lastHitTime
-            //}
+
         }
     }
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
@@ -138,10 +139,8 @@ public class EventHandler {
     }
 
     public void teleportTile1(){
-
-        gp.player.worldX = gp.tileSize * 4;
-        gp.player.worldY = gp.tileSize * 44;
-
+        gp.player.worldX = gp.tileSize * 15;
+        gp.player.worldY = (int) (gp.tileSize * 39.5);
     }
     public void teleportTile2(){
         gp.player.worldX = gp.tileSize * 24;
@@ -151,6 +150,14 @@ public class EventHandler {
     public void teleportTile3(){
         gp.player.worldX = gp.tileSize * 5;
         gp.player.worldY = gp.tileSize * 15;
+    }
+    public void teleportTile4(){
+        gp.player.worldX = gp.tileSize * 48;
+        gp.player.worldY = gp.tileSize * 3;
+    }
+    public void teleportTile5(){
+        gp.player.worldX = (int) (gp.tileSize * 34.5);
+        gp.player.worldY = (int) (gp.tileSize * 16.5);
     }
 
 

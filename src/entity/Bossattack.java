@@ -34,7 +34,7 @@ public class Bossattack {
     private int attackTimer = 0;
     private int attackCooldown = 10;
     private int warningTimer = 0;
-    private int warningDuration = 120; // 2 giây
+    private int warningDuration = 120; // 2 giây (ko hoat dong)
     private int attackDelay = 100;
     private int attackStartTimer = 0;
     private Random rand = new Random();
@@ -42,7 +42,7 @@ public class Bossattack {
 
     // Lưu vị trí của người chơi
     private Queue<int[]> playerPositions = new LinkedList<>();
-    private static final int dotre = 120; // Lưu 2 giây (120 khung hình)
+    private static final int dotre = 40; // Lưu 2 giây (120 khung hình) // chu ky tan cong
 
     // Offset để điều chỉnh vị trí vẽ
     private int offsetX = -50;
@@ -80,7 +80,7 @@ public class Bossattack {
         currentAttackType = type;
         currentFrame = 0;
         frameDelay = 0;
-        // Lấy vị trí của người chơi trước đó 2 giây
+        // Lấy vị trí của người chơi trước đó 1 giây
         int[] position = getPlayerPositionFromHistory();
         if (position != null) {
             worldX = position[0];
@@ -160,7 +160,7 @@ public class Bossattack {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
         if (playerX >= worldX && playerX <= worldX + width && playerY >= worldY && playerY <= worldY + height) {
-            gp.player.HP -= 6;
+            gp.player.HP -= 4;
         }
     }
 }

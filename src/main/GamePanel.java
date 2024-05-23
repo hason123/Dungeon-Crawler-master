@@ -49,15 +49,18 @@ public class GamePanel extends JPanel implements Runnable {
 	// FPS
 	int FPS = 60;
 	//enemy
-	public NightBorne nightBorne,nightBorne1,nightBorne2,nightBorne3,nightBorne4;
+	public NightBorne nightBorne,nightBorne1,nightBorne2,nightBorne3,nightBorne4,nightBorne5,nightBorne6,nightBorne7,nightBorne8, nightBorne9,nightBorne10,nightBorne11,nightBorne12,nightBorne13,nightBorne14,nightBorne15;
 
-	public ghost ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,
-			ghost11,ghost12;
+	public ghost ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,ghost11,ghost12,ghost13,ghost14,ghost15,ghost16,ghost17,ghost18,ghost19,ghost20;
+
+	public ghost ghost21,ghost22,ghost23,ghost24,ghost25,ghost26,ghost27,ghost28,ghost29,ghost30,ghost31,ghost32,ghost33,ghost34,ghost35,ghost36,ghost37,ghost38,ghost39,ghost40;
 
 
 
-	public skeleton skeleton0, skeleton1, skeleton3, skeleton4, skeleton5, skeleton6, skeleton7, skeleton8,
-			skeleton9, skeleton10, skeleton11, skeleton12;
+	public skeleton skeleton0, skeleton1, skeleton2,skeleton3, skeleton4, skeleton5, skeleton6, skeleton7, skeleton8,
+			skeleton9, skeleton10, skeleton11, skeleton12, skeleton13, skeleton14, skeleton15,skeleton16,skeleton17,skeleton18,skeleton19,skeleton20,
+	skeleton21,skeleton22,skeleton23,skeleton24,skeleton25,skeleton26,skeleton27,skeleton28,skeleton29,skeleton30,
+			skeleton31,skeleton32,skeleton33,skeleton34,skeleton35,skeleton36,skeleton37,skeleton38,skeleton39,skeleton40;
 
 
 
@@ -202,6 +205,17 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne2.update();
 			nightBorne3.update();
 			nightBorne4.update();
+			nightBorne5.update();
+			nightBorne6.update();
+			nightBorne7.update();
+			nightBorne8.update();
+			nightBorne9.update();
+			nightBorne10.update();
+			nightBorne11.update();
+			nightBorne12.update();
+			nightBorne13.update();
+			nightBorne13.update();
+
 
 			ghost1.update();
 			ghost2.update();
@@ -215,9 +229,29 @@ public class GamePanel extends JPanel implements Runnable {
 			ghost10.update();
 			ghost11.update();
 			ghost12.update();
+			ghost13.update();
+			ghost14.update();
+			ghost15.update();
+			ghost16.update();
+			ghost17.update();
+			ghost18.update();
+			ghost19.update();
+			ghost20.update();
+			ghost21.update();
+			ghost22.update();
+			ghost23.update();
+			ghost24.update();
+			ghost25.update();
+			ghost26.update();
+			ghost27.update();
+			ghost28.update();
+			ghost29.update();
+			ghost30.update();
+
 
 			skeleton0.update();
 			skeleton1.update();
+			skeleton2.update();
 			skeleton3.update();
 			skeleton4.update();
 			skeleton5.update();
@@ -228,6 +262,23 @@ public class GamePanel extends JPanel implements Runnable {
 			skeleton10.update();
 			skeleton11.update();
 			skeleton12.update();
+			skeleton13.update();
+			skeleton14.update();
+			skeleton15.update();
+			skeleton16.update();
+			skeleton17.update();
+			skeleton18.update();
+			skeleton19.update();
+			skeleton20.update();
+			skeleton21.update();
+			skeleton22.update();
+			skeleton23.update();
+			skeleton24.update();
+			skeleton25.update();
+			skeleton26.update();
+			skeleton27.update();
+			skeleton28.update();
+			skeleton29.update();
 
 
 
@@ -273,11 +324,11 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == pauseState) {//Trạng thái game tạm dừng (thêm menu hoặc gì đó)
 
 		}
-		if (player.HP == 0) {
+		if (player.HP <= 0) {
 			gameState = gameOverState;
 			stopBackgroundMusic();
 		}
-		if (boss.currentHealth == 0) {
+		if (boss.currentHealth <= 0) {
 			gameState = gameCompletedState;
 			stopBackgroundMusic();
 		}
@@ -307,6 +358,18 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne2.draw(g2);
 			nightBorne3.draw(g2);
 			nightBorne4.draw(g2);
+			nightBorne5.draw(g2);
+			nightBorne6.draw(g2);
+			nightBorne7.draw(g2);
+			nightBorne8.draw(g2);
+			nightBorne9.draw(g2);
+			nightBorne10.draw(g2);
+			nightBorne11.draw(g2);
+			nightBorne12.draw(g2);
+			nightBorne13.draw(g2);
+			nightBorne14.draw(g2);
+
+
 
 
 			ghost1.draw(g2);
@@ -321,10 +384,29 @@ public class GamePanel extends JPanel implements Runnable {
 			ghost10.draw(g2);
 			ghost11.draw(g2);
 			ghost12.draw(g2);
+			ghost13.draw(g2);
+			ghost14.draw(g2);
+			ghost15.draw(g2);
+			ghost16.draw(g2);
+			ghost17.draw(g2);
+			ghost18.draw(g2);
+			ghost19.draw(g2);
+			ghost20.draw(g2);
+			ghost21.draw(g2);
+			ghost22.draw(g2);
+			ghost23.draw(g2);
+			ghost24.draw(g2);
+			ghost25.draw(g2);
+			ghost26.draw(g2);
+			ghost27.draw(g2);
+			ghost28.draw(g2);
+			ghost29.draw(g2);
+			ghost30.draw(g2);
 
 
 			skeleton0.draw(g2);
 			skeleton1.draw(g2);
+			skeleton2.draw(g2);
 			skeleton3.draw(g2);
 			skeleton4.draw(g2);
 			skeleton5.draw(g2);
@@ -335,6 +417,23 @@ public class GamePanel extends JPanel implements Runnable {
 			skeleton10.draw(g2);
 			skeleton11.draw(g2);
 			skeleton12.draw(g2);
+			skeleton13.draw(g2);
+			skeleton14.draw(g2);
+			skeleton15.draw(g2);
+			skeleton16.draw(g2);
+			skeleton17.draw(g2);
+			skeleton18.draw(g2);
+			skeleton19.draw(g2);
+			skeleton20.draw(g2);
+			skeleton21.draw(g2);
+			skeleton22.draw(g2);
+			skeleton23.draw(g2);
+			skeleton24.draw(g2);
+			skeleton25.draw(g2);
+			skeleton26.draw(g2);
+			skeleton27.draw(g2);
+			skeleton28.draw(g2);
+			skeleton29.draw(g2);
 
 
 
@@ -492,42 +591,142 @@ public class GamePanel extends JPanel implements Runnable {
 		enemies = new ArrayList<>();
 
 		nightBorne = new NightBorne(this, tileSize * 42, tileSize * 16);
-		nightBorne1 = new NightBorne(this, tileSize * 23, tileSize * 27);
-		nightBorne2 = new NightBorne(this, tileSize * 44, tileSize * 46);
+		nightBorne1 = new NightBorne(this, tileSize * 21, tileSize * 26);
+		nightBorne6 = new NightBorne(this, (int) (tileSize * 26.5), tileSize * 26);
+		nightBorne2 = new NightBorne(this, tileSize * 43, tileSize * 45);
 		nightBorne3 = new NightBorne(this, tileSize * 24, tileSize * 38);
 		nightBorne4 = new NightBorne(this, tileSize * 34, tileSize * 34);
+		nightBorne5 = new NightBorne(this, tileSize * 34, tileSize * 26);
+		nightBorne7 = new NightBorne(this, tileSize * 24, tileSize * 44);
+		nightBorne8= new NightBorne(this, tileSize * 28, tileSize * 10);
+		nightBorne9 = new NightBorne(this, tileSize * 39, tileSize * 32);
+		nightBorne10 = new NightBorne(this, tileSize * 23, tileSize * 4);
+		nightBorne11 =  new NightBorne(this, tileSize * 48, tileSize * 26);
+		nightBorne12 = new NightBorne(this, tileSize * 15, tileSize * 29);
+		nightBorne13 =  new NightBorne(this, tileSize * 8, tileSize * 29);
+		nightBorne14 =  new NightBorne(this, tileSize * 27, tileSize * 16);
+
+
+
+
+
 
 		ghost1 = new ghost(this, tileSize * 17, tileSize * 7);
-		ghost2 = new ghost(this, tileSize * 35, tileSize * 5);
-		ghost3 = new ghost(this, tileSize * 38, tileSize * 19);
-		ghost4 = new ghost(this, tileSize * 43, tileSize * 13);
-		ghost5 = new ghost(this, tileSize * 47, tileSize * 19);
-		ghost6 = new ghost(this, tileSize * 31, tileSize * 17);
-		ghost7 = new ghost(this, tileSize * 43, tileSize * 38);
-		ghost8 = new ghost(this, tileSize * 35, tileSize * 44);
-		ghost9 = new ghost(this, tileSize * 19, tileSize * 14);
-		ghost10 = new ghost(this, tileSize * 20, tileSize * 33);
-		ghost11 = new ghost(this, tileSize * 27, tileSize * 33);
-		ghost12 = new ghost(this, tileSize * 43, tileSize * 29);
+		ghost15 = new ghost(this, tileSize * 14, tileSize * 6);
+		ghost16 = new ghost(this, tileSize * 11, tileSize * 9);
+		ghost17 = new ghost(this, tileSize * 16, tileSize * 3);
 
-		skeleton0 = new skeleton(this, tileSize * 9, tileSize * 20);
+		ghost2 = new ghost(this, tileSize * 35, tileSize * 2);
+		ghost18 = new ghost(this, tileSize * 32, tileSize * 3);
+		ghost19 = new ghost(this, tileSize * 37, tileSize * 3);
+		ghost20 = new ghost(this, tileSize * 32, tileSize * 6);
+		ghost21 = new ghost(this, tileSize * 37, tileSize * 6);
+
+
+		ghost3 = new ghost(this, tileSize * 38, tileSize * 19);
+
+		ghost4 = new ghost(this, tileSize * 43, tileSize * 13);
+
+		ghost5 = new ghost(this, tileSize * 46, tileSize * 20);
+		ghost8 = new ghost(this, tileSize * 46, tileSize * 18);
+		ghost22 = new ghost(this, tileSize * 46, tileSize * 18);
+
+		ghost6 = new ghost(this, tileSize * 31, tileSize * 17);
+		ghost7 = new ghost(this, tileSize * 44, tileSize * 37);
+
+
+		ghost9 = new ghost(this, tileSize * 19, tileSize * 14);
+
+		ghost10 = new ghost(this, (int) (tileSize * 19.5), tileSize * 33);
+		ghost11 = new ghost(this, tileSize * 27, tileSize * 33);
+
+		ghost12 = new ghost(this, tileSize * 42, tileSize * 29);
+		ghost25 = new ghost(this, tileSize * 44, tileSize * 29);
+
+
+		ghost13 = new ghost(this, tileSize * 5, tileSize * 12);
+		ghost14 = new ghost(this, tileSize * 5, tileSize * 20);
+
+
+		ghost23 = new ghost(this, tileSize * 19, tileSize * 21);
+		ghost24 = new ghost(this, tileSize * 28, tileSize * 21);
+
+		ghost26 = new ghost(this, tileSize * 45, tileSize * 43);
+		ghost27 = new ghost(this, tileSize * 47, tileSize * 46);
+
+		ghost28 = new ghost(this, tileSize * 39, tileSize * 43);
+
+		ghost29 = new ghost(this, tileSize * 21, tileSize * 42);
+		ghost30 = new ghost(this, tileSize * 25, tileSize * 42);
+
+
+
+
+
+
+
+
+		skeleton0 = new skeleton(this, (int) (tileSize * 8.5), tileSize * 19);
+		skeleton2 = new skeleton(this, (int) (tileSize * 8.5), tileSize * 11);
 		skeleton1 = new skeleton(this, tileSize * 16, tileSize * 17);
-		skeleton3 = new skeleton(this, tileSize * 20, tileSize * 28);
+		skeleton3 = new skeleton(this, tileSize * 19, tileSize * 28);
 		skeleton4 = new skeleton(this, tileSize * 27, tileSize * 28);
-		skeleton5 = new skeleton(this, tileSize * 24, tileSize * 5);
-		skeleton6 = new skeleton(this, tileSize * 43, tileSize * 3);
-		skeleton7 = new skeleton(this, tileSize * 47, tileSize * 3);
+
+
+		skeleton16 = new skeleton(this, (int) (tileSize * 22.5), (int) (tileSize * 8.5));
+		skeleton17 = new skeleton(this, (int) (tileSize * 23.5), (int) (tileSize * 11.5));
+		skeleton18 = new skeleton(this, (int) (tileSize * 22.5), (int) (tileSize * 15.5));
+		skeleton19 = new skeleton(this, (int) (tileSize * 23.5), (int) (tileSize * 18.5));
+
+		skeleton6 = new skeleton(this, (int) (tileSize * 42.5), (int) (tileSize * 2.5));
+		skeleton7 = new skeleton(this, (int) (tileSize * 46.5), (int) (tileSize * 2.5));
+		skeleton13 = new skeleton(this, (int) (tileSize * 44.5), (int) (tileSize * 3.5));
+		skeleton14 = new skeleton(this, (int) (tileSize * 43.5), (int) (tileSize * 5.5));
+		skeleton15 = new skeleton(this, (int) (tileSize * 45.5), (int) (tileSize * 5.5));
+
 		skeleton8 = new skeleton(this, tileSize * 38, tileSize * 13);
 		skeleton9 = new skeleton(this, tileSize * 42, tileSize * 19);
-		skeleton10 = new skeleton(this, tileSize * 46, tileSize * 13);
-		skeleton11 = new skeleton(this, tileSize * 27, tileSize * 11);
-		skeleton12 = new skeleton(this, tileSize * 30, tileSize * 42);
+
+		skeleton10 = new skeleton(this, tileSize * 46, tileSize * 12);
+		skeleton5 = new skeleton(this, tileSize * 46, tileSize * 14);
+		skeleton23 = new skeleton(this, tileSize * 46, tileSize * 14);
+
+		skeleton11 = new skeleton(this, tileSize * 14, tileSize * 21);
+		skeleton12 = new skeleton(this, tileSize * 14, tileSize * 24);
+
+		skeleton20 = new skeleton(this, tileSize * 42, tileSize * 36);
+		skeleton21 = new skeleton(this, tileSize * 45, tileSize * 36);
+		skeleton22 = new skeleton(this, tileSize * 42, tileSize * 40);
+
+		skeleton24 = new skeleton(this, (int) (tileSize * 32), (int) (tileSize * 42));
+		skeleton25 = new skeleton(this, (int) (tileSize * 32), (int) (tileSize * 46));
+		skeleton26 = new skeleton(this, (int) (tileSize * 36), (int) (tileSize * 42));
+		skeleton27 = new skeleton(this, (int) (tileSize * 36), (int) (tileSize * 46));
+
+		skeleton28 = new skeleton(this, (int) (tileSize * 21), (int) (tileSize * 39));
+		skeleton29 = new skeleton(this, (int) (tileSize * 25), (int) (tileSize * 39));
+
+
+
 
 		enemies.add(nightBorne);
 		enemies.add(nightBorne1);
 		enemies.add(nightBorne2);
 		enemies.add(nightBorne3);
 		enemies.add(nightBorne4);
+		enemies.add(nightBorne5);
+		enemies.add(nightBorne6);
+		enemies.add(nightBorne7);
+		enemies.add(nightBorne8);
+		enemies.add(nightBorne9);
+		enemies.add(nightBorne10);
+		enemies.add(nightBorne11);
+		enemies.add(nightBorne12);
+		enemies.add(nightBorne13);
+		enemies.add(nightBorne14);
+
+
+
 		enemies.add(ghost1);
 		enemies.add(ghost2);
 		enemies.add(ghost3);
@@ -540,8 +739,29 @@ public class GamePanel extends JPanel implements Runnable {
 		enemies.add(ghost10);
 		enemies.add(ghost11);
 		enemies.add(ghost12);
+		enemies.add(ghost13);
+		enemies.add(ghost14);
+		enemies.add(ghost15);
+		enemies.add(ghost16);
+		enemies.add(ghost17);
+		enemies.add(ghost18);
+		enemies.add(ghost19);
+		enemies.add(ghost20);
+		enemies.add(ghost21);
+		enemies.add(ghost22);
+		enemies.add(ghost23);
+		enemies.add(ghost24);
+		enemies.add(ghost25);
+		enemies.add(ghost26);
+		enemies.add(ghost27);
+		enemies.add(ghost28);
+		enemies.add(ghost29);
+		enemies.add(ghost30);
+
+
 		enemies.add(skeleton0);
 		enemies.add(skeleton1);
+		enemies.add(skeleton2);
 		enemies.add(skeleton3);
 		enemies.add(skeleton4);
 		enemies.add(skeleton5);
@@ -552,6 +772,25 @@ public class GamePanel extends JPanel implements Runnable {
 		enemies.add(skeleton10);
 		enemies.add(skeleton11);
 		enemies.add(skeleton12);
+		enemies.add(skeleton13);
+		enemies.add(skeleton14);
+		enemies.add(skeleton15);
+		enemies.add(skeleton16);
+		enemies.add(skeleton17);
+		enemies.add(skeleton18);
+		enemies.add(skeleton19);
+		enemies.add(skeleton20);
+		enemies.add(skeleton21);
+		enemies.add(skeleton22);
+		enemies.add(skeleton23);
+		enemies.add(skeleton24);
+		enemies.add(skeleton25);
+		enemies.add(skeleton26);
+		enemies.add(skeleton27);
+		enemies.add(skeleton28);
+		enemies.add(skeleton29);
+
+
 	}
 
 	public void setupKeyAndDoor(){

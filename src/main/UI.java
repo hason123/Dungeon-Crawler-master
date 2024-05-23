@@ -116,8 +116,8 @@ public class UI {//Thiết lập hiển thị thông tin Player trên màn hình
 
     public void drawCompletedScreen(){
         g2.drawImage(gameCompleted,0,0,null);
-        g2.drawImage(HUST,100,200,150,225,null);
-        g2.drawImage(MU,500,210,200,200,null);
+        g2.drawImage(HUST,200,200,150,225,null);
+        g2.drawImage(MU,400,210,200,200,null);
     }
 
     public void drawGameOverScreen(){
