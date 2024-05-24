@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.Graphics2D;
+import main.GamePanel;
+import main.sound;
 
 public class ghost extends Enemy {
 

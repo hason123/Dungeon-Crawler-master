@@ -36,4 +36,10 @@ import java.io.InputStream;
                 clip.stop();
             }
         }
+        public void setVolume(float volume) {
+            if (clip != null) {
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volume); // volume in decibels
+            }
+        }
     }

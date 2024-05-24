@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import main.GamePanel;
 
 import javax.sound.sampled.*;
 import java.io.InputStream;
@@ -55,6 +56,8 @@ public class EventHandler {
     sound teleport1 = new sound ("/sound/teleport1.wav");
     sound teleport2 = new sound ("/sound/enderman.wav");
 
+    sound healing = new sound ("/sound/healing.wav");
+
     public void checkEvent(){
 
         if (hit(13, 5, "any") || hit(28,44,"any") ||
@@ -67,9 +70,11 @@ public class EventHandler {
                 hit(43, 7, "any") || hit(28, 16, "any") ||
                 hit(45, 3, "any") || hit(19, 44, "any") ||
                 hit(47, 7, "any") || hit(19, 46, "any") ||
-                hit(28, 46, "any") ||hit(42, 32, "any") ||
-                hit(44, 32, "any") ||hit(46, 32, "any") ||
-                hit(47, 35, "any") ||hit(48, 38, "any")) {
+                hit(28, 46, "any") || hit(42, 32, "any") ||
+                hit(44, 32, "any") || hit(46, 32, "any") ||
+                hit(47, 35, "any") || hit(48, 38, "any") ||
+                hit(16, 8, "any") || hit(25, 18, "any") ||
+                hit(28, 18, "any")) {
             gp.playSoundEffect(hit);
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - lastHitTime;
@@ -81,18 +86,23 @@ public class EventHandler {
             }
         }
         if (hit(22,36,"any")){
+            gp.playSoundEffect(teleport1);
             teleportTile1();
         }
         if (hit(11,34,"any")){
+            gp.playSoundEffect(teleport1);
             teleportTile2();
         }
         if (hit(18,9,"any")){
+            gp.playSoundEffect(teleport1);
             teleportTile3();
         }
         if (hit(19,25,"any") || hit(28,25,"any") ){
+            gp.playSoundEffect(teleport1);
             teleportTile4();
         }
         if (hit(46,20,"any")){
+            gp.playSoundEffect(teleport1);
             teleportTile5();
         }
 
@@ -108,6 +118,7 @@ public class EventHandler {
         hit(6,11,"any")){
 
             healingTile();
+
 
 
         }
@@ -143,6 +154,7 @@ public class EventHandler {
 
     public void healingTile() {
         if (gp.keyInput.interact) {
+            gp.playSoundEffect(healing);
             if (gp.player.HP < 16) {
                 gp.player.HP += 1;
             } else {

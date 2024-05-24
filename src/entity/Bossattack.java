@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import main.sound;
+import main.GamePanel;
 
 public class Bossattack {
     enum AttackType {
@@ -42,11 +44,17 @@ public class Bossattack {
 
     // Lưu vị trí của người chơi
     private Queue<int[]> playerPositions = new LinkedList<>();
-    private static final int dotre = 40; // Lưu 2 giây (120 khung hình) // chu ky tan cong
+    private static final int dotre = 30; // Lưu 0.5 giây (120 khung hình) // chu ky tan cong
 
     // Offset để điều chỉnh vị trí vẽ
     private int offsetX = -50;
     private int offsetY = -75;
+
+    public sound explosion;
+
+
+
+
 
     public Bossattack(GamePanel gp) {
         this.gp = gp;
@@ -160,7 +168,7 @@ public class Bossattack {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
         if (playerX >= worldX && playerX <= worldX + width && playerY >= worldY && playerY <= worldY + height) {
-            gp.player.HP -= 4;
+            gp.player.HP -= 2;
         }
     }
 }

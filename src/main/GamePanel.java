@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	// SOUND
-	public sound backgroundMusic;
+	public sound backgroundMusic,gameOver,gameComplete,attack,hit;
 
 
 
@@ -130,7 +130,14 @@ public class GamePanel extends JPanel implements Runnable {
 
 		//GAME SETUP
 		backgroundMusic = new sound("/sound/Dungeon of Mystery (8-Bit Music).wav");
+		gameOver = new sound("/sound/gameover.wav");
+		gameComplete = new sound("/sound/MU.wav");
+		attack = new sound("/sound/attack.wav");
+
+
 		gameState = titleScreen;
+
+
 		//LETTERS
 		try {
 			escapeImage = ImageIO.read(getClass().getResourceAsStream("/letter/escape.png"));
@@ -202,7 +209,7 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
-			//playBackgroundMusic(backgroundMusic);
+			playBackgroundMusic(backgroundMusic);
 
 			//nightBorne
 			nightBorne.update();
@@ -219,7 +226,7 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne11.update();
 			nightBorne12.update();
 			nightBorne13.update();
-			nightBorne13.update();
+			nightBorne14.update();
 
 
 			ghost1.update();
@@ -326,16 +333,18 @@ public class GamePanel extends JPanel implements Runnable {
 				keyRemoved = true;  // Đánh dấu chìa khóa đã bị loại bỏ
 			}
 		}
-		if (gameState == pauseState) {//Trạng thái game tạm dừng (thêm menu hoặc gì đó)
 
-		}
 		if (player.HP <= 0) {
 			gameState = gameOverState;
 			stopBackgroundMusic(backgroundMusic);
+			playSoundEffect(gameOver);
+			player.HP = 1; //để như vậy để tranh truong hop lap nhac
 		}
 		if (boss.currentHealth <= 0) {
 			gameState = gameCompletedState;
 			stopBackgroundMusic(backgroundMusic);
+			playSoundEffect(gameComplete);
+			boss.currentHealth = 1; //để như vậy để tranh truong hop lap nhac
 		}
 	}
 
@@ -570,6 +579,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		if (gameState == gameOverState) {
 			ui.drawGameOverScreen();
+			//playSoundEffect(gameOver);
 		}
 
 		g2.dispose();
