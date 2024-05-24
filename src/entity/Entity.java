@@ -29,7 +29,7 @@ public class Entity {
 	public boolean collisionOn = false;
 	boolean attacking = false;
 
-	public String[] dialogues = new String[20];
+
 
 
 	public Entity(GamePanel gp) {

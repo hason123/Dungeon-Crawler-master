@@ -94,7 +94,11 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	// SOUND
-	public sound backgroundMusic,gameOver,gameComplete,attack,hit;
+	public sound backgroundMusic,gameOver,gameComplete,attack;
+
+	public sound paper0,paper1,paper2,paper3,paper4,paper5,paper6,paper7,paper8,paper9;
+
+	//boolean soundPlayed = false;
 
 
 
@@ -134,7 +138,20 @@ public class GamePanel extends JPanel implements Runnable {
 		gameComplete = new sound("/sound/MU.wav");
 		attack = new sound("/sound/attack.wav");
 
+		paper0 = new sound("/sound/paper.wav");
+		paper1 = new sound("/sound/paper.wav");
+		paper2 = new sound("/sound/paper.wav");
+		paper3 = new sound("/sound/paper.wav");
+		paper4 = new sound("/sound/paper.wav");
+		paper5 = new sound("/sound/paper.wav");
+		paper6 = new sound("/sound/paper.wav");
+		paper7 = new sound("/sound/paper.wav");
+		paper8 = new sound("/sound/paper.wav");
+		paper9 = new sound("/sound/paper.wav");
 
+
+
+		backgroundMusic.setVolume(0.2f);
 		gameState = titleScreen;
 
 
@@ -209,6 +226,7 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
+			//backgroundMusic.setVolume(-5.0f);
 			backgroundMusic.playBackgroundMusic();
 
 			//nightBorne
@@ -358,6 +376,7 @@ public class GamePanel extends JPanel implements Runnable {
 			ui.draw(g2);
 		} else {
 
+
 			// TILE
 			tileM.draw(g2);
 
@@ -504,60 +523,70 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 		if (gameState != titleScreen && eHandler.hit(4, 3, "any")) {
+			paper0.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(tutorialImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(18, 8, "any")) {
+			paper1.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(escapeImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 14, "any")) {
+			paper2.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(keyImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(22, 29, "any")) {
+			paper3.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(bossImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(22, 24, "any")) {
+			paper4.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(monstersImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(46, 13, "any")) {
+			paper5.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(teleImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(4, 18, "any")) {
+			paper6.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(spikesImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(21, 37, "any")) {
+			paper7.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(endImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(34, 45, "any")) {
+			paper8.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g2.drawImage(suyImage, 176, 64, 416, 448, null);
 		}
 		if (gameState != titleScreen && eHandler.hit(41, 26, "any")) {
+			paper9.playSoundEffect();
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

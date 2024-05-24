@@ -26,7 +26,7 @@ public class Bossattack {
     private int[] maxFrames = {10, 7};
     private int currentFrame = 0;
     private int frameDelay = 0;
-    private int frameDelayLimit = 10;
+    private int frameDelayLimit = 5;
     private boolean attacking = false;
     private int width = 32;
     private int height = 32;

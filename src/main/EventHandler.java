@@ -55,8 +55,8 @@ public class EventHandler {
     sound hit = new sound ("/sound/hit.wav");
     sound teleport1 = new sound ("/sound/teleport1.wav");
     sound teleport2 = new sound ("/sound/enderman.wav");
-
     sound healing = new sound ("/sound/healing.wav");
+
 
     public void checkEvent(){
 
@@ -119,8 +119,6 @@ public class EventHandler {
 
             healingTile();
 
-
-
         }
     }
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
@@ -147,7 +145,6 @@ public class EventHandler {
     }
 
     public void spikeHit(){
-        //gp.gameState = gameState;
         gp.player.HP -= 1;
 
     }

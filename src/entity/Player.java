@@ -8,12 +8,14 @@ import java.lang.reflect.Field;
 
 import javax.imageio.ImageIO;
 import javax.swing.plaf.PanelUI;
+import main.GamePanel;
 
 import enemy.Enemy;
-import main.GamePanel;
 import main.KeyboardInput;
 import main.LockedDoor;
 import main.UtilityTools;
+import main.*;
+
 
 public class Player extends Entity {
     GamePanel gp;
@@ -22,6 +24,10 @@ public class Player extends Entity {
     public final int screenY;
 
     public boolean attacking = false;
+
+    sound attack = new sound("/sound/attack.wav");
+
+    //sound walk = new sound ("/sound/footsteps.wav");
     public Player(GamePanel gp, KeyboardInput keyInput) {
         super(gp);
 
@@ -45,8 +51,10 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
-        worldX = gp.tileSize * 5; //Vi tri cua nhan vat
+        worldX = gp.tileSize * 5;              //Vi tri cua nhan vat
         worldY = gp.tileSize * 5;
+        //worldX = gp.tileSize * 16; //De vi muc dich test
+        //worldY = gp.tileSize * 39;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
@@ -176,7 +184,8 @@ public class Player extends Entity {
     public void update(){
         gp.eHandler.checkEvent();
         gp.keyInput.interact = false;
-        if (attacking==true){
+        if (attacking == true){
+            attack.playSoundEffect();
             attacking();
         }
 
@@ -187,6 +196,7 @@ public class Player extends Entity {
 
         if ((keyInput.diPhai || keyInput.diTrai || keyInput.diTren
                 || keyInput.diXuong) && !attacking) {
+
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
