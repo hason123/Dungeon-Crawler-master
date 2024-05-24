@@ -1,7 +1,6 @@
 package main;
 
 import entity.Player;
-import main.LockedDoor;
 import java.awt.*;
 
 public class Key extends objectforgem {
@@ -14,6 +13,7 @@ public class Key extends objectforgem {
         this.player = player;
     }
 
+    public sound keyPicked = new sound("/sound/key.wav");
     @Override
     public void interact() {  if (!pickedUp) { // Chỉ nhặt chìa khóa nếu nó chưa được nhặt
         int distanceThreshold = 50; // Khoảng cách cho phép chìa khóa bắt đầu theo người chơi
@@ -24,6 +24,7 @@ public class Key extends objectforgem {
         int distanceY = Math.abs(this.position.y - playerY);
 
         if (distanceX < distanceThreshold && distanceY < distanceThreshold) {
+            keyPicked.playSoundEffect();
             player.pickUpKey(); // Người chơi nhặt chìa khóa
             pickedUp = true; // Đánh dấu chìa khóa đã được nhặt
         }

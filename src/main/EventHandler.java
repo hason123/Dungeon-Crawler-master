@@ -75,7 +75,7 @@ public class EventHandler {
                 hit(47, 35, "any") || hit(48, 38, "any") ||
                 hit(16, 8, "any") || hit(25, 18, "any") ||
                 hit(28, 18, "any")) {
-            gp.playSoundEffect(hit);
+            hit.playSoundEffect();
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - lastHitTime;
 
@@ -86,23 +86,23 @@ public class EventHandler {
             }
         }
         if (hit(22,36,"any")){
-            gp.playSoundEffect(teleport1);
+            teleport1.playSoundEffect();
             teleportTile1();
         }
         if (hit(11,34,"any")){
-            gp.playSoundEffect(teleport1);
+            teleport1.playSoundEffect();
             teleportTile2();
         }
         if (hit(18,9,"any")){
-            gp.playSoundEffect(teleport1);
+            teleport1.playSoundEffect();
             teleportTile3();
         }
         if (hit(19,25,"any") || hit(28,25,"any") ){
-            gp.playSoundEffect(teleport1);
+            teleport1.playSoundEffect();
             teleportTile4();
         }
         if (hit(46,20,"any")){
-            gp.playSoundEffect(teleport1);
+            teleport1.playSoundEffect();
             teleportTile5();
         }
 
@@ -154,7 +154,7 @@ public class EventHandler {
 
     public void healingTile() {
         if (gp.keyInput.interact) {
-            gp.playSoundEffect(healing);
+            healing.playSoundEffect();
             if (gp.player.HP < 16) {
                 gp.player.HP += 1;
             } else {

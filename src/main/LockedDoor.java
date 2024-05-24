@@ -21,6 +21,7 @@ public class LockedDoor extends objectforgem {
     }
 
     public boolean doorOpened = false;
+    public sound doorOpen = new sound("/sound/door.wav");
 
     public void unlock() {
         int distanceThreshold = 60;
@@ -32,6 +33,7 @@ public class LockedDoor extends objectforgem {
 
         if (distanceX < distanceThreshold && distanceY < distanceThreshold) {
             this.image = openImage; // Thay đổi hình ảnh sang cửa mở
+            doorOpen.playSoundEffect();
             isLocked = false; // Đánh dấu cửa đã mở
             player.useKey(); // Người chơi sử dụng chìa khóa để mở khóa
             doorOpened = true;

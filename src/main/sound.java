@@ -19,7 +19,6 @@ import java.io.InputStream;
                 e.printStackTrace();
             }
         }
-
         public void start() {
             if (clip != null && !clip.isRunning()) {
                 clip.setFramePosition(0);
@@ -41,5 +40,16 @@ import java.io.InputStream;
                 FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                 gainControl.setValue(volume); // volume in decibels
             }
+        }
+
+        public void playBackgroundMusic(){
+            start();
+            loop();
+        }
+        public void stopMusic(){
+            stop();
+        }
+        public void playSoundEffect() {
+            start();
         }
     }

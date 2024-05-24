@@ -21,6 +21,7 @@ public abstract class Enemy {
     protected int health = 0;
     protected boolean deathAnimationPlayed = false;
     protected int DEATH_SPRITE_INDEX;
+    public sound monsterHit = new sound ("/sound/receivedamage.wav");
 
     public Enemy(GamePanel gp, int worldX, int worldY, int speed) {
         this.gp = gp;
@@ -106,6 +107,7 @@ public abstract class Enemy {
     }
 
     protected void attackPlayer() {
+        monsterHit.playSoundEffect();
         gp.player.receiveDamage(2);
     }
 

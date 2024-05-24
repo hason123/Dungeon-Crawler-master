@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 import main.sound;
-import main.GamePanel;
 
 public class Bossattack {
     enum AttackType {
@@ -41,6 +40,8 @@ public class Bossattack {
     private int attackStartTimer = 0;
     private Random rand = new Random();
     private static final int tamdanh = 400; // Tầm tấn công
+    public sound bossAttack = new sound ("/sound/explosion.wav");
+    public sound bossHit = new sound ("/sound/receivedamage.wav");
 
     // Lưu vị trí của người chơi
     private Queue<int[]> playerPositions = new LinkedList<>();
@@ -107,6 +108,7 @@ public class Bossattack {
                     }
                     break;
                 case ATTACKING:
+                    bossAttack.playSoundEffect();
                     frameDelay++;
                     if (frameDelay >= frameDelayLimit) {
                         currentFrame = (currentFrame + 1) % maxFrames[currentAttackType.ordinal()];
@@ -168,6 +170,7 @@ public class Bossattack {
         int playerX = gp.player.getWorldX();
         int playerY = gp.player.getWorldY();
         if (playerX >= worldX && playerX <= worldX + width && playerY >= worldY && playerY <= worldY + height) {
+            bossHit.playSoundEffect();
             gp.player.HP -= 2;
         }
     }

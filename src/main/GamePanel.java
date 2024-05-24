@@ -209,7 +209,7 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
-			playBackgroundMusic(backgroundMusic);
+			backgroundMusic.playBackgroundMusic();
 
 			//nightBorne
 			nightBorne.update();
@@ -336,14 +336,14 @@ public class GamePanel extends JPanel implements Runnable {
 
 		if (player.HP <= 0) {
 			gameState = gameOverState;
-			stopBackgroundMusic(backgroundMusic);
-			playSoundEffect(gameOver);
+			backgroundMusic.stopMusic();
+			gameOver.playSoundEffect();
 			player.HP = 1; //để như vậy để tranh truong hop lap nhac
 		}
 		if (boss.currentHealth <= 0) {
 			gameState = gameCompletedState;
-			stopBackgroundMusic(backgroundMusic);
-			playSoundEffect(gameComplete);
+			backgroundMusic.stopMusic();
+			gameComplete.playSoundEffect();
 			boss.currentHealth = 1; //để như vậy để tranh truong hop lap nhac
 		}
 	}
@@ -579,21 +579,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 		if (gameState == gameOverState) {
 			ui.drawGameOverScreen();
-			//playSoundEffect(gameOver);
 		}
 
 		g2.dispose();
 
-	}
-	public void playBackgroundMusic(sound backgroundMusic){
-		backgroundMusic.start();
-		backgroundMusic.loop();
-	}
-	public void stopBackgroundMusic(sound backgroundMusic){
-		backgroundMusic.stop();
-	}
-	public void playSoundEffect(sound soundEffect) {
-		soundEffect.start();
 	}
 
 	public void gameReset() {
