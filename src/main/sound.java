@@ -22,18 +22,18 @@ import java.io.InputStream;
 
         public void start() {
             if (clip != null && !clip.isRunning()) {
+                clip.setFramePosition(0);
                 clip.start();
             }
         }
 
-        public void loop() {//Chỉnh sửa trong trường hợp muốn sử dụng nhiều hơn 1 đoạn nhạc
+        public void loop() {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
 
         public void stop() {
             if (clip != null && clip.isRunning()) {
                 clip.stop();
-                clip.setFramePosition(0);
             }
         }
     }

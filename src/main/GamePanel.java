@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	// SOUND
-	public sound backgroundMusic, doorOpen,key, gameOver, gameCompleted, attack, hit;
+	public sound backgroundMusic;
 
 
 
@@ -125,12 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.bossAttack = new Bossattack(this);
 		this.boss = new Boss(this, bossAttack);
 
-		// GAME SOUND
-		doorOpen = new sound("/sound/door.wav");
-		attack = new sound("/sound/attack.wav");
-		gameOver = new sound("/sound/gameover.wav");
-		gameCompleted = new sound ("/sound/MU.wav");
-		hit = new sound ("/sound/hit.wav");
+
 
 
 		//GAME SETUP
@@ -201,13 +196,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public void update() {
 		if (gameState == titleScreen){
-			gameReset(true);
+			gameReset();
 		}
 		if (gameState == playState) {//Trạng thái game hoạt động
 			player.update();
 			boss.update();
 			bossAttack.update();
-			playBackgroundMusic();
+			//playBackgroundMusic(backgroundMusic);
 
 			//nightBorne
 			nightBorne.update();
@@ -336,11 +331,11 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		if (player.HP <= 0) {
 			gameState = gameOverState;
-			stopBackgroundMusic();
+			stopBackgroundMusic(backgroundMusic);
 		}
 		if (boss.currentHealth <= 0) {
 			gameState = gameCompletedState;
-			stopBackgroundMusic();
+			stopBackgroundMusic(backgroundMusic);
 		}
 	}
 
@@ -580,21 +575,22 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 
 	}
-	public void playBackgroundMusic(){
+	public void playBackgroundMusic(sound backgroundMusic){
 		backgroundMusic.start();
 		backgroundMusic.loop();
 	}
-	public void stopBackgroundMusic(){
+	public void stopBackgroundMusic(sound backgroundMusic){
 		backgroundMusic.stop();
 	}
+	public void playSoundEffect(sound soundEffect) {
+		soundEffect.start();
+	}
 
-	public void gameReset(boolean reset) {
-		if (reset) {
-			player.setDefaultValues();
-			setupEnemy();
-			boss.setDefaultValues();
-			setupKeyAndDoor();
-		}
+	public void gameReset() {
+		player.setDefaultValues();
+		setupEnemy();
+		boss.setDefaultValues();
+		setupKeyAndDoor();
 	}
 
 	public void setupEnemy(){

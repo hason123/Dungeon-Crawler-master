@@ -46,6 +46,14 @@ public class EventHandler {
 
     }
 
+    // GAME SOUND
+    sound doorOpen = new sound("/sound/door.wav");
+    sound attack = new sound("/sound/attack.wav");
+    sound gameOver = new sound("/sound/gameover.wav");
+    sound gameCompleted = new sound ("/sound/MU.wav");
+    sound hit = new sound ("/sound/hit.wav");
+    sound teleport1 = new sound ("/sound/teleport1.wav");
+    sound teleport2 = new sound ("/sound/enderman.wav");
 
     public void checkEvent(){
 
@@ -62,6 +70,7 @@ public class EventHandler {
                 hit(28, 46, "any") ||hit(42, 32, "any") ||
                 hit(44, 32, "any") ||hit(46, 32, "any") ||
                 hit(47, 35, "any") ||hit(48, 38, "any")) {
+            gp.playSoundEffect(hit);
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - lastHitTime;
 
@@ -129,6 +138,7 @@ public class EventHandler {
     public void spikeHit(){
         //gp.gameState = gameState;
         gp.player.HP -= 1;
+
     }
 
     public void healingTile() {

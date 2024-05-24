@@ -24,7 +24,6 @@ public class KeyboardInput implements KeyListener {
         if (gp.gameState == gp.titleScreen){
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 gp.gameState = gp.playState;
-                gp.playBackgroundMusic();
             }
         }
 
