@@ -1,29 +1,20 @@
 package main;
 
-import entity.Entity;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import main.GamePanel;
-
-import javax.sound.sampled.*;
-import java.io.InputStream;
-import main.sound;
 
 public class EventHandler {
     GamePanel gp;
-    //EventRect[][] eventRect;
-    //Entity eventMaster;
     BufferedImage escape,keys,monsters,spikes,teleports,boss;
     int eventRectDefaultX, eventRectDefaultY;
-    //boolean canTouchEvent = true;
-    //int  tempCol, tempRow;
     Rectangle eventRect;
-
     private long lastHitTime;
-
+    // GAME SOUND
+    sound hit = new sound ("/sound/hit.wav");
+    sound teleport1 = new sound ("/sound/teleport1.wav");
+    sound healing = new sound ("/sound/healing.wav");
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -44,19 +35,7 @@ public class EventHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-    // GAME SOUND
-    sound doorOpen = new sound("/sound/door.wav");
-    sound attack = new sound("/sound/attack.wav");
-    sound gameOver = new sound("/sound/gameover.wav");
-    sound gameCompleted = new sound ("/sound/MU.wav");
-    sound hit = new sound ("/sound/hit.wav");
-    sound teleport1 = new sound ("/sound/teleport1.wav");
-    sound teleport2 = new sound ("/sound/enderman.wav");
-    sound healing = new sound ("/sound/healing.wav");
-
 
     public void checkEvent(){
 
@@ -169,7 +148,6 @@ public class EventHandler {
         gp.player.worldX = gp.tileSize * 24;
         gp.player.worldY = gp.tileSize * 40;
     }
-
     public void teleportTile3(){
         gp.player.worldX = gp.tileSize * 5;
         gp.player.worldY = gp.tileSize * 15;
@@ -182,7 +160,4 @@ public class EventHandler {
         gp.player.worldX = (int) (gp.tileSize * 34.5);
         gp.player.worldY = (int) (gp.tileSize * 16.5);
     }
-
-
-
 }

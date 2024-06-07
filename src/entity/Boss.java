@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Random;
 
 import main.GamePanel;
-import main.sound;
 
 public class Boss extends Entity {
     GamePanel gp;

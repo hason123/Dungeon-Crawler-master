@@ -1,7 +1,6 @@
 package main;
 
 import entity.Player;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,8 +9,10 @@ public class LockedDoor extends objectforgem {
     private Player player;
     private GamePanel gamePanel;
     private BufferedImage openImage;
-    private int width = 32;
-    private int height = 32;
+    public boolean doorOpened = false;
+    public sound doorOpen = new sound("/sound/door.wav");
+
+
     public LockedDoor(int x, int y, Player player, GamePanel gamePanel) {
         super(x, y, "/object/door.png", 32, 32); // LockedDoor image is 32x32 pixels
         this.player = player;
@@ -19,9 +20,6 @@ public class LockedDoor extends objectforgem {
         // Tải hình ảnh cửa mở
         this.openImage = loadImage("/object/door_open.png", 32, 32);
     }
-
-    public boolean doorOpened = false;
-    public sound doorOpen = new sound("/sound/door.wav");
 
     public void unlock() {
         int distanceThreshold = 60;

@@ -2,9 +2,7 @@ package tile;
 
 import java.awt.Graphics2D;
 import java.io.*;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.UtilityTools;
 

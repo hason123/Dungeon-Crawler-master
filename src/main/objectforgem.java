@@ -14,9 +14,7 @@ public abstract class objectforgem {
         this.image = loadImage(imagePath, width, height);
     }
 
-    public objectforgem() {
-
-    }
+    public objectforgem() {}
 
     protected BufferedImage loadImage(String path, int width, int height) {
         try {
@@ -33,13 +31,5 @@ public abstract class objectforgem {
     }
     public abstract void interact();
     public abstract void draw(Graphics2D g2);
-
-    public void setPosition(int x, int y) {
-        this.position.setLocation(x, y);
-    }
-
-    public Point getPosition() {
-        return this.position;
-    }
 }
 

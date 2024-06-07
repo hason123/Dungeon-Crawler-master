@@ -5,27 +5,22 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import enemy.Enemy;
 import enemy.ghost;
 import enemy.skeleton;
 import entity.Boss;
 import letters.Letter;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import entity.Bossattack;
 import entity.Player;
 import enemy.NightBorne;
-
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 	// SCREEN SETTINGS
 	final int originalTileSize = 16; // 16x16 tile
 	final int scale = 3;
-
 	public final int tileSize = originalTileSize * scale; // 48x48 tile
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 12;
@@ -35,54 +30,39 @@ public class GamePanel extends JPanel implements Runnable {
 	public LockedDoor lockedDoor0, lockedDoor1, lockedDoor2, lockedDoor3, lockedDoor4, lockedDoor5, lockedDoor6, lockedDoor7, lockedDoor8;
 	public Boss boss;
 	public Bossattack bossAttack;
-
 	public BufferedImage escapeImage,tutorialImage,keyImage,monstersImage,spikesImage,teleImage,bossImage,endImage,suyImage,tipsImage;
 	public ArrayList<Enemy> enemies;
-
-
 	public Letter letter0,letter1,letter2,letter3,letter4,letter5,letter6,letter8,letter9,letter10;
+
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
 
-
 	// FPS
 	int FPS = 60;
+
 	//enemy
-	public NightBorne nightBorne,nightBorne1,nightBorne2,nightBorne3,nightBorne4,nightBorne5,nightBorne6,nightBorne7,nightBorne8, nightBorne9,nightBorne10,nightBorne11,nightBorne12,nightBorne13,nightBorne14,nightBorne15;
-
-	public ghost ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,ghost11,ghost12,ghost13,ghost14,ghost15,ghost16,ghost17,ghost18,ghost19,ghost20;
-
-	public ghost ghost21,ghost22,ghost23,ghost24,ghost25,ghost26,ghost27,ghost28,ghost29,ghost30,ghost31,ghost32,ghost33,ghost34,ghost35,ghost36,ghost37,ghost38,ghost39,ghost40;
-
-
-
+	public NightBorne nightBorne,nightBorne1,nightBorne2,nightBorne3,nightBorne4,nightBorne5,nightBorne6,nightBorne7,nightBorne8, nightBorne9,nightBorne10,nightBorne11,nightBorne12,nightBorne13,nightBorne14;
+	public ghost ghost1,ghost2,ghost3,ghost4,ghost5,ghost6,ghost7,ghost8,ghost9,ghost10,ghost11,ghost12,ghost13,ghost14,ghost15,ghost16,ghost17,ghost18,ghost19,ghost20,
+				ghost21,ghost22,ghost23,ghost24,ghost25,ghost26,ghost27,ghost28,ghost29,ghost30;
 	public skeleton skeleton0, skeleton1, skeleton2,skeleton3, skeleton4, skeleton5, skeleton6, skeleton7, skeleton8,
-			skeleton9, skeleton10, skeleton11, skeleton12, skeleton13, skeleton14, skeleton15,skeleton16,skeleton17,skeleton18,skeleton19,skeleton20,
-	skeleton21,skeleton22,skeleton23,skeleton24,skeleton25,skeleton26,skeleton27,skeleton28,skeleton29,skeleton30,
-			skeleton31,skeleton32,skeleton33,skeleton34,skeleton35,skeleton36,skeleton37,skeleton38,skeleton39,skeleton40;
-
-
+					skeleton9, skeleton10, skeleton11, skeleton12, skeleton13, skeleton14, skeleton15,skeleton16,skeleton17,skeleton18,skeleton19,skeleton20,
+					skeleton21,skeleton22,skeleton23,skeleton24,skeleton25,skeleton26,skeleton27,skeleton28,skeleton29;
 
 	// SYSTEM
 	public TileManager tileM = new TileManager(this);
 	public KeyboardInput keyInput = new KeyboardInput(this);
-
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public UI ui = new UI(this);
-
 	public EventHandler eHandler = new EventHandler(this);
-
 
 	Thread gameThread;
 
-
 	// ENTITY AND OBJECT
 	public Player player = new Player(this, keyInput);
+	private List<objectforgem> objects = new ArrayList<>(); // Danh sách các đối tượng trên màn hình
+	private boolean keyRemoved = false;
 
-
-
-	//
 	// GAME STATE
 	public int gameState;
 	public final int titleScreen = 0;
@@ -92,15 +72,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int gameCompletedState = 4;
 	public final int gameOverState = 5;
 
-
 	// SOUND
 	public sound backgroundMusic,gameOver,gameComplete,attack;
-
 	public sound paper0,paper1,paper2,paper3,paper4,paper5,paper6,paper7,paper8,paper9;
-
-	//boolean soundPlayed = false;
-
-
 
 
 	public GamePanel() {
@@ -206,17 +180,12 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 
 			if (timer >= 1_000_000_000) {
-				//System.out.println("FPS: " + drawCount);
 				drawCount = 0;
 				timer = 0;
 			}
 
 		}
 	}
-
-	private List<objectforgem> objects = new ArrayList<>(); // Danh sách các đối tượng trên màn hình
-
-	private boolean keyRemoved = false;
 
 	public void update() {
 		if (gameState == titleScreen){
@@ -226,7 +195,6 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			boss.update();
 			bossAttack.update();
-			//backgroundMusic.setVolume(-5.0f);
 			backgroundMusic.playBackgroundMusic();
 
 			//nightBorne
@@ -246,7 +214,7 @@ public class GamePanel extends JPanel implements Runnable {
 			nightBorne13.update();
 			nightBorne14.update();
 
-
+			//ghost
 			ghost1.update();
 			ghost2.update();
 			ghost3.update();
@@ -278,7 +246,7 @@ public class GamePanel extends JPanel implements Runnable {
 			ghost29.update();
 			ghost30.update();
 
-
+			//skeleton
 			skeleton0.update();
 			skeleton1.update();
 			skeleton2.update();
@@ -356,13 +324,13 @@ public class GamePanel extends JPanel implements Runnable {
 			gameState = gameOverState;
 			backgroundMusic.stopMusic();
 			gameOver.playSoundEffect();
-			player.HP = 1; //để như vậy để tranh truong hop lap nhac
+			player.HP = 1;
 		}
 		if (boss.currentHealth <= 0) {
 			gameState = gameCompletedState;
 			backgroundMusic.stopMusic();
 			gameComplete.playSoundEffect();
-			boss.currentHealth = 1; //để như vậy để tranh truong hop lap nhac
+			boss.currentHealth = 1;
 		}
 	}
 

@@ -1,13 +1,12 @@
 package main;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Health extends objectforgem{
     GamePanel gp;
-    //public static final String objName = "Heart";
+
 
     public Health(GamePanel gp) {
 
@@ -30,12 +29,8 @@ public class Health extends objectforgem{
     }
 
     @Override
-    public void interact() {
-
-    }
+    public void interact() {}
 
     @Override
-    public void draw(Graphics2D g2) {
-
-    }
+    public void draw(Graphics2D g2) {}
 }

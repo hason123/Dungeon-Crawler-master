@@ -4,12 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Field;
-
 import javax.imageio.ImageIO;
-import javax.swing.plaf.PanelUI;
 import main.GamePanel;
-
 import enemy.Enemy;
 import main.KeyboardInput;
 import main.LockedDoor;
@@ -22,12 +18,9 @@ public class Player extends Entity {
     KeyboardInput keyInput;
     public final int screenX;
     public final int screenY;
-
     public boolean attacking = false;
-
     sound attack = new sound("/sound/attack.wav");
 
-    //sound walk = new sound ("/sound/footsteps.wav");
     public Player(GamePanel gp, KeyboardInput keyInput) {
         super(gp);
 
@@ -53,8 +46,6 @@ public class Player extends Entity {
     public void setDefaultValues() { // cac gia tri mac dinh cua nhan vat
         worldX = gp.tileSize * 5;              //Vi tri cua nhan vat
         worldY = gp.tileSize * 5;
-        //worldX = gp.tileSize * 16; //De vi muc dich test
-        //worldY = gp.tileSize * 39;
         speed = 4; // toc do di chuyen cua nhan vat
         direction = "down"; // huong nhan vat ban dau
         // Luong mau cua nhan vat
@@ -372,9 +363,6 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2){
-//		g2.setColor(Color.white);
-//		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
-
         BufferedImage image = null;
 
         switch (direction) {
@@ -570,6 +558,5 @@ public class Player extends Entity {
                 break;
             }
             g2.drawImage(image, screenX, screenY, null);
-
         }
 }

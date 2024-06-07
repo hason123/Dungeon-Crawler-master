@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 import main.sound;
 
 public class Bossattack {
@@ -27,7 +26,6 @@ public class Bossattack {
     private int currentFrame = 0;
     private int frameDelay = 0;
     private int frameDelayLimit = 5;
-    private boolean attacking = false;
     private int width = 32;
     private int height = 32;
     private int worldX, worldY;
@@ -35,10 +33,8 @@ public class Bossattack {
     private int attackTimer = 0;
     private int attackCooldown = 10;
     private int warningTimer = 0;
-    private int warningDuration = 120; // 2 giây (ko hoat dong)
-    private int attackDelay = 100;
+    private int warningDuration = 120; // 2 giây
     private int attackStartTimer = 0;
-    private Random rand = new Random();
     private static final int tamdanh = 400; // Tầm tấn công
     public sound bossAttack = new sound ("/sound/explosion.wav");
     public sound bossHit = new sound ("/sound/receivedamage.wav");
@@ -50,10 +46,6 @@ public class Bossattack {
     // Offset để điều chỉnh vị trí vẽ
     private int offsetX = -50;
     private int offsetY = -75;
-
-    public sound explosion;
-
-
 
 
 

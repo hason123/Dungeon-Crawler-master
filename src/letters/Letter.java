@@ -1,14 +1,8 @@
 package letters;
 
-
-import entity.Entity;
 import entity.Player;
-import main.GamePanel;
 import main.objectforgem;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
 
 public class Letter extends objectforgem {
     Player player;
@@ -18,13 +12,8 @@ public class Letter extends objectforgem {
         this.player = player;
     }
 
-
-
-
     @Override
-    public void interact() {
-
-    }
+    public void interact() {}
 
     @Override
     public void draw(Graphics2D g2) {

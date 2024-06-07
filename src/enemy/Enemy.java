@@ -3,9 +3,6 @@ package enemy;
 import main.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import main.GamePanel;
 import main.sound;
 
 public abstract class Enemy {

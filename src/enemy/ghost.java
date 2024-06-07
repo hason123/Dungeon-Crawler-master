@@ -5,8 +5,6 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.Graphics2D;
-import main.GamePanel;
-import main.sound;
 
 public class ghost extends Enemy {
 
@@ -15,32 +13,21 @@ public class ghost extends Enemy {
     private int frameDelay = 0; // Biến để đếm độ trễ
     private final int frameDelayLimit = 15;
 
-    /*public NightBorne(GamePanel gp) {
-        super(gp, 0, 0, 2);
-        setDefaultValues();
-        loadSprites();
-    }
-     */
+
     public ghost(GamePanel gp, int initialWorldX, int initialWorldY) {
         super(gp, initialWorldX, initialWorldY, 2);
         setDefaultValues();
         loadSprites();
     }
 
-    public void setDefaultValues() {
-
-        //worldX = gp.tileSize * 5;
-        // worldY = gp.tileSize * 5;
-    }
+    public void setDefaultValues() {}
 
     @Override
     protected void loadSprites() {
         try {
             idleSprites = new BufferedImage[4];
             for (int i = 0; i < idleSprites.length; i++) {
-
                 idleSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/ghost/idle/idle_" + i + ".png"));
-
             }
 
             runSprites = new BufferedImage[4];

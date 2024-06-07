@@ -6,9 +6,6 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.Graphics2D;
 
-import main.GamePanel;
-import main.sound;
-
 public class skeleton extends Enemy {
 
     private BufferedImage[] idleSprites, runSprites, attackSprites, hurtSprites, deathSprites;
@@ -23,11 +20,7 @@ public class skeleton extends Enemy {
         loadSprites();
     }
 
-    public void setDefaultValues() {
-
-        //worldX = gp.tileSize * 5;
-        // worldY = gp.tileSize * 5;
-    }
+    public void setDefaultValues() {}
 
     @Override
     protected void loadSprites() {
@@ -41,6 +34,7 @@ public class skeleton extends Enemy {
             for (int i = 0; i < runSprites.length; i++) {
                 runSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/skeleton/frame" + i + ".png"));
             }
+
             attackSprites = new BufferedImage[15];
             for (int i = 0; i < attackSprites.length; i++) {
                 attackSprites[i] = ImageIO.read(getClass().getResourceAsStream("/enemy/skeleton/frame"+ i +".png"));

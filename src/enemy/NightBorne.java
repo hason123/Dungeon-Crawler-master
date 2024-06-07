@@ -6,8 +6,6 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.Graphics2D;
 
-import main.GamePanel;
-import main.sound;
 public class NightBorne extends Enemy {
 
     private BufferedImage[] idleSprites, runSprites, attackSprites, hurtSprites, deathSprites;
@@ -15,24 +13,14 @@ public class NightBorne extends Enemy {
     private int frameDelay = 0; // Biến để đếm độ trễ
     private final int frameDelayLimit = 15;
 
-    /*public NightBorne(GamePanel gp) {
-        super(gp, 0, 0, 2);
-        setDefaultValues();
-        loadSprites();
-    }
 
-     */
     public NightBorne(GamePanel gp, int x, int y) {
         super(gp, x, y, 2);
         setDefaultValues();
         loadSprites();
     }
 
-    public void setDefaultValues() {
-
-        //worldX = gp.tileSize * 5;
-       // worldY = gp.tileSize * 5;
-    }
+    public void setDefaultValues() {}
 
     @Override
     protected void loadSprites() {

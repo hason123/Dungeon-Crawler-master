@@ -5,15 +5,15 @@ import java.awt.*;
 
 public class Key extends objectforgem {
     private Player player;
-
     private boolean pickedUp = false; // Thêm biến để kiểm tra xem chìa khóa đã được nhặt hay chưa
+    public sound keyPicked = new sound("/sound/key.wav");
+
 
     public Key(int x, int y, Player player) {
         super(x, y, "/object/key.png", 16, 16);
         this.player = player;
     }
 
-    public sound keyPicked = new sound("/sound/key.wav");
     @Override
     public void interact() {  if (!pickedUp) { // Chỉ nhặt chìa khóa nếu nó chưa được nhặt
         int distanceThreshold = 50; // Khoảng cách cho phép chìa khóa bắt đầu theo người chơi
@@ -30,9 +30,7 @@ public class Key extends objectforgem {
         }
     }
     }
-    public boolean isPickedUp() {
-        return pickedUp;
-    }
+
     @Override
     public void draw(Graphics2D g2) { if (!pickedUp) { // Chỉ vẽ chìa khóa nếu nó chưa được nhặt lên
         int screenX = this.position.x - player.getWorldX() + player.screenX;
